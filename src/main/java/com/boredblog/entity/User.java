@@ -1,4 +1,4 @@
-package com.boredblog.model;
+package com.boredblog.entity;
 
 import com.boredblog.enums.Gender;
 
@@ -8,7 +8,7 @@ import com.boredblog.enums.Gender;
  * Group: Joel
  * Describes a person in terms of age and personGender.
  */
-public class Person {
+public class User {
     private int age;
     private Gender personGender;
 
