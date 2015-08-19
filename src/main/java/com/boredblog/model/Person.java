@@ -6,11 +6,11 @@ import com.boredblog.enums.Gender;
  * @author Joel Dewey
  * @date 8/18/2015
  * Group: Joel
- * Describes a person in terms of age and gender.
+ * Describes a person in terms of age and personGender.
  */
 public class Person {
     private int age;
-    private Gender gender;
+    private Gender personGender;
 
     public int getAge() {
         return age;
@@ -20,11 +20,11 @@ public class Person {
         this.age = age;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Gender getPersonGender() {
+        return personGender;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setPersonGender(Gender personGender) {
+        this.personGender = personGender;
     }
 }
