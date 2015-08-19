@@ -4,6 +4,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: "idea"
 apply plugin: "war"
+apply plugin: 'org.flywaydb.flyway'
 
 sourceCompatibility = 1.8
 
@@ -16,6 +17,9 @@ war {
 }
 
 dependencies {
+    classpath 'org.flywaydb:flyway-core:3.2.1',
+              'org.flywaydb:flyway-gradle-plugin:3.2.1'
+
     compile "org.springframework:spring-context:4.2.0.RELEASE",
             "org.springframework:spring-webmvc:4.2.0.RELEASE",
             'org.springframework.data:spring-data-commons:1.10.2.RELEASE',
