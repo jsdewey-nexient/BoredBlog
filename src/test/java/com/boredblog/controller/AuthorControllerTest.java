@@ -23,13 +23,15 @@ public class AuthorControllerTest {
     private List<Author> authors;
     @Mock
     private AuthorManager authorManager;
+    @Mock
+    private Author author;
     @InjectMocks
     private AuthorController authorController;
 
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
+        this.mockAuthorManager();
     }
 
     @Test
@@ -39,5 +41,19 @@ public class AuthorControllerTest {
         Assert.assertEquals("testRetrievingAllAuthors did not receive the " +
                 "mocked List of Author objects back.", this.authors, result);
         Mockito.verify(this.authorManager).retrieveAll();
+    }
+
+    @Test
+    public void testRetrievingOneAuthor() {
+        Author result;
+
+        Assert.assertEquals("testRetrievingOneAuthor did not receive the " +
+                "mocked Author object back.", this.author, result);
+        Mockito.verify(this.authorManager).retrieve(1);
+    }
+
+    private void mockAuthorManager() {
+        Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
+        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.author);
     }
 }
