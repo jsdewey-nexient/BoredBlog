@@ -23,6 +23,7 @@ public class User extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
     @OneToMany(mappedBy = "user")
+    @OrderBy("created_at DESC")
     private List<Post> posts;
     @OneToMany
     @JoinTable(
@@ -30,6 +31,7 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "comment_id")
     )
+    @OrderBy("created_at ASC")
     private List<Comment> comments;
 
     public String getFirstName() {
