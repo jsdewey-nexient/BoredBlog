@@ -25,6 +25,8 @@ public class AuthorControllerTest {
     private AuthorManager authorManager;
     @Mock
     private Author author;
+    @Mock
+    private Author updateAuthor;
     @InjectMocks
     private AuthorController authorController;
 
@@ -61,6 +63,14 @@ public class AuthorControllerTest {
         Mockito.verify(this.authorManager).create(this.author);
     }
 
+    @Test
+    public void testUpdatingAuthor() {
+        Author result = this.authorController.updateAuthor(this.author);
+
+        assertEquals("testUpdatingAuthor did not receive the other mocked " +
+                "Author object back.", this.updateAuthor, result);
+    }
+
     private void mockAuthorManager() {
         Mockito.when(this.authorManager.retrieveAll())
                 .thenReturn(this.authors);
@@ -68,5 +78,7 @@ public class AuthorControllerTest {
                 .thenReturn(this.author);
         Mockito.when(this.authorManager.create(this.author))
                 .thenReturn(this.author);
+        Mockito.when(this.authorManager.update(this.author))
+                .thenReturn(this.updateAuthor);
     }
 }
