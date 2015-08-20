@@ -18,7 +18,7 @@ public class User extends BaseEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @Column(name = "screen_name", nullable = false)
-    private String screenname;
+    private String screenName;
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
@@ -50,12 +50,12 @@ public class User extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public String getScreenname() {
-        return screenname;
+    public String getScreenName() {
+        return screenName;
     }
 
-    public void setScreenname(String screenname) {
-        this.screenname = screenname;
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
     }
 
     public String getPassword() {
