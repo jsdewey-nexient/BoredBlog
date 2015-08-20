@@ -1,9 +1,13 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Author;
+import com.boredblog.manager.AuthorManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author Joel Dewey
@@ -12,5 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * Responsible for delivering Author objects.
  */
 @RestController
+@RequestMapping("authors")
 public class AuthorController {
+    @Autowired
+    private AuthorManager authorManager;
+
+    public List<Author> getAuthors() {
+        return this.authorManager.retrieveAll();
+    }
 }
