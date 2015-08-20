@@ -69,7 +69,7 @@ public class AuthorControllerTest {
 
         assertEquals("testUpdatingAuthor did not receive the other mocked " +
                 "Author object back.", this.updateAuthor, result);
-        Mockito.verify(this.authorManager).update(this.author);
+        Mockito.verify(this.authorManager).update(1, this.author);
     }
 
     private void mockAuthorManager() {
@@ -79,7 +79,7 @@ public class AuthorControllerTest {
                 .thenReturn(this.author);
         Mockito.when(this.authorManager.create(this.author))
                 .thenReturn(this.author);
-        Mockito.when(this.authorManager.update(this.author))
+        Mockito.when(this.authorManager.update(1, this.author))
                 .thenReturn(this.updateAuthor);
     }
 }

@@ -39,6 +39,6 @@ public class AuthorController {
             @PathVariable Integer id,
             @RequestBody Author author
     ) {
-        return this.authorManager.update(author);
+        return this.authorManager.update(id, author);
     }
 }
