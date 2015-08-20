@@ -44,13 +44,32 @@ public class PostControllerTest {
                 "Post objects back.", this.posts, result);
         Mockito.verify(this.postManager).retrieveAll();
     }
-    
+
     @Test
     public void testRetrievingOnePost() {
         Post result = this.postController.getPost(1);
 
         assertEquals("testRetrievingOnePost did not receive the Post " +
                 "object back.", this.post, result);
+        Mockito.verify(this.postManager).retrieve(1);
+    }
+
+    @Test
+    public void testCreatingNewPost() {
+        Post result = this.postController.createPost(this.post);
+
+        assertEquals("testCreatingNewPost did not receive its Post " +
+                "object back.", this.post, result);
+        Mockito.verify(this.postManager).create(this.post);
+    }
+
+    @Test
+    public void testUpdatingPost() {
+        Post result = this.postController.updatePost(1, this.post);
+
+        assertEquals("testUpdatingPost did not receive updated Post " +
+                "object back.", this.updatePost, result);
+        Mockito.verify(this.postManager).update(1, this.post);
     }
 
     private void mockPostManager() {
