@@ -2,9 +2,7 @@ package com.boredblog.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -20,6 +18,9 @@ public class Post extends BaseEntity {
     private String title;
     @Column(name = "content", nullable = false)
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public String getTitle() {
         return title;
@@ -35,6 +36,14 @@ public class Post extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

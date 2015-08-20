@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * @author Joel Dewey
@@ -25,6 +27,8 @@ public class User extends BaseEntity {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     public String getFirstName() {
         return firstName;
