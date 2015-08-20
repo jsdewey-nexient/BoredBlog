@@ -30,7 +30,7 @@ public class PostManager {
         return this.postRepository.findAll();
     }
 
-    public Post update(Post post) {
+    public Post update(Integer id, Post post) {
         return this.create(post);
     }
 }
