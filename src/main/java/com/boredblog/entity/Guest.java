@@ -14,15 +14,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "guests")
-public class Guest extends BaseEntity {
+public class Guest extends User {
     @Column(name = "screenname", nullable = false)
     private String screenname;
-    @OneToMany
-    @JoinTable(
-            name = "comments_users_guests",
-            joinColumns = @JoinColumn(name = "guest_id"),
-            inverseJoinColumns = @JoinColumn(name = "comment_id")
-    )
+    @OneToMany(mappedBy = "user")
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 

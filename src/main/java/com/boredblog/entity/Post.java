@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author Joel Dewey
  * @date 8/20/2015
  * Group: Joel
- * Describes a blog post made by the user.
+ * Describes a blog post made by the author.
  */
 @Entity
 @Table(name = "posts")
@@ -19,8 +20,10 @@ public class Post extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
     public String getTitle() {
         return title;
@@ -38,12 +41,12 @@ public class Post extends BaseEntity {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override

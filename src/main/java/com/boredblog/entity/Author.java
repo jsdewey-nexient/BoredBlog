@@ -11,8 +11,8 @@ import java.util.List;
  * Describes a user of the blog. He/she may add posts and edit new ones.
  */
 @Entity
-@Table(name = "users")
-public class Author extends BaseEntity {
+@Table(name = "authors")
+public class Author extends User {
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
@@ -22,15 +22,10 @@ public class Author extends BaseEntity {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "author")
     @OrderBy("created_at DESC")
     private List<Post> posts;
-    @OneToMany
-    @JoinTable(
-            name = "comments_users_guests",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "comment_id")
-    )
+    @OneToMany(mappedBy = "user")
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 
