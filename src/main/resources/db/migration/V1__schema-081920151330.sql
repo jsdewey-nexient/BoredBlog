@@ -15,12 +15,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `guests` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `screenname` VARCHAR(255) NOT NULL,
-  `created_at` DATETIME NOT NULL DEFAULT current_timestamp
+  `created_at` DATETIME NOT NULL DEFAULT current_timestamp,
+  `updated_at` DATETIME DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `salts` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `salt` CHAR(36) NOT NULL
+  `salt` CHAR(36) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT current_timestamp,
+  `updated_at` DATETIME DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `posts` (
@@ -33,7 +36,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `content` TEXT NOT NULL
+  `content` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT current_timestamp,
+  `updated_at` DATETIME DEFAULT NULL
 );
 
 
