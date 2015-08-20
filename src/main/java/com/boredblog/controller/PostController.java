@@ -30,7 +30,7 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Post createPost() {
+    public Post createPost(@RequestBody Post post) {
 
     }
 
