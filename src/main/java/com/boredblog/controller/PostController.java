@@ -5,6 +5,8 @@ import com.boredblog.manager.PostManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Joel Dewey
  * @date 8/20/2015
@@ -18,22 +20,22 @@ public class PostController {
     private PostManager postManager;
 
     @RequestMapping(method = RequestMethod.GET)
-    public function getPosts() {
+    public List<Post> getPosts() {
 
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public function getPost(@PathVariable Integer id) {
+    public Post getPost(@PathVariable Integer id) {
 
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public function createPost() {
+    public Post createPost() {
 
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public function updatePost(
+    public Post updatePost(
             @PathVariable Integer id,
             @RequestBody Post post
     ) {
