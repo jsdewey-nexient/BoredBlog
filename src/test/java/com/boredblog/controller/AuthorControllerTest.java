@@ -45,7 +45,7 @@ public class AuthorControllerTest {
 
     @Test
     public void testRetrievingOneAuthor() {
-        Author result;
+        Author result = this.authorController.getAuthor(1);
 
         Assert.assertEquals("testRetrievingOneAuthor did not receive the " +
                 "mocked Author object back.", this.author, result);
