@@ -13,5 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
  * Responsible for delivering Author objects.
  */
 @RestController
-public class UserController {
+public class AuthorController {
 }
