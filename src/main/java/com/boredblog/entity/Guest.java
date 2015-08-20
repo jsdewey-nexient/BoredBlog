@@ -1,9 +1,6 @@
 package com.boredblog.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -14,19 +11,19 @@ import java.util.List;
  */
 @Entity
 @Table(name = "guests")
-public class Guest extends User {
-    @Column(name = "screenname", nullable = false)
-    private String screenname;
+public class Guest extends BaseEntity implements User {
+    @Column(name = "screen_name", nullable = false)
+    private String screenName;
     @OneToMany(mappedBy = "user")
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 
-    public String getScreenname() {
-        return screenname;
+    public String getScreenName() {
+        return screenName;
     }
 
-    public void setScreenname(String screenname) {
-        this.screenname = screenname;
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
     }
 
     public List<Comment> getComments() {
