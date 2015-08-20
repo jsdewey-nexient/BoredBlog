@@ -1,0 +1,1 @@
+ALTER TABLE `guests` CHANGE `screenname` `screen_name` VARCHAR(255) NOT NULL;
