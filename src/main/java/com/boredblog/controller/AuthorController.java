@@ -24,13 +24,21 @@ public class AuthorController {
         return this.authorManager.retrieveAll();
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public Author createAuthor(@RequestBody Author author) {
+        return this.authorManager.create(author);
+    }
+
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Author getAuthor(@PathVariable Integer id) {
         return this.authorManager.retrieve(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Author createAuthor(@RequestBody Author author) {
-        return this.authorManager.create(author);
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public Author updateAuthor(
+            @PathVariable Integer id,
+            @RequestBody Author author
+    ) {
+        return this.authorManager.update(author);
     }
 }
