@@ -3,9 +3,7 @@ package com.boredblog.controller;
 import com.boredblog.entity.Author;
 import com.boredblog.manager.AuthorManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,12 +19,18 @@ public class AuthorController {
     @Autowired
     private AuthorManager authorManager;
 
+    @RequestMapping(method = RequestMethod.GET)
     public List<Author> getAuthors() {
         return this.authorManager.retrieveAll();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Author getAuthor(@PathVariable Integer id) {
         return this.authorManager.retrieve(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Author createAuthor(@RequestBody Author author) {
+        return this.authorManager.create(author);
     }
 }

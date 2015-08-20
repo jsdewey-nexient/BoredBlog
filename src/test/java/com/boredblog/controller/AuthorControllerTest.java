@@ -57,7 +57,7 @@ public class AuthorControllerTest {
         Author result = this.authorController.createAuthor(this.author);
 
         assertEquals("testCreatingAuthor did not receive the mocked " +
-                "Author object back.", this.author, result)
+                "Author object back.", this.author, result);
         Mockito.verify(this.authorManager).create(this.author);
     }
 
