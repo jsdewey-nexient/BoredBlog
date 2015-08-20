@@ -27,7 +27,7 @@ public class AuthorControllerTest {
     private AuthorController authorController;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
         Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
     }
