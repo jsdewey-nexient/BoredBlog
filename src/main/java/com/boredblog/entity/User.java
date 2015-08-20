@@ -3,10 +3,7 @@ package com.boredblog.entity;
 import com.boredblog.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -29,6 +26,13 @@ public class User extends BaseEntity {
     private String password;
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
+    @OneToMany
+    @JoinTable(
+            name = "comments_users_guests",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id")
+    )
+    private List<Comment> comments;
 
     public String getFirstName() {
         return firstName;
@@ -60,5 +64,21 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
