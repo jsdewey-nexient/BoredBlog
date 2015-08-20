@@ -69,6 +69,7 @@ public class AuthorControllerTest {
 
         assertEquals("testUpdatingAuthor did not receive the other mocked " +
                 "Author object back.", this.updateAuthor, result);
+        Mockito.verify(this.authorManager).update(this.author);
     }
 
     private void mockAuthorManager() {
