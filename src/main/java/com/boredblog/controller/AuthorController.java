@@ -1,7 +1,6 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Author;
-import com.boredblog.enums.Gender;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
