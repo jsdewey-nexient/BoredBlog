@@ -4,7 +4,7 @@ package com.boredblog.repository;
 
 import com.boredblog.entity.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Joel Dewey
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  * Group: Joel
  * Handles Author objects.
  */
-@Service
+@Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 }
