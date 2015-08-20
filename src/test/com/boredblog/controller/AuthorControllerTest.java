@@ -3,6 +3,8 @@ package com.boredblog.controller;
 import com.boredblog.entity.Author;
 import com.boredblog.manager.AuthorManager;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -24,11 +26,13 @@ public class AuthorControllerTest {
     @InjectMocks
     private AuthorController authorController;
 
+    @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
     }
 
+    @Test
     public void testRetrievingAllAuthors() {
         List<Author> result = this.authorController.getAuthors();
 
