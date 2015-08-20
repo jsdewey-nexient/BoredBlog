@@ -22,7 +22,7 @@ public class BaseEntity {
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
     @JsonIgnore
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
 
     public Integer getId() {
