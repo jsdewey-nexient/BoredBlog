@@ -65,7 +65,7 @@ public class AuthorControllerTest {
 
     @Test
     public void testUpdatingAuthor() {
-        Author result = this.authorController.updateAuthor(this.author);
+        Author result = this.authorController.updateAuthor(1, this.author);
 
         assertEquals("testUpdatingAuthor did not receive the other mocked " +
                 "Author object back.", this.updateAuthor, result);
