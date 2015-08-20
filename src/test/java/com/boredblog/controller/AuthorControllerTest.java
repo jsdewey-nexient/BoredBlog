@@ -2,15 +2,15 @@ package com.boredblog.controller;
 
 import com.boredblog.entity.Author;
 import com.boredblog.manager.AuthorManager;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * @author Joel Dewey
@@ -38,7 +38,7 @@ public class AuthorControllerTest {
     public void testRetrievingAllAuthors() {
         List<Author> result = this.authorController.getAuthors();
 
-        Assert.assertEquals("testRetrievingAllAuthors did not receive the " +
+        assertEquals("testRetrievingAllAuthors did not receive the " +
                 "mocked List of Author objects back.", this.authors, result);
         Mockito.verify(this.authorManager).retrieveAll();
     }
@@ -47,13 +47,26 @@ public class AuthorControllerTest {
     public void testRetrievingOneAuthor() {
         Author result = this.authorController.getAuthor(1);
 
-        Assert.assertEquals("testRetrievingOneAuthor did not receive the " +
+        assertEquals("testRetrievingOneAuthor did not receive the " +
                 "mocked Author object back.", this.author, result);
         Mockito.verify(this.authorManager).retrieve(1);
     }
 
+    @Test
+    public void testCreatingAuthor() {
+        Author result = this.authorController.createAuthor(this.author);
+
+        assertEquals("testCreatingAuthor did not receive the mocked " +
+                "Author object back.", this.author, result)
+        Mockito.verify(this.authorManager).create(this.author);
+    }
+
     private void mockAuthorManager() {
-        Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
-        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.author);
+        Mockito.when(this.authorManager.retrieveAll())
+                .thenReturn(this.authors);
+        Mockito.when(this.authorManager.retrieve(1))
+                .thenReturn(this.author);
+        Mockito.when(this.authorManager.create(this.author))
+                .thenReturn(this.author);
     }
 }
