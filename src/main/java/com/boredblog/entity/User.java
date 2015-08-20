@@ -1,8 +1,6 @@
 package com.boredblog.entity;
 
-import com.boredblog.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
