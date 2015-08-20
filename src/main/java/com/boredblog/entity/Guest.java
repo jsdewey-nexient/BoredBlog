@@ -2,10 +2,9 @@ package com.boredblog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author Joel Dewey
@@ -18,6 +17,14 @@ import java.sql.Timestamp;
 public class Guest extends BaseEntity {
     @Column(name = "screenname", nullable = false)
     private String screenname;
+    @OneToMany
+    @JoinTable(
+            name = "comments_users_guests",
+            joinColumns = @JoinColumn(name = "guest_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id")
+    )
+    @OrderBy("created_at ASC")
+    private List<Comment> comments;
 
     public String getScreenname() {
         return screenname;
@@ -25,5 +32,13 @@ public class Guest extends BaseEntity {
 
     public void setScreenname(String screenname) {
         this.screenname = screenname;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
