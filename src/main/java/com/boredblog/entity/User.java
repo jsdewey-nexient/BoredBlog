@@ -8,6 +8,5 @@ import javax.persistence.MappedSuperclass;
  * Group: Joel
  * A base entity for Authors and Guests.
  */
-@MappedSuperclass
-public class User extends BaseEntity {
+public interface User {
 }
