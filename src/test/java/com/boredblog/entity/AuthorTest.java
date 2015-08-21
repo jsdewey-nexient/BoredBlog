@@ -23,10 +23,6 @@ public class AuthorTest {
     private final String SCREEN_NAME = "jNexient2";
     private final String PASS = "$2a$12$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyG" +
             "PBr08PpIi0na624b8.";
-    private final long CREATED_AT_TS = 1439218106000L; // Random long.
-    private final long UPDATED_AT_TS = CREATED_AT_TS + 86400000; // Adds a day.
-    private final Timestamp CREATED_AT = new Timestamp(CREATED_AT_TS);
-    private final Timestamp UPDATED_AT = new Timestamp(UPDATED_AT_TS);
     @Mock
     private List<Post> posts;
     @Mock
