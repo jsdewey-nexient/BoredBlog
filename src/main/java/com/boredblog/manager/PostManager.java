@@ -2,6 +2,7 @@ package com.boredblog.manager;
 
 import com.boredblog.entity.Post;
 import com.boredblog.repository.PostRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,8 @@ public class PostManager {
     }
 
     public Post update(Integer id, Post post) {
-        return this.create(post);
+        Post existingPost = this.retrieve(id);
+        BeanUtils.copyProperties(post, existingPost);
+        return this.postRepository.save(existingPost);
     }
 }

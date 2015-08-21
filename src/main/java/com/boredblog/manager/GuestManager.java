@@ -2,6 +2,7 @@ package com.boredblog.manager;
 
 import com.boredblog.entity.Guest;
 import com.boredblog.repository.GuestRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,12 @@ public class GuestManager {
         return this.guestRepository.findOne(id);
     }
 
-    public Guest update(Guest guest) {
-        return this.create(guest);
+    /**
+     * @note Unimplemented functionality.
+     */
+    public Guest update(Integer id, Guest guest) {
+        Guest existingGuest = this.retrieve(id);
+        BeanUtils.copyProperties(guest, existingGuest);
+        return this.guestRepository.save(existingGuest);
     }
 }
