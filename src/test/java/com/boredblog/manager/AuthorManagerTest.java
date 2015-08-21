@@ -23,11 +23,14 @@ import static org.junit.Assert.*;
  */
 public class AuthorManagerTest {
     private final Integer AUTHOR_ID = 1;
+    private final Integer UPDATE_AUTHOR_ID = 2;
     @Mock
     private AuthorRepository authorRepository;
     @InjectMocks
     private AuthorManager authorManager;
     private Author author;
+    private Author toBeUpdatedAuthor;
+    private Author partialAuthor;
     private Author updatedAuthor;
     private List<Author> authors;
 
@@ -73,23 +76,50 @@ public class AuthorManagerTest {
         );
     }
 
+    /**
+     * @note The properties set need to be compared as the object that
+     * BeanUtils.copyProperties is different than the one that is inserted.
+     * @todo Find a better way to do this.
+     */
     @Test
     public void testUpdatingAuthor() {
-        Author result = this.authorManager.update(AUTHOR_ID, this.author);
+        Author result = this.authorManager.update(
+                UPDATE_AUTHOR_ID,
+                this.partialAuthor
+        );
 
         assertEquals(
-                "testUpdatingAuthor did not receive the updated Author object.",
-                this.updatedAuthor,
-                result
+                "testUpdatingAuthor first name property was not set.",
+                this.updatedAuthor.getFirstName(),
+                result.getFirstName()
+        );
+        assertEquals(
+                "testUpdatingAuthor last name property was not updated.",
+                this.updatedAuthor.getLastName(),
+                result.getLastName()
         );
     }
 
     private void createDependentObjects() {
         this.author = new Author();
+        this.toBeUpdatedAuthor = new Author();
         this.updatedAuthor = new Author();
+        this.partialAuthor = new Author();
         this.authors = new ArrayList<>();
         this.authors.add(this.author);
         this.authors.add(this.updatedAuthor);
+        this.setPropertiesOnDependentObjects();
+    }
+
+    private void setPropertiesOnDependentObjects() {
+        this.toBeUpdatedAuthor.setFirstName("Johnny");
+        this.partialAuthor.setLastName("Nexient");
+        this.updatedAuthor.setFirstName(
+                this.toBeUpdatedAuthor.getFirstName()
+        );
+        this.updatedAuthor.setLastName(
+                this.toBeUpdatedAuthor.getLastName()
+        );
     }
 
     private void mockAuthorRepository() {
@@ -99,7 +129,9 @@ public class AuthorManagerTest {
                 .thenReturn(this.authors);
         Mockito.when(this.authorRepository.save(this.author))
                 .thenReturn(this.author);
-        Mockito.when(this.authorRepository.save(this.updatedAuthor))
+        Mockito.when(this.authorRepository.findOne(UPDATE_AUTHOR_ID))
+                .thenReturn(this.toBeUpdatedAuthor);
+        Mockito.when(this.authorRepository.save(this.toBeUpdatedAuthor))
                 .thenReturn(this.updatedAuthor);
     }
 }
