@@ -50,6 +50,17 @@ public class AuthorManagerTest {
         );
     }
 
+    @Test
+    public void testRetrievingAuthor() {
+        Author result = this.authorManager.retrieve(AUTHOR_ID);
+
+        assertEquals(
+                "testRetrievingAuthor did not receive expected Author object.",
+                this.author,
+                result
+        );
+    }
+
     private void createDependentObjects() {
         this.author = new Author();
         this.updatedAuthor = new Author();
