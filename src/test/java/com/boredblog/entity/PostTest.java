@@ -62,7 +62,7 @@ public class PostTest extends BaseTimestampTest {
         Timestamp result = this.post.getCreatedAt();
 
         assertEquals(
-                "testCreatedAtMatches did not return the expected Timestamp.",
+                "testCreatedAtMatches did not receive the expected Timestamp.",
                 CREATED_AT,
                 result
         );
@@ -73,8 +73,20 @@ public class PostTest extends BaseTimestampTest {
         Timestamp result = this.post.getUpdatedAt();
 
         assertEquals(
-                "testUpdatedAtMatches did not return the expected Timestamp.",
+                "testUpdatedAtMatches did not receive the expected Timestamp.",
                 UPDATED_AT,
+                result
+        );
+    }
+
+    @Test
+    public void testCommentsMatches() {
+        List<Comment> result = this.post.getComments();
+
+        assertEquals(
+                "testCommentsMatches did not receive the expected List " +
+                        "of Comments.",
+                this.comments,
                 result
         );
     }
