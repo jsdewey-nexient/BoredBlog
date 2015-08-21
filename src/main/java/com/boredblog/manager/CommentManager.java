@@ -2,6 +2,7 @@ package com.boredblog.manager;
 
 import com.boredblog.entity.Comment;
 import com.boredblog.repository.CommentRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class CommentManager {
         return this.commentRepository.save(comment);
     }
 
+    /**
+     * @todo This should fail if the postId != comment.post_id.
+     */
     public Comment retrieve(Integer postId, Integer commentId) {
         return this.commentRepository.findOne(commentId);
     }
@@ -31,6 +35,8 @@ public class CommentManager {
     }
 
     public Comment update(Integer postId, Integer commentId, Comment comment) {
-        return this.create(postId, comment);
+        Comment existingComment = this.retrieve(postId, commentId);
+        BeanUtils.copyProperties(comment, existingComment);
+        return this.commentRepository.save(comment);
     }
 }
