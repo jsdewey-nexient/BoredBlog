@@ -46,7 +46,7 @@ public class PostControllerTest {
     }
 
     @Test
-    public void testRetrievingOnePost() {
+    public void testRetrievingSinglePost() {
         Post result = this.postController.getPost(1);
 
         assertEquals("testRetrievingOnePost did not receive the Post " +

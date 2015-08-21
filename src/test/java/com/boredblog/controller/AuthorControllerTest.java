@@ -46,7 +46,7 @@ public class AuthorControllerTest {
     }
 
     @Test
-    public void testRetrievingOneAuthor() {
+    public void testRetrievingSingleAuthor() {
         Author result = this.authorController.getAuthor(1);
 
         assertEquals("testRetrievingOneAuthor did not receive the " +
