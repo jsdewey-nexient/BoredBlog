@@ -30,7 +30,7 @@ public class CommentManager {
         return this.commentRepository.findAll();
     }
 
-    public Comment update(Integer postId, Comment comment) {
+    public Comment update(Integer postId, Integer commentId, Comment comment) {
         return this.create(postId, comment);
     }
 }
