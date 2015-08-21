@@ -21,17 +21,17 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Post> getPosts() {
-
+        return this.postManager.retrieveAll();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Post getPost(@PathVariable Integer id) {
-
+        return this.postManager.retrieve(1);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Post createPost(@RequestBody Post post) {
-
+        return this.postManager.create(post);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
@@ -39,6 +39,6 @@ public class PostController {
             @PathVariable Integer id,
             @RequestBody Post post
     ) {
-
+        return this.postManager.update(id, post);
     }
 }
