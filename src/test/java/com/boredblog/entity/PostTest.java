@@ -91,6 +91,17 @@ public class PostTest extends BaseTimestampTest {
         );
     }
 
+    @Test
+    public void testAuthorMatches() {
+        Author result = this.post.getAuthor();
+
+        assertEquals(
+                "testAuthorMatches did not receive the expected mocked Author.",
+                this.author,
+                result
+        );
+    }
+
     private void setUnmockedProperties() {
         this.post.setTitle(TITLE);
         this.post.setContent(CONTENT);
