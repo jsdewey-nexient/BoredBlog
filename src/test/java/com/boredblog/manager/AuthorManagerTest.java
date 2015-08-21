@@ -61,6 +61,29 @@ public class AuthorManagerTest {
         );
     }
 
+    @Test
+    public void testRetrievingAllAuthors() {
+        List<Author> result = this.authorManager.retrieveAll();
+
+        assertEquals(
+                "testRetrievingAllAuthors did not receive the expected " +
+                        "List of Author objects.",
+                this.authors,
+                result
+        );
+    }
+
+    @Test
+    public void testUpdatingAuthor() {
+        Author result = this.authorManager.update(AUTHOR_ID, this.author);
+
+        assertEquals(
+                "testUpdatingAuthor did not receive the updated Author object.",
+                this.updatedAuthor,
+                result
+        );
+    }
+
     private void createDependentObjects() {
         this.author = new Author();
         this.updatedAuthor = new Author();
