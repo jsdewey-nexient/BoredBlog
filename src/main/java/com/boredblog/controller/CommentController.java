@@ -15,7 +15,7 @@ import java.util.List;
  * Loads comments for a particular post.
  */
 @RestController
-@RequestMapping("comments")
+@RequestMapping("posts/{postId}/comments")
 public class CommentController {
     @Autowired
     private CommentManager commentManager;
