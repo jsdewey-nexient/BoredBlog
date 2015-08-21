@@ -49,6 +49,14 @@ public class Post extends BaseEntity {
         this.author = author;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     @JsonProperty("created_at")
     public Timestamp getCreatedAt() {
