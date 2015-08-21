@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -34,7 +33,7 @@ public class AuthorTest {
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        this.setUnmockedFields();
+        this.setUnmockedProperties();
     }
 
     @Test
@@ -87,7 +86,7 @@ public class AuthorTest {
                 this.author.getComments());
     }
 
-    private void setUnmockedFields() {
+    private void setUnmockedProperties() {
         this.author.setFirstName(FIRST_NAME);
         this.author.setLastName(LAST_NAME);
         this.author.setScreenName(SCREEN_NAME);
