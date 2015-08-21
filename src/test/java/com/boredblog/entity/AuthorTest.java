@@ -38,7 +38,7 @@ public class AuthorTest {
     }
 
     @Test
-    public void testFirstName() {
+    public void testFirstNameMatches() {
         String result = this.author.getFirstName();
 
         assertEquals("testFirstName received a string different than the " +
@@ -46,7 +46,7 @@ public class AuthorTest {
     }
 
     @Test
-    public void testLastName() {
+    public void testLastNameMatches() {
         String result = this.author.getLastName();
 
         assertEquals("testLastName received a string different than the " +
@@ -54,7 +54,7 @@ public class AuthorTest {
     }
 
     @Test
-    public void testScreenName() {
+    public void testScreenNameMatches() {
         String result = this.author.getScreenName();
 
         assertEquals("testScreenName received a string different than the " +
@@ -62,7 +62,7 @@ public class AuthorTest {
     }
 
     @Test
-    public void testPassword() {
+    public void testPasswordMatches() {
         String result = this.author.getPassword();
         
         assertEquals("testPassword received a string different that the " +
@@ -70,7 +70,7 @@ public class AuthorTest {
     }
     
     @Test
-    public void testPosts() {
+    public void testPostsMatches() {
         assertEquals(
                 "testPosts received a mocked List that is different " +
                     "than the one that was injected.", 
@@ -79,7 +79,7 @@ public class AuthorTest {
     }
     
     @Test
-    public void testComments() {
+    public void testCommentsMatches() {
         assertEquals(
                 "testComments received a mocked List that is different " +
                     "than the one that was injected.", 
