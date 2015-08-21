@@ -3,8 +3,7 @@ package com.boredblog.controller;
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,19 +19,33 @@ public class CommentController {
     @Autowired
     private CommentManager commentManager;
 
-    public Comment createComment(Integer postId, Comment comment) {
+    @RequestMapping(method = RequestMethod.POST)
+    public Comment createComment(
+            @PathVariable Integer postId,
+            @RequestBody Comment comment
+    ) {
         return null;
     }
 
-    public Comment updateComment(Integer postId, Integer commentId, Comment comment) {
+    @RequestMapping(value = "{commentId}", method = RequestMethod.GET)
+    public Comment updateComment(
+            @PathVariable Integer postId,
+            @PathVariable Integer commentId,
+            @RequestBody Comment comment
+    ) {
         return null;
     }
 
-    public List<Comment> getComments(Integer postId) {
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Comment> getComments(@PathVariable Integer postId) {
         return null;
     }
 
-    public Comment getComment(Integer postId, Integer commentId) {
+    @RequestMapping(value = "{commentId}", method = RequestMethod.PUT)
+    public Comment getComment(
+            @PathVariable Integer postId,
+            @PathVariable Integer commentId
+    ) {
         return null;
     }
 }
