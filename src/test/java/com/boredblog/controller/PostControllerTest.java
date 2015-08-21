@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Joel Dewey
- * @date 8/20/20POST_ID5
+ * @date 8/20/2015
  * Group: Joel
  * Tests the functions of the PostController
  */
