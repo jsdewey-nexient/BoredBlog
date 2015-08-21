@@ -32,6 +32,7 @@ public class CommentControllerTest {
     @Before
     public void setup() throws Exception{
         MockitoAnnotations.initMocks(this);
+        this.mockCommentManager();
     }
 
     @Test
@@ -50,7 +51,18 @@ public class CommentControllerTest {
     }
 
     @Test
-    public void testRetrievingSingleComment() {
+    public void testRetrievingSingleCommentForPost() {
 
+    }
+
+    private void mockCommentManager() {
+        Mockito.when(this.commentManager.retrieve(1, 1))
+                .thenReturn(this.comment);
+        Mockito.when(this.commentManager.create(1, this.comment))
+                .thenReturn(this.comment);
+        Mockito.when(this.commentManager.update(1, this.comment))
+                .thenReturn(this.updatedComment);
+        Mockito.when(this.commentManager.retrieveAll(1))
+                .thenReturn(this.comments);
     }
 }
