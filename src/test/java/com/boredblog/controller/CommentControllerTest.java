@@ -2,7 +2,6 @@ package com.boredblog.controller;
 
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
