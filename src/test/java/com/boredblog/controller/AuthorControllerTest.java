@@ -14,11 +14,12 @@ import static org.junit.Assert.*;
 
 /**
  * @author Joel Dewey
- * @date 8/20/2015
+ * @date 8/20/20AUTHOR_ID5
  * Group: Joel
  * Test the functionality of the AuthorController.
  */
 public class AuthorControllerTest {
+    private final Integer AUTHOR_ID = 1;
     @Mock
     private List<Author> authors;
     @Mock
@@ -47,11 +48,11 @@ public class AuthorControllerTest {
 
     @Test
     public void testRetrievingSingleAuthor() {
-        Author result = this.authorController.getAuthor(1);
+        Author result = this.authorController.getAuthor(AUTHOR_ID);
 
         assertEquals("testRetrievingOneAuthor did not receive the " +
                 "mocked Author object back.", this.author, result);
-        Mockito.verify(this.authorManager).retrieve(1);
+        Mockito.verify(this.authorManager).retrieve(AUTHOR_ID);
     }
 
     @Test
@@ -65,21 +66,21 @@ public class AuthorControllerTest {
 
     @Test
     public void testUpdatingAuthor() {
-        Author result = this.authorController.updateAuthor(1, this.author);
+        Author result = this.authorController.updateAuthor(AUTHOR_ID, this.author);
 
         assertEquals("testUpdatingAuthor did not receive the other mocked " +
                 "Author object back.", this.updateAuthor, result);
-        Mockito.verify(this.authorManager).update(1, this.author);
+        Mockito.verify(this.authorManager).update(AUTHOR_ID, this.author);
     }
 
     private void mockAuthorManager() {
         Mockito.when(this.authorManager.retrieveAll())
                 .thenReturn(this.authors);
-        Mockito.when(this.authorManager.retrieve(1))
+        Mockito.when(this.authorManager.retrieve(AUTHOR_ID))
                 .thenReturn(this.author);
         Mockito.when(this.authorManager.create(this.author))
                 .thenReturn(this.author);
-        Mockito.when(this.authorManager.update(1, this.author))
+        Mockito.when(this.authorManager.update(AUTHOR_ID, this.author))
                 .thenReturn(this.updateAuthor);
     }
 }

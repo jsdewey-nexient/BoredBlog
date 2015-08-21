@@ -14,11 +14,12 @@ import static org.junit.Assert.*;
 
 /**
  * @author Joel Dewey
- * @date 8/20/2015
+ * @date 8/20/20POST_ID5
  * Group: Joel
  * Tests the functions of the PostController
  */
 public class PostControllerTest {
+    private final Integer POST_ID = 1;
     @Mock
     private Post post;
     @Mock
@@ -47,11 +48,11 @@ public class PostControllerTest {
 
     @Test
     public void testRetrievingSinglePost() {
-        Post result = this.postController.getPost(1);
+        Post result = this.postController.getPost(POST_ID);
 
         assertEquals("testRetrievingOnePost did not receive the Post " +
                 "object back.", this.post, result);
-        Mockito.verify(this.postManager).retrieve(1);
+        Mockito.verify(this.postManager).retrieve(POST_ID);
     }
 
     @Test
@@ -65,19 +66,19 @@ public class PostControllerTest {
 
     @Test
     public void testUpdatingPost() {
-        Post result = this.postController.updatePost(1, this.post);
+        Post result = this.postController.updatePost(POST_ID, this.post);
 
         assertEquals("testUpdatingPost did not receive updated Post " +
                 "object back.", this.updatePost, result);
-        Mockito.verify(this.postManager).update(1, this.post);
+        Mockito.verify(this.postManager).update(POST_ID, this.post);
     }
 
     private void mockPostManager() {
         Mockito.when(postManager.create(this.post))
                 .thenReturn(this.post);
-        Mockito.when(postManager.retrieve(1))
+        Mockito.when(postManager.retrieve(POST_ID))
                 .thenReturn(this.post);
-        Mockito.when(postManager.update(1, this.post))
+        Mockito.when(postManager.update(POST_ID, this.post))
                 .thenReturn(this.updatePost);
         Mockito.when(postManager.retrieveAll())
                 .thenReturn(this.posts);
