@@ -51,7 +51,7 @@ public class AuthorManagerTest {
     }
 
     @Test
-    public void testRetrievingAuthor() {
+    public void testRetrievingSingleAuthor() {
         Author result = this.authorManager.retrieve(AUTHOR_ID);
 
         assertEquals(
