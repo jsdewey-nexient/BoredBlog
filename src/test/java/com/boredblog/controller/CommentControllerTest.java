@@ -3,6 +3,7 @@ package com.boredblog.controller;
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -31,5 +32,25 @@ public class CommentControllerTest {
     @Before
     public void setup() throws Exception{
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void testCreatingComment() {
+
+    }
+
+    @Test
+    public void testUpdatingComment() {
+
+    }
+
+    @Test
+    public void testRetrievingAllCommentsForPost() {
+
+    }
+
+    @Test
+    public void testRetrievingSingleComment() {
+
     }
 }
