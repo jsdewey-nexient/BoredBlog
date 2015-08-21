@@ -15,6 +15,7 @@ apply plugin: 'java'
 apply plugin: "idea"
 apply plugin: "war"
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
@@ -24,6 +25,14 @@ repositories {
 
 war {
     archiveName = 'boredblog.war'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacocoHtml"
+    }
 }
 
 dependencies {
