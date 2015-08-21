@@ -12,6 +12,9 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
+
 /**
  * @author Joel Dewey
  * @date 8/21/2015
@@ -38,7 +41,13 @@ public class AuthorManagerTest {
 
     @Test
     public void testCreateAuthor() {
+        Author result = this.authorManager.create(this.author);
 
+        assertEquals(
+                "testCreateAuthor did not receive the same Author object back.",
+                this.author,
+                result
+        );
     }
 
     private void createDependentObjects() {
