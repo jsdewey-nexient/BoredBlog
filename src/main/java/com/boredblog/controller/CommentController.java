@@ -24,7 +24,7 @@ public class CommentController {
             @PathVariable Integer postId,
             @RequestBody Comment comment
     ) {
-        return null;
+        return this.commentManager.create(postId, comment);
     }
 
     @RequestMapping(value = "{commentId}", method = RequestMethod.GET)
@@ -33,12 +33,12 @@ public class CommentController {
             @PathVariable Integer commentId,
             @RequestBody Comment comment
     ) {
-        return null;
+        return this.commentManager.update(postId, commentId, comment);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Comment> getComments(@PathVariable Integer postId) {
-        return null;
+        return this.commentManager.retrieveAll(postId);
     }
 
     @RequestMapping(value = "{commentId}", method = RequestMethod.PUT)
@@ -46,6 +46,6 @@ public class CommentController {
             @PathVariable Integer postId,
             @PathVariable Integer commentId
     ) {
-        return null;
+        return this.commentManager.retrieve(postId, commentId);
     }
 }
