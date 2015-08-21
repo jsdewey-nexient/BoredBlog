@@ -1,6 +1,8 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Comment;
+import com.boredblog.manager.CommentManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("comments")
 public class CommentController {
+    @Autowired
+    private CommentManager commentManager;
+
     public Comment createComment(Integer postId, Comment comment) {
         return null;
     }
