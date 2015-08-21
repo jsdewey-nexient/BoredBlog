@@ -18,6 +18,8 @@ import java.util.List;
  * Verify that comments are returned correctly.
  */
 public class CommentControllerTest {
+    private final Integer POST_ID = 1;
+    private final Integer COMMENT_ID = 1;
     @Mock
     private List<Comment> comments;
     @Mock
@@ -56,13 +58,13 @@ public class CommentControllerTest {
     }
 
     private void mockCommentManager() {
-        Mockito.when(this.commentManager.retrieve(1, 1))
+        Mockito.when(this.commentManager.retrieve(POST_ID, COMMENT_ID))
                 .thenReturn(this.comment);
-        Mockito.when(this.commentManager.create(1, this.comment))
+        Mockito.when(this.commentManager.create(POST_ID, this.comment))
                 .thenReturn(this.comment);
-        Mockito.when(this.commentManager.update(1, this.comment))
+        Mockito.when(this.commentManager.update(POST_ID, this.comment))
                 .thenReturn(this.updatedComment);
-        Mockito.when(this.commentManager.retrieveAll(1))
+        Mockito.when(this.commentManager.retrieveAll(POST_ID))
                 .thenReturn(this.comments);
     }
 }
