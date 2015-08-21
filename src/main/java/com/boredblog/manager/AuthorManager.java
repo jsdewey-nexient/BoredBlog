@@ -30,7 +30,7 @@ public class AuthorManager {
         return this.authorRepository.findAll();
     }
 
-    public Author update(Author author) {
+    public Author update(Integer id, Author author) {
         return this.create(author);
     }
 }
