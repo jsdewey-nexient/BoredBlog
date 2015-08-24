@@ -43,8 +43,33 @@ public class CommentManagerTest {
         Comment result = this.commentManager.create(POST_ID, this.comment);
 
         assertEquals(
-                "testCreateComment did not receive the same Comment object back.",
+                "testCreateComment did not receive the same Comment object " +
+                        "back.",
                 this.comment,
+                result
+        );
+    }
+
+    @Test
+    public void testRetrievingSingleComment() {
+        Comment result = this.commentManager.retrieve(POST_ID, COMMENT_ID);
+
+        assertEquals(
+                "testRetrievingSingleComment did not receive the expected " +
+                        "Comment object.",
+                this.comment,
+                result
+        );
+    }
+
+    @Test
+    public void testRetrievingAllComments() {
+        List<Comment> result = this.commentManager.retrieveAll(POST_ID);
+
+        assertEquals(
+                "testRetrievingAllComments did not receive the expected " +
+                        "List object back.",
+                this.commentList,
                 result
         );
     }
