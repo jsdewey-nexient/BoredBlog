@@ -78,9 +78,9 @@ INSERT INTO `comments` (
     'It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.'
 );
 
-INSERT INTO `comments_users_guests` (
+INSERT INTO `comments_authors_guests` (
     `comment_id`,
-    `user_id`,
+    `author_id`,
     `guest_id`
 ) VALUES (
     1,
