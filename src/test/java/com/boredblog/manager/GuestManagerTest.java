@@ -30,6 +30,7 @@ public class GuestManagerTest {
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
         this.mockGuestRepository();
+        this.createDependentObjects();
         this.setDependentObjectProperties();
     }
 
@@ -81,6 +82,11 @@ public class GuestManagerTest {
                 .thenReturn(this.guest);
         Mockito.when(this.guestRepository.save(this.guest))
                 .thenReturn(this.guest);
+    }
+
+    private void createDependentObjects() {
+        this.guest = new Guest();
+        this.updatedGuest = new Guest();
     }
 
     private void setDependentObjectProperties() {
