@@ -2,6 +2,7 @@ package com.boredblog.manager;
 
 import com.boredblog.repository.GuestRepository;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -21,5 +22,20 @@ public class GuestManagerTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void testCreateGuest() {
+
+    }
+
+    @Test
+    public void testRetrievingSingleGuest() {
+
+    }
+
+    @Test
+    public void testUpdatingGuest() {
+
     }
 }
