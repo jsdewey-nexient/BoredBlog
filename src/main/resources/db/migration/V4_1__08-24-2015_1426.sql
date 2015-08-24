@@ -1,3 +1,6 @@
+ALTER TABLE `comments_authors_guests` MODIFY `author_id` MEDIUMINT DEFAULT NULL;
+ALTER TABLE `comments_authors_guests` MODIFY `guest_id` MEDIUMINT DEFAULT NULL;
+
 -- A comment next to a hash is the plain text representation of the password.
 INSERT INTO `authors` (
     `first_name`,
