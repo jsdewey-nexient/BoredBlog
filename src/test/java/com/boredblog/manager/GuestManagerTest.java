@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import static org.junit.Assert.*;
+
 /**
  * @author Joel Dewey
  * @date 8/24/2015
@@ -33,12 +35,25 @@ public class GuestManagerTest {
 
     @Test
     public void testCreateGuest() {
+        Guest result = this.guestManager.create(this.guest);
 
+        assertEquals(
+                "testCreateGuest did not receive the expected Guest object.",
+                this.guest,
+                result
+        );
     }
 
     @Test
     public void testRetrievingSingleGuest() {
+        Guest result = this.guestManager.retrieve(GUEST_ID);
 
+        assertEquals(
+                "testRetrievingSingleGuest did not receive expected Guest " +
+                        "object.",
+                this.guest,
+                result
+        );
     }
 
     @Test
