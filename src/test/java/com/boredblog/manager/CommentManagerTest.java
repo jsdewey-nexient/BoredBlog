@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 public class CommentManagerTest {
     private final Integer POST_ID = 1;
     private final Integer COMMENT_ID = 1;
-    private final Integer UPDATE_COMMENT_ID = 2;
     @Mock
     private CommentRepository commentRepository;
     @InjectMocks
@@ -75,7 +74,5 @@ public class CommentManagerTest {
                 .thenReturn(this.comment);
         Mockito.when(this.commentRepository.findAll())
                 .thenReturn(this.commentList);
-        Mockito.when(this.commentRepository.findOne(UPDATE_COMMENT_ID))
-                .thenReturn(this.comment);
     }
 }
