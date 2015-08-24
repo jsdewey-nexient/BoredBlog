@@ -12,6 +12,8 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 /**
  * @author Joel Dewey
  * @date 8/24/2015
@@ -39,7 +41,13 @@ public class PostManagerTest {
 
     @Test
     public void testCreatePost() {
+        Post result = this.postManager.create(this.post);
 
+        assertEquals(
+                "testCreatePost did not receive the expected Post object.",
+                this.post,
+                result
+        );
     }
 
     @Test
