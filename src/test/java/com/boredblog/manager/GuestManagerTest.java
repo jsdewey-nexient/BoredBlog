@@ -24,14 +24,14 @@ public class GuestManagerTest {
     @InjectMocks
     private GuestManager guestManager;
     private Guest guest;
+    private Guest updatedGuest;
 
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
         this.mockGuestRepository();
+        this.setDependentObjectProperties();
     }
-
-
 
     @Test
     public void testCreateGuest() {
@@ -66,5 +66,10 @@ public class GuestManagerTest {
                 .thenReturn(this.guest);
         Mockito.when(this.guestRepository.save(this.guest))
                 .thenReturn(this.guest);
+    }
+
+    private void setDependentObjectProperties() {
+        this.guest.setScreenName("Johnny");
+        this.updatedGuest.setScreenName("Johnson");
     }
 }
