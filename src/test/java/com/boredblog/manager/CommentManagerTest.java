@@ -86,14 +86,14 @@ public class CommentManagerTest {
         updatedValue = comment.getContent();
 
         assertNotEquals(
-                "testUpdatingComment received the same content string back.",
-                originalValue,
+                "testUpdatingComment receive null as the updated content.",
+                null,
                 updatedValue
         );
 
         assertNotEquals(
-                "testUpdatingComment receive null as the updated content.",
-                null,
+                "testUpdatingComment received the same content string back.",
+                originalValue,
                 updatedValue
         );
     }

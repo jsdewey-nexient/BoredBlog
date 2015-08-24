@@ -90,14 +90,14 @@ public class AuthorManagerTest {
         updatedFirstName = this.author.getFirstName();
 
         assertNotEquals(
-                "testUpdatingAuthor received the same first name back.",
-                originalFirstName,
+                "testUpdatingAuthor received a null string back.",
+                null,
                 updatedFirstName
         );
 
         assertNotEquals(
-                "testUpdatingAuthor received a null string back.",
-                null,
+                "testUpdatingAuthor received the same first name back.",
+                originalFirstName,
                 updatedFirstName
         );
     }
