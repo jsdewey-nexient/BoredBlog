@@ -59,15 +59,47 @@ Brisket jowl pig, short ribs cow leberkas tail kevin biltong. Capicola cow pance
 );
 
 INSERT INTO `comments` (
+    `post_id`,
     `content`
 ) VALUES (
+    1,
     'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.'
 ), (
+    1,
     'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.'
 ), (
+    2,
     'The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.'
 ), (
+    1,
     'One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.'
 ), (
+    2,
     'It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.'
+);
+
+INSERT INTO `comments_users_guests` (
+    `comment_id`,
+    `user_id`,
+    `guest_id`
+) VALUES (
+    1,
+    2,
+    NULL
+), (
+    2,
+    1,
+    NULL
+), (
+    3,
+    NULL,
+    1
+), (
+    4,
+    NULL,
+    2
+), (
+    5,
+    NULL,
+    2
 );
