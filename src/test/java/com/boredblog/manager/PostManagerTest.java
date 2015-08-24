@@ -3,6 +3,7 @@ package com.boredblog.manager;
 import com.boredblog.entity.Post;
 import com.boredblog.repository.PostRepository;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -34,6 +35,26 @@ public class PostManagerTest {
         this.createDependentObjects();
         this.setDependentObjectProperties();
         this.mockPostRepository();
+    }
+
+    @Test
+    public void testCreatePost() {
+
+    }
+
+    @Test
+    public void testRetrievingSinglePost() {
+
+    }
+
+    @Test
+    public void testRetrievingAllPosts() {
+
+    }
+
+    @Test
+    public void testUpdatingPost() {
+
     }
 
     private void createDependentObjects() {
