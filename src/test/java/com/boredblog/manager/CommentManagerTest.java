@@ -54,6 +54,12 @@ public class CommentManagerTest {
                 originalValue,
                 updatedValue
         );
+
+        assertNotEquals(
+                "testUpdatingComment receive null as the updated content.",
+                null,
+                updatedValue
+        );
     }
 
     private void instantiateDependencies() {

@@ -82,11 +82,12 @@ public class AuthorManagerTest {
     @Test
     public void testUpdatingAuthor() {
         String originalFirstName = this.author.getFirstName();
+        String updatedFirstName = null;
         this.authorManager.update(
                 AUTHOR_ID,
                 this.partialAuthor
         );
-        String updatedFirstName = this.author.getFirstName();
+        updatedFirstName = this.author.getFirstName();
 
         assertNotEquals(
                 "testUpdatingAuthor received the same first name back.",
