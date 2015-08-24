@@ -15,3 +15,11 @@ INSERT INTO `authors` (
     'jdewey',
     '$2a$10$ZMzsS3elA2P8sbIPnGq/DOxbrmU/Uk2XT0Bmw74rc8zs9Iw0IPA6u' -- password
 );
+
+INSERT INTO `guests` (
+    `screen_name`
+) VALUES (
+    'nexient'
+), (
+    'caithe2'
+);
