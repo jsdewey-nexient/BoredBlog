@@ -29,9 +29,9 @@ public class GuestManagerTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
-        this.mockGuestRepository();
         this.createDependentObjects();
         this.setDependentObjectProperties();
+        this.mockGuestRepository();
     }
 
     @Test
