@@ -58,7 +58,22 @@ public class GuestManagerTest {
 
     @Test
     public void testUpdatingGuest() {
+        String originalScreenName = this.guest.getScreenName();
+        String updatedScreenName = null;
+        this.guestManager.update(GUEST_ID, this.updatedGuest);
+        updatedScreenName = this.guest.getScreenName();
 
+        assertNotEquals(
+                "testUpdatingGuest received a null string back.",
+                null,
+                updatedScreenName
+        );
+
+        assertNotEquals(
+                "testUpdatingGuest receive the same screen name back.",
+                originalScreenName,
+                updatedScreenName
+        );
     }
 
     private void mockGuestRepository() {
