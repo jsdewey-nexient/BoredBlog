@@ -39,6 +39,17 @@ public class CommentManagerTest {
     }
 
     @Test
+    public void testCreateComment() {
+        Comment result = this.commentManager.create(POST_ID, this.comment);
+
+        assertEquals(
+                "testCreateComment did not receive the same Comment object back.",
+                this.comment,
+                result
+        );
+    }
+
+    @Test
     public void testUpdatingComment() {
         String originalValue = comment.getContent();
         String updatedValue = null;
