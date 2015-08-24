@@ -52,17 +52,45 @@ public class PostManagerTest {
 
     @Test
     public void testRetrievingSinglePost() {
+        Post result = this.postManager.retrieve(POST_ID);
 
+        assertEquals(
+                "testRetrievingSinglePost did not receive the expected " +
+                        "Post object.",
+                this.post,
+                result
+        );
     }
 
     @Test
     public void testRetrievingAllPosts() {
+        List<Post> result = this.postManager.retrieveAll();
 
+        assertEquals(
+                "testRetrievingAllPosts did not receive the expected List back.",
+                this.posts,
+                result
+        );
     }
 
     @Test
     public void testUpdatingPost() {
+        String originalContent = this.post.getContent();
+        String updatedContent = null;
+        this.postManager.update(POST_ID, this.updatedPost);
+        updatedContent = this.post.getContent();
 
+        assertNotEquals(
+                "testUpdatingPost received null.",
+                null,
+                updatedContent
+        );
+
+        assertNotEquals(
+                "testUpdatingPost received the same string back.",
+                originalContent,
+                updatedContent
+        );
     }
 
     private void createDependentObjects() {
