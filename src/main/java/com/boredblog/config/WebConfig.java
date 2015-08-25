@@ -8,9 +8,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.List;
 
@@ -57,5 +62,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.defaultContentType(MediaType.APPLICATION_JSON);
+    }
+
+    @Bean
+    public ViewResolver cnViewResolver(ContentNegotiationManager cnm) {
+        ContentNegotiatingViewResolver cnvr = new ContentNegotiatingViewResolver();
+        cnvr.setContentNegotiationManager(cnm);
+        return cnvr;
     }
 }
