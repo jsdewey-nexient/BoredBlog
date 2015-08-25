@@ -17,7 +17,7 @@ public class WebAppInitializer
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebConfig.class };
+        return new Class<?>[] { WebConfig.class, JpaConfig.class };
     }
 
     @Override
