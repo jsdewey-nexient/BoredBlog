@@ -20,7 +20,10 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.boredblog.controller")
+@ComponentScan(basePackages = {
+        "com.boredblog.controller",
+        "com.boredblog.entity"
+})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(
