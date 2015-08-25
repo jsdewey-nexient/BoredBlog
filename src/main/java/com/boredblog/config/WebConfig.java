@@ -22,7 +22,8 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan(basePackages = {
         "com.boredblog.controller",
-        "com.boredblog.entity"
+        "com.boredblog.entity",
+        "com.boredblog.manager"
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
