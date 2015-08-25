@@ -48,6 +48,7 @@ public class CommentTest extends BaseTimestampTest {
 
     @Test
     public void testUserAsAuthorMatches() {
+        // User is set manually because we want to test the Author object.
         this.comment.setUser(this.author);
         User result = this.comment.getUser();
 
@@ -61,6 +62,7 @@ public class CommentTest extends BaseTimestampTest {
 
     @Test
     public void testUserAsGuestMatches() {
+        // User is set manually because we want to test the Guest object.
         this.comment.setUser(this.guest);
         User result = this.comment.getUser();
 
