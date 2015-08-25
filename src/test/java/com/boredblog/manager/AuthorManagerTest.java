@@ -26,11 +26,12 @@ public class AuthorManagerTest {
     private final Integer UPDATE_AUTHOR_ID = 2;
     @Mock
     private AuthorRepository authorRepository;
+    @Mock
+    private List<Author> authors;
     @InjectMocks
     private AuthorManager authorManager;
     private Author author;
     private Author partialAuthor;
-    private List<Author> authors;
 
     @Before
     public void setup() throws Exception {
@@ -105,8 +106,6 @@ public class AuthorManagerTest {
     private void createDependentObjects() {
         this.author = new Author();
         this.partialAuthor = new Author();
-        this.authors = new ArrayList<>();
-        this.authors.add(this.author);
     }
 
     private void setDependentObjectProperties() {
