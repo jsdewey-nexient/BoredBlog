@@ -12,7 +12,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  * Imports properties from external files.
  */
 @Configuration
-@PropertySource({ "classpath:db.database.properties" })
+@PropertySource({ "classpath:db/database.properties" })
 public class PropertyPlaceholderConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer
