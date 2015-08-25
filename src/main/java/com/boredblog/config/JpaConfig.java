@@ -33,4 +33,5 @@ public class JpaConfig {
     private Integer maxStatements;
     @Value("${database.jdbc.testConnection}")
     private Boolean testConnection;
+    private static final String ENTITIES_PACKAGE = "com.boredblog.entity";
 }
