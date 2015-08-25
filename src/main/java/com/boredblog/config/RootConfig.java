@@ -1,5 +1,6 @@
 package com.boredblog.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,5 +10,9 @@ import org.springframework.context.annotation.Configuration;
  * Non-MVC configuration.
  */
 @Configuration
+@ComponentScan(basePackages = {
+        "com.boredblog.controller",
+        "com.boredblog.service"
+})
 public class RootConfig {
 }
