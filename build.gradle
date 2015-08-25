@@ -32,6 +32,11 @@ jacocoTestReport {
         xml.enabled false
         csv.enabled false
         html.destination "${buildDir}/reports/jacocoHtml"
+        afterEvaluate {
+            classDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: "**/config/*")
+            })
+        }
     }
 }
 
