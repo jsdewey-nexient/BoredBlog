@@ -24,10 +24,11 @@ public class CommentManagerTest {
     private final Integer COMMENT_ID = 1;
     @Mock
     private CommentRepository commentRepository;
+    @Mock
+    private List<Comment> commentList;
     @InjectMocks
     private CommentManager commentManager;
     private Comment comment;
-    private List<Comment> commentList;
     private Comment updatedComment;
 
     @Before
@@ -100,7 +101,6 @@ public class CommentManagerTest {
 
     private void instantiateDependencies() {
         this.comment = new Comment();
-        this.commentList = new ArrayList<Comment>();
         this.updatedComment = new Comment();
     }
 

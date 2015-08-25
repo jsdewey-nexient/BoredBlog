@@ -24,11 +24,12 @@ public class PostManagerTest {
     private final Integer POST_ID = 1;
     @Mock
     private PostRepository postRepository;
+    @Mock
+    private List<Post> posts;
     @InjectMocks
     private PostManager postManager;
     private Post post;
     private Post updatedPost;
-    private List<Post> posts;
 
     @Before
     public void setup() throws Exception {
@@ -96,7 +97,6 @@ public class PostManagerTest {
     private void createDependentObjects() {
         this.post = new Post();
         this.updatedPost = new Post();
-        this.posts = new ArrayList<Post>();
     }
 
     private void setDependentObjectProperties() {
