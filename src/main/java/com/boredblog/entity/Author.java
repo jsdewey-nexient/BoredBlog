@@ -22,10 +22,10 @@ public class Author extends User {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", targetEntity = Post.class)
     @OrderBy("created_at DESC")
     private List<Post> posts;
-    @OneToMany(mappedBy = "user")
+
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 

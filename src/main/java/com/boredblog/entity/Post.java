@@ -22,7 +22,7 @@ public class Post extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
-    @OneToMany(mappedBy = "post")
+
     private List<Comment> comments;
 
     public String getTitle() {
