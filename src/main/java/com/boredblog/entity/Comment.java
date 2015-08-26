@@ -18,6 +18,7 @@ public class Comment extends BaseEntity {
     private String content;
     @ManyToOne
     private User user;
+    @ManyToOne
     private Post post;
 
     public String getContent() {
