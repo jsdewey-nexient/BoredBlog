@@ -14,9 +14,6 @@ import java.util.List;
 public class Guest extends User {
     @Column(name = "screen_name", nullable = false)
     private String screenName;
-    @OneToMany(mappedBy = "user")
-    @OrderBy("created_at ASC")
-    private List<Comment> comments;
 
     public String getScreenName() {
         return screenName;
@@ -24,13 +21,5 @@ public class Guest extends User {
 
     public void setScreenName(String screenName) {
         this.screenName = screenName;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 }

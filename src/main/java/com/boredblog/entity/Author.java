@@ -26,9 +26,6 @@ public class Author extends User {
     @OrderBy("created_at DESC")
     private List<Post> posts;
 
-    @OrderBy("created_at ASC")
-    private List<Comment> comments;
-
     public String getFirstName() {
         return firstName;
     }
@@ -67,13 +64,5 @@ public class Author extends User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 }
