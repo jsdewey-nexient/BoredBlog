@@ -1,5 +1,6 @@
 package com.boredblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -20,8 +21,8 @@ public class Post extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Author author;
+    @JoinColumn(name = "author_id", nullable = false)
+    private User user;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
@@ -41,12 +42,12 @@ public class Post extends BaseEntity {
         this.content = content;
     }
 
-    public Author getAuthor() {
-        return author;
+    public User getAuthor() {
+        return this.user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthor(User author) {
+        this.user = author;
     }
 
     public List<Comment> getComments() {
