@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "authors")
-public class Author extends BaseEntity implements User {
+public class Author extends User {
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)

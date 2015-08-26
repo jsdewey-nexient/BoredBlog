@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "guests")
-public class Guest extends BaseEntity implements User {
+public class Guest extends User {
     @Column(name = "screen_name", nullable = false)
     private String screenName;
     @OneToMany(mappedBy = "user")

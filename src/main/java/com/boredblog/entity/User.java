@@ -1,5 +1,7 @@
 package com.boredblog.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -8,5 +10,7 @@ import javax.persistence.MappedSuperclass;
  * Group: Joel
  * A base entity for Authors and Guests.
  */
-public interface User {
+@Entity
+@Inheritance
+public abstract class User extends BaseEntity {
 }
