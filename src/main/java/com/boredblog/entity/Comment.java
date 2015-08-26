@@ -18,6 +18,7 @@ public class Comment extends BaseEntity {
     private String content;
     @ManyToOne
     private User user;
+    private Post post;
 
     public String getContent() {
         return content;
@@ -33,6 +34,14 @@ public class Comment extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Override

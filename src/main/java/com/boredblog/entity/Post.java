@@ -22,7 +22,6 @@ public class Post extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
-
     private List<Comment> comments;
 
     public String getTitle() {
