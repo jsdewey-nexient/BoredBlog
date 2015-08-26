@@ -20,7 +20,7 @@ public class Post extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private Author author;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;

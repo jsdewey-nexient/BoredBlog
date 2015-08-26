@@ -2,6 +2,7 @@ package com.boredblog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -12,13 +13,12 @@ import java.util.List;
  */
 @Entity
 @Table(name = "authors")
+@DiscriminatorValue("Author")
 public class Author extends User {
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "screen_name", nullable = false)
-    private String screenName;
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
@@ -40,14 +40,6 @@ public class Author extends User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getScreenName() {
-        return screenName;
-    }
-
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
     }
 
     public String getPassword() {

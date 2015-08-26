@@ -1,6 +1,9 @@
 package com.boredblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -10,16 +13,7 @@ import java.util.List;
  * An entity describing a Guest, who may only post comments.
  */
 @Entity
-@Table(name = "guests")
+@Table(name = "users")
+@DiscriminatorValue("Guest")
 public class Guest extends User {
-    @Column(name = "screen_name", nullable = false)
-    private String screenName;
-
-    public String getScreenName() {
-        return screenName;
-    }
-
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
-    }
 }
