@@ -1,9 +1,6 @@
 package com.boredblog.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OrderBy;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -14,7 +11,9 @@ import java.util.List;
  */
 @Entity
 @Inheritance
+@Table(name = "users")
 public abstract class User extends BaseEntity {
+    @OneToMany(mappedBy = "user")
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 

@@ -17,14 +17,6 @@ public class Comment extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
     @ManyToOne
-    @JoinTable(
-            name = "comments_users_guests",
-            joinColumns = @JoinColumn(name = "comment_id"),
-            inverseJoinColumns = {
-                    @JoinColumn(name = "author_id"),
-                    @JoinColumn(name = "guest_id")
-            }
-    )
     private User user;
 
     public String getContent() {
