@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * Responsible for handling Posts.
  */
 @Repository
-public interface PostRepository extends JpaRepository<Post, Integer> {
+public interface PostRepository extends BaseRepository<Post, Integer> {
 }

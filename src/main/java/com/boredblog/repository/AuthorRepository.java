@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  * Handles Author objects.
  */
 @Repository
-public interface AuthorRepository extends JpaRepository<Author, Integer> {
+public interface AuthorRepository extends BaseRepository<Author, Integer> {
 }

@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * Responsible for handling Guests.
  */
 @Repository
-public interface GuestRepository extends JpaRepository<Guest, Integer> {
+public interface GuestRepository extends BaseRepository<Guest, Integer> {
 }

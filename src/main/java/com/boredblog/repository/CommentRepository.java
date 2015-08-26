@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * Responsible for handling Comments.
  */
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Integer> {
+public interface CommentRepository extends BaseRepository<Comment, Integer> {
 }
