@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -64,9 +65,14 @@ public class AuthorControllerJsonTest {
     }
 
     private void setAuthorProperties() {
+        this.author.setId(1);
         this.author.setFirstName("Johnny");
         this.author.setLastName("Nexient");
+        this.author.setScreenName("jnexient");
         this.author.setPassword("Shouldn't see this!");
+        this.author.setCreatedAt(new Timestamp(1));
+        this.author.setUpdatedAt(new Timestamp(2));
         this.author.setComments(this.comments);
+        this.author.setPosts(this.posts);
     }
 }
