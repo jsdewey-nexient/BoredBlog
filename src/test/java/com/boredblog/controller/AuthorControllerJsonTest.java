@@ -13,11 +13,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
@@ -46,15 +49,19 @@ public class AuthorControllerJsonTest {
     @Autowired
     private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
     private MockMvc mockMvc;
+    private ResultActions responseAll;
+    private ResultActions responseSingle;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
         buildMockMvc();
         addPostsToList();
         addCommentsToList();
         setAuthorProperties();
         mockAuthorManager();
+        sendRequestToRetrieveAll();
+        sendRequestToRetrieveSingleAuthor();
     }
 
     private void buildMockMvc() {
@@ -102,5 +109,19 @@ public class AuthorControllerJsonTest {
     private void mockAuthorManager() {
         Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
         Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.author);
+    }
+
+    private void sendRequestToRetrieveAll() throws Exception {
+        this.responseAll = this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/authors")
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+    }
+
+    private void sendRequestToRetrieveSingleAuthor() throws Exception {
+        this.responseSingle = this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/authors/1")
+                        .accept(MediaType.APPLICATION_JSON)
+        );
     }
 }
