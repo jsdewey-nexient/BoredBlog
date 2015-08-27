@@ -113,6 +113,13 @@ public class AuthorControllerJsonTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].id", is(2)));
     }
 
+    @Test
+    public void testResponseAllScreenName() throws Exception {
+        this.responseAll
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].screen_name", is("jnexient")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].screen_name", is("Codehaus")));
+    }
+
     private void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(this.authorController)
                 .setMessageConverters(this.jackson2HttpMessageConverter)
