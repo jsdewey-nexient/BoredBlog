@@ -20,7 +20,8 @@ public class Post extends BaseEntity {
     private String title;
     @Column(name = "content", nullable = false)
     private String content;
-    @OneToMany(mappedBy = "post")
+    @JsonIgnore
+    @OneToMany
     private List<Comment> comments;
 
     public String getTitle() {

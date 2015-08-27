@@ -1,5 +1,7 @@
 package com.boredblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +21,8 @@ import java.util.List;
 public abstract class User extends BaseEntity {
     @Column(name = "screen_name", nullable = false)
     private String screenName;
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @OneToMany
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 
