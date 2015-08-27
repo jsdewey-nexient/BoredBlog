@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,13 +40,14 @@ import java.util.List;
 @WebAppConfiguration
 @ContextConfiguration(classes = { WebConfig.class })
 public class AuthorControllerJsonTest {
-    public static final int SIZE_OF_RESPONSEALL_ARRAY = 1;
+    public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
     @Mock
     private AuthorManager authorManager;
     @InjectMocks
     private AuthorController authorController;
     // Anything being serialized should not be mocked.
-    private Author author;
+    private Author firstAuthor;
+    private Author secondAuthor;
     private List<Comment> comments;
     private List<Post> posts;
     private List<Author> authors;
@@ -59,6 +61,7 @@ public class AuthorControllerJsonTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
+        instantiateDependentObjects();
         buildMockMvc();
         addPostsToList();
         addCommentsToList();
@@ -66,6 +69,14 @@ public class AuthorControllerJsonTest {
         mockAuthorManager();
         sendRequestToRetrieveAll();
         sendRequestToRetrieveSingleAuthor();
+    }
+
+    private void instantiateDependentObjects() {
+        this.firstAuthor = new Author();
+        this.secondAuthor = new Author();
+        this.comments = new ArrayList<Comment>();
+        this.posts = new ArrayList<Post>();
+        this.authors = new ArrayList<Author>();
     }
 
     @Test
@@ -119,25 +130,25 @@ public class AuthorControllerJsonTest {
     }
 
     private void setAuthorProperties() {
-        this.author.setId(1);
-        this.author.setFirstName("Johnny");
-        this.author.setLastName("Nexient");
-        this.author.setScreenName("jnexient");
-        this.author.setPassword("Shouldn't see this!");
-        this.author.setCreatedAt(new Timestamp(1));
-        this.author.setUpdatedAt(new Timestamp(2));
-        this.author.setComments(this.comments);
-        this.author.setPosts(this.posts);
+        this.firstAuthor.setId(1);
+        this.firstAuthor.setFirstName("Johnny");
+        this.firstAuthor.setLastName("Nexient");
+        this.firstAuthor.setScreenName("jnexient");
+        this.firstAuthor.setPassword("Shouldn't see this!");
+        this.firstAuthor.setCreatedAt(new Timestamp(1));
+        this.firstAuthor.setUpdatedAt(new Timestamp(2));
+        this.firstAuthor.setComments(this.comments);
+        this.firstAuthor.setPosts(this.posts);
         addAuthorToList();
     }
 
     private void addAuthorToList() {
-        this.authors.add(this.author);
+        this.authors.add(this.firstAuthor);
     }
 
     private void mockAuthorManager() {
         Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
-        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.author);
+        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.firstAuthor);
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
