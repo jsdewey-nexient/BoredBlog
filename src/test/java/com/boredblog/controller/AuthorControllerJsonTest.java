@@ -65,7 +65,8 @@ public class AuthorControllerJsonTest {
         buildMockMvc();
         addPostsToList();
         addCommentsToList();
-        setAuthorProperties();
+        setFirstAuthorProperties();
+        setSecondAuthorProperties();
         mockAuthorManager();
         sendRequestToRetrieveAll();
         sendRequestToRetrieveSingleAuthor();
@@ -129,7 +130,7 @@ public class AuthorControllerJsonTest {
         }
     }
 
-    private void setAuthorProperties() {
+    private void setFirstAuthorProperties() {
         this.firstAuthor.setId(1);
         this.firstAuthor.setFirstName("Johnny");
         this.firstAuthor.setLastName("Nexient");
@@ -139,11 +140,24 @@ public class AuthorControllerJsonTest {
         this.firstAuthor.setUpdatedAt(new Timestamp(2));
         this.firstAuthor.setComments(this.comments);
         this.firstAuthor.setPosts(this.posts);
-        addAuthorToList();
+        addAuthorToList(this.firstAuthor);
     }
 
-    private void addAuthorToList() {
-        this.authors.add(this.firstAuthor);
+    private void setSecondAuthorProperties() {
+        this.secondAuthor.setId(2);
+        this.secondAuthor.setFirstName("Jackson");
+        this.secondAuthor.setLastName("FasterXML");
+        this.secondAuthor.setScreenName("Codehaus");
+        this.secondAuthor.setPassword("Shouldn't see this!");
+        this.secondAuthor.setCreatedAt(new Timestamp(3));
+        this.secondAuthor.setUpdatedAt(new Timestamp(4));
+        this.secondAuthor.setComments(this.comments);
+        this.secondAuthor.setPosts(this.posts);
+        addAuthorToList(this.secondAuthor);
+    }
+
+    private void addAuthorToList(Author author) {
+        this.authors.add(author);
     }
 
     private void mockAuthorManager() {
