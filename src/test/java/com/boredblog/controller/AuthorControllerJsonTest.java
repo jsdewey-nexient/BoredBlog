@@ -5,6 +5,7 @@ import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.AuthorManager;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +39,7 @@ import java.util.List;
 @WebAppConfiguration
 @ContextConfiguration(classes = { WebConfig.class })
 public class AuthorControllerJsonTest {
+    public static final int SIZE_OF_RESPONSEALL_ARRAY = 1;
     @Mock
     private AuthorManager authorManager;
     @InjectMocks
@@ -78,6 +80,17 @@ public class AuthorControllerJsonTest {
                 "JSON String: "
                         + result.getResponse().getContentAsString()
         );
+    }
+
+    @Test
+    public void testResponseAllCorrectLength() throws Exception {
+        this.responseAll
+                .andExpect(
+                        MockMvcResultMatchers.jsonPath(
+                                "$.*",
+                                Matchers.hasSize(SIZE_OF_RESPONSEALL_ARRAY)
+                        )
+                );
     }
 
     private void buildMockMvc() {
