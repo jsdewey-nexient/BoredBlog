@@ -3,6 +3,7 @@ package com.boredblog.controller;
 import com.boredblog.config.WebConfig;
 import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
+import com.boredblog.entity.Post;
 import com.boredblog.manager.AuthorManager;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -29,11 +30,22 @@ public class AuthorControllerJsonTest {
     private AuthorManager authorManager;
     @InjectMocks
     private AuthorController authorController;
+    // Anything being serialized should not be mocked.
     private Author author;
     private List<Comment> comments;
+    private List<Post> posts;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+
+        setAuthorProperties();
+    }
+
+    private void setAuthorProperties() {
+        this.author.setFirstName("Johnny");
+        this.author.setLastName("Nexient");
+        this.author.setPassword("Shouldn't see this!");
+        this.author.setComments(this.comments);
     }
 }
