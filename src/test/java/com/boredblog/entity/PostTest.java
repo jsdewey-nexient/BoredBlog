@@ -23,8 +23,6 @@ public class PostTest extends BaseTimestampTest {
             "round fatback, salami jowl tenderloin short ribs shoulder " +
             "prosciutto sausage chicken capicola.";
     @Mock
-    private Author author;
-    @Mock
     private List<Comment> comments;
     @InjectMocks
     private Post post;
@@ -87,17 +85,6 @@ public class PostTest extends BaseTimestampTest {
                 "testCommentsMatches did not receive the expected List " +
                         "of Comments.",
                 this.comments,
-                result
-        );
-    }
-
-    @Test
-    public void testAuthorMatches() {
-        User result = this.post.getAuthor();
-
-        assertEquals(
-                "testAuthorMatches did not receive the expected mocked Author.",
-                this.author,
                 result
         );
     }

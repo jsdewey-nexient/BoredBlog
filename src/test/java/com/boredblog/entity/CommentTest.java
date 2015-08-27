@@ -22,8 +22,6 @@ public class CommentTest extends BaseTimestampTest {
             "adipiscing elit. Donec in.";
     @Mock
     private Author author;
-    @Mock
-    private Guest guest;
     private Comment comment;
 
     @Before
@@ -42,34 +40,6 @@ public class CommentTest extends BaseTimestampTest {
                 "testContentMatches did not get the expected content " +
                         "back.",
                 CONTENT,
-                result
-        );
-    }
-
-    @Test
-    public void testUserAsAuthorMatches() {
-        // User is set manually because we want to test the Author object.
-        this.comment.setUser(this.author);
-        User result = this.comment.getUser();
-
-        assertEquals(
-                "testUserAsAuthorMatches did not receive the mocked " +
-                        "Author back.",
-                this.author,
-                result
-        );
-    }
-
-    @Test
-    public void testUserAsGuestMatches() {
-        // User is set manually because we want to test the Guest object.
-        this.comment.setUser(this.guest);
-        User result = this.comment.getUser();
-
-        assertEquals(
-                "testUserAsGuestMatches did not receive the mocked " +
-                        "Guest back.",
-                this.guest,
                 result
         );
     }
