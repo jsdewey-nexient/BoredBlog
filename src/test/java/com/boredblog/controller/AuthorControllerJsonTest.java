@@ -5,7 +5,6 @@ import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.AuthorManager;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +28,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.hamcrest.Matchers.*;
 
 /**
  * @author Joel Dewey
@@ -100,9 +101,16 @@ public class AuthorControllerJsonTest {
                 .andExpect(
                         MockMvcResultMatchers.jsonPath(
                                 "$.*",
-                                Matchers.hasSize(SIZE_OF_RESPONSEALL_ARRAY)
+                                hasSize(SIZE_OF_RESPONSEALL_ARRAY)
                         )
                 );
+    }
+
+    @Test
+    public void testResponseAllId() throws Exception {
+        this.responseAll
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].id", is(2)));
     }
 
     private void buildMockMvc() {
