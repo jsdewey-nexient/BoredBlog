@@ -20,9 +20,6 @@ public class Post extends BaseEntity {
     private String title;
     @Column(name = "content", nullable = false)
     private String content;
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
-    private User user;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
@@ -40,14 +37,6 @@ public class Post extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public User getAuthor() {
-        return this.user;
-    }
-
-    public void setAuthor(User author) {
-        this.user = author;
     }
 
     public List<Comment> getComments() {
