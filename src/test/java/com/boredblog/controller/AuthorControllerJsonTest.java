@@ -39,7 +39,17 @@ public class AuthorControllerJsonTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
+        addCommentsToList();
         setAuthorProperties();
+    }
+
+    private void addCommentsToList() {
+        Comment comment = new Comment();
+        comment.setContent("I should only be seen when a single Author " +
+                "is requested.");
+        for(int i = 0; i < 2; i++) {
+            this.comments.add(comment);
+        }
     }
 
     private void setAuthorProperties() {
