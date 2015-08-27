@@ -93,7 +93,7 @@ public class PostTest extends BaseTimestampTest {
 
     @Test
     public void testAuthorMatches() {
-        Author result = this.post.getAuthor();
+        User result = this.post.getAuthor();
 
         assertEquals(
                 "testAuthorMatches did not receive the expected mocked Author.",
