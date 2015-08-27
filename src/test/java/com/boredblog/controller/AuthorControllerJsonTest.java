@@ -6,13 +6,19 @@ import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.AuthorManager;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -35,14 +41,26 @@ public class AuthorControllerJsonTest {
     private Author author;
     private List<Comment> comments;
     private List<Post> posts;
+    private List<Author> authors;
+
+    @Autowired
+    private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
+    private MockMvc mockMvc;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-
+        buildMockMvc();
         addPostsToList();
         addCommentsToList();
         setAuthorProperties();
+        mockAuthorManager();
+    }
+
+    private void buildMockMvc() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.authorController)
+                .setMessageConverters(this.jackson2HttpMessageConverter)
+                .build();
     }
 
     private void addPostsToList() {
@@ -74,5 +92,15 @@ public class AuthorControllerJsonTest {
         this.author.setUpdatedAt(new Timestamp(2));
         this.author.setComments(this.comments);
         this.author.setPosts(this.posts);
+        addAuthorToList();
+    }
+
+    private void addAuthorToList() {
+        this.authors.add(this.author);
+    }
+
+    private void mockAuthorManager() {
+        Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
+        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.author);
     }
 }
