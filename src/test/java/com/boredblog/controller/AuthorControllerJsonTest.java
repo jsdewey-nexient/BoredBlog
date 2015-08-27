@@ -107,28 +107,28 @@ public class AuthorControllerJsonTest {
     }
 
     @Test
-    public void testResponseAllId() throws Exception {
+    public void testResponseAllIds() throws Exception {
         this.responseAll
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].id", is(2)));
     }
 
     @Test
-    public void testResponseAllScreenName() throws Exception {
+    public void testResponseAllScreenNames() throws Exception {
         this.responseAll
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].screen_name", is("jnexient")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].screen_name", is("Codehaus")));
     }
 
     @Test
-    public void testResponseAllFirstName() throws Exception {
+    public void testResponseAllFirstNames() throws Exception {
         this.responseAll
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].first_name", is("Johnny")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].first_name", is("Jackson")));
     }
 
     @Test
-    public void testResponseAllLastName() throws Exception {
+    public void testResponseAllLastNames() throws Exception {
         this.responseAll
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].last_name", is("Nexient")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].last_name", is("FasterXML")));
