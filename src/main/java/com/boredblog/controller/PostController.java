@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("posts")
 public class PostController {
-    @Autowired
     private PostManager postManager;
 
     @RequestMapping(method = RequestMethod.GET)
