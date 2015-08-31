@@ -18,6 +18,11 @@ import java.util.List;
 public class PostController {
     private PostManager postManager;
 
+    @Autowired
+    public PostController(PostManager postManager) {
+        this.postManager = postManager;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Post> getPosts() {
         return this.postManager.retrieveAll();
