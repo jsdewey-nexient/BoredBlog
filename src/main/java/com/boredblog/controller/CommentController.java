@@ -15,8 +15,12 @@ import java.util.List;
  */
 @RestController
 public class CommentController {
-    @Autowired
     private CommentManager commentManager;
+
+    @Autowired
+    public CommentController(CommentManager commentManager) {
+        this.commentManager = commentManager;
+    }
 
     @RequestMapping(value = "posts/{postId}/comments", method = RequestMethod.POST)
     public Comment createComment(
