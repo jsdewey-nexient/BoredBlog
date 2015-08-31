@@ -18,6 +18,11 @@ import java.util.List;
 public class AuthorController {
     private AuthorManager authorManager;
 
+    @Autowired
+    public AuthorController(AuthorManager authorManager) {
+        this.authorManager = authorManager;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Author> getAuthors() {
         return this.authorManager.retrieveAll();
