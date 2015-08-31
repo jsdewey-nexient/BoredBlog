@@ -8,10 +8,7 @@ import com.boredblog.manager.AuthorManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -191,7 +188,7 @@ public class AuthorControllerJsonTest {
 
     private void mockAuthorManager() {
         Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
-        Mockito.when(this.authorManager.retrieve(1)).thenReturn(this.firstAuthor);
+        Mockito.when(this.authorManager.retrieve(Matchers.anyInt())).thenReturn(this.firstAuthor);
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
