@@ -70,14 +70,6 @@ public class AuthorControllerJsonTest {
         sendRequestToRetrieveSingleAuthor();
     }
 
-    private void instantiateDependentObjects() {
-        this.firstAuthor = new Author();
-        this.secondAuthor = new Author();
-        this.comments = new ArrayList<Comment>();
-        this.posts = new ArrayList<Post>();
-        this.authors = new ArrayList<Author>();
-    }
-
     @Test
     public void testSuccessfulResponseAll() throws Exception{
         final MvcResult result = this.responseAll
@@ -129,6 +121,14 @@ public class AuthorControllerJsonTest {
         this.responseAll
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].last_name", is("Nexient")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[1].last_name", is("FasterXML")));
+    }
+
+    private void instantiateDependentObjects() {
+        this.firstAuthor = new Author();
+        this.secondAuthor = new Author();
+        this.comments = new ArrayList<Comment>();
+        this.posts = new ArrayList<Post>();
+        this.authors = new ArrayList<Author>();
     }
 
     private void buildMockMvc() {
