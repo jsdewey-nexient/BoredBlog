@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("authors")
 public class AuthorController {
-    @Autowired
     private AuthorManager authorManager;
 
     @RequestMapping(method = RequestMethod.GET)
