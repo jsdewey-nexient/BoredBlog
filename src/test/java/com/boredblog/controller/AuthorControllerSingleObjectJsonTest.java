@@ -9,8 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * @author Joel Dewey
@@ -26,6 +28,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 })
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
+    public static final int AUTHOR_ID = 1;
 
     @Before
     public void setup() throws Exception {
@@ -43,9 +46,14 @@ public class AuthorControllerSingleObjectJsonTest
         super.testSuccessfulRequest(this.response);
     }
 
+    @Test
+    public void testId() throws Exception {
+        this.response.andExpect(jsonPath("$.id", is(AUTHOR_ID)));
+    }
+
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
         this.response = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/authors/1")
+                MockMvcRequestBuilders.get("/authors/" + AUTHOR_ID)
                         .accept(MediaType.APPLICATION_JSON)
         );
     }
