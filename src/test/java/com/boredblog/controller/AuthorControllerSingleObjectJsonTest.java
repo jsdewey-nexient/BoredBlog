@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
-    public static final int AUTHOR_ID = 1;
     public final int SIZE_OF_RESPONSE = 6;
 
     @Before
@@ -54,17 +53,20 @@ public class AuthorControllerSingleObjectJsonTest
 
     @Test
     public void testId() throws Exception {
-        this.response.andExpect(jsonPath("$.id", is(AUTHOR_ID)));
+        this.response.andExpect(jsonPath("$.id", is(FIRST_AUTHOR_ID)));
     }
 
     @Test
     public void testScreenName() throws Exception {
-
+        this.response.andExpect(jsonPath(
+                "$.screen_name",
+                is(FIRST_AUTHOR_SCREEN_NAME)
+        ));
     }
 
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
         this.response = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/authors/" + AUTHOR_ID)
+                MockMvcRequestBuilders.get("/authors/" + FIRST_AUTHOR_ID)
                         .accept(MediaType.APPLICATION_JSON)
         );
     }
