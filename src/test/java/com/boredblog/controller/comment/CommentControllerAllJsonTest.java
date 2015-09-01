@@ -49,6 +49,7 @@ public class CommentControllerAllJsonTest {
     public static final int COMMENT_ID = 1;
     public static final String COMMENT_CONTENT = "Do you see me?";
     public static final int COMMENT_CREATED_AT = 123456789;
+    public static final String COMMENT_SCREEN_NAME = "jnexient";
     private CommentController commentController;
     private CommentManager commentManager;
     private Comment comment;
@@ -75,6 +76,16 @@ public class CommentControllerAllJsonTest {
     @Test
     public void testId() throws Exception {
         this.response.andExpect(jsonPath("$.[0].id", is(COMMENT_ID)));
+    }
+
+    @Test
+    public void testScreenName() throws Exception {
+        this.response.andExpect(jsonPath("$.[0].screen_name", is(COMMENT_SCREEN_NAME)));
+    }
+
+    @Test
+    public void testContent() throws Exception {
+        this.response.andExpect(jsonPath("$.[0].content", is(COMMENT_CONTENT)));
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
