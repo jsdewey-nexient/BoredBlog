@@ -1,6 +1,7 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
+import com.boredblog.jsonview.CommentJsonView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -25,11 +26,12 @@ public class Comment extends BaseEntity {
         return content;
     }
 
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(CommentJsonView.FullComment.class)
     public void setContent(String content) {
         this.content = content;
     }
 
+    @JsonView(CommentJsonView.FullComment.class)
     public Author getAuthor() {
         return author;
     }
@@ -40,14 +42,14 @@ public class Comment extends BaseEntity {
 
     @Override
     @JsonProperty("created_at")
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(CommentJsonView.FullComment.class)
     public Timestamp getCreatedAt() {
         return super.getCreatedAt();
     }
 
     @Override
     @JsonProperty("updated_at")
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(CommentJsonView.FullComment.class)
     public Timestamp getUpdatedAt() {
         return super.getUpdatedAt();
     }

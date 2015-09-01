@@ -1,6 +1,7 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
+import com.boredblog.jsonview.CommentJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -27,7 +28,7 @@ public abstract class User extends BaseEntity {
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 
-    @JsonView(AuthorJsonView.OnlyScreenName.class)
+    @JsonView(CommentJsonView.FullComment.class)
     public String getScreenName() {
         return screenName;
     }
