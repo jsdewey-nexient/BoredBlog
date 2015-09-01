@@ -64,6 +64,14 @@ public class AuthorControllerSingleObjectJsonTest
         ));
     }
 
+    @Test
+    public void testFirstName() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.first_name",
+                is(FIRST_AUTHOR_FIRST_NAME)
+        ));
+    }
+
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
         this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/authors/" + FIRST_AUTHOR_ID)
