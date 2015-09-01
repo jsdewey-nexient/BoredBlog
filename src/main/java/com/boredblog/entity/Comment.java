@@ -18,6 +18,8 @@ import java.sql.Timestamp;
 public class Comment extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
+    @ManyToOne
+    private Author author;
 
     public String getContent() {
         return content;
@@ -26,6 +28,14 @@ public class Comment extends BaseEntity {
     @JsonView(AuthorJsonView.FullAuthor.class)
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
