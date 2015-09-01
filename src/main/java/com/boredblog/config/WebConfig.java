@@ -1,5 +1,6 @@
 package com.boredblog.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -47,6 +48,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 new Jackson2ObjectMapperBuilder();
         builder.propertyNamingStrategy(
                 PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        builder.serializationInclusion(JsonInclude.Include.NON_NULL);
         return builder;
     }
 }
