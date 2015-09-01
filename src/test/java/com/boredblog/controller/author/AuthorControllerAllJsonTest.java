@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         RootConfig.class,
         JpaConfig.class
 })
-public class AuthorControllerAllEndpointJsonTest
+public class AuthorControllerAllJsonTest
         extends AuthorControllerBaseJsonTest {
     public static final int SIZE_OF_JSON_OBJECT = 3;
     public static final int SIZE_OF_RESPONSE = 2;
