@@ -37,6 +37,7 @@ public abstract class User extends BaseEntity {
         this.screenName = screenName;
     }
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public List<Comment> getComments() {
         return comments;
     }
