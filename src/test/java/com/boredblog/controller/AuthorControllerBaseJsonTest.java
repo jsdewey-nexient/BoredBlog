@@ -9,11 +9,16 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author Joel Dewey
@@ -87,5 +92,17 @@ public class AuthorControllerBaseJsonTest {
         this.firstAuthor.setComments(this.comments);
         this.firstAuthor.setPosts(this.posts);
         addAuthorToList(this.firstAuthor);
+    }
+
+    protected void testSuccessfulResponse(ResultActions response)
+            throws Exception {
+        final MvcResult result = response
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andReturn();
+        System.out.println(
+                "JSON String: "
+                        + result.getResponse().getContentAsString()
+        );
     }
 }

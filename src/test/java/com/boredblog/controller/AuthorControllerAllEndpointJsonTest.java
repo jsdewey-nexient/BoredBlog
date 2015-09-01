@@ -68,14 +68,7 @@ public class AuthorControllerAllEndpointJsonTest
 
     @Test
     public void testSuccessfulResponseAll() throws Exception{
-        final MvcResult result = this.responseAll
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andReturn();
-        System.out.println(
-                "JSON String: "
-                        + result.getResponse().getContentAsString()
-        );
+        this.testSuccessfulResponse(this.responseAll);
     }
 
     @Test
