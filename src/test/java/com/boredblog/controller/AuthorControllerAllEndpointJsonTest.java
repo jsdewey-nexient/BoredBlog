@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.sql.Timestamp;
@@ -38,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthorControllerAllEndpointJsonTest
         extends AuthorControllerBaseJsonTest {
     public static final int SIZE_OF_JSON_OBJECT = 4;
-    public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
+    public static final int SIZE_OF_RESPONSE = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;
 
@@ -62,7 +61,7 @@ public class AuthorControllerAllEndpointJsonTest
     @Test
     public void testCorrectLength() throws Exception {
         this.response
-                .andExpect(jsonPath("$.*", hasSize(SIZE_OF_RESPONSEALL_ARRAY)));
+                .andExpect(jsonPath("$.*", hasSize(SIZE_OF_RESPONSE)));
     }
 
     @Test
