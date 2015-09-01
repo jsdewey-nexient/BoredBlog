@@ -52,12 +52,7 @@ public class AuthorControllerAllEndpointJsonTest
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;
-
-    @Autowired
-    private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
-    private MockMvc mockMvc;
     private ResultActions responseAll;
-    private ResultActions responseSingle;
 
     @Before
     public void setup() throws Exception {
@@ -69,7 +64,6 @@ public class AuthorControllerAllEndpointJsonTest
         setSecondAuthorProperties();
         mockAuthorManager();
         sendRequestToRetrieveAll();
-        sendRequestToRetrieveSingleAuthor();
     }
 
     @Test
@@ -129,44 +123,6 @@ public class AuthorControllerAllEndpointJsonTest
         this.secondAuthor = new Author();
     }
 
-    private void buildMockMvc() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new AuthorController(this.authorManager))
-                .setMessageConverters(this.jackson2HttpMessageConverter)
-                .build();
-    }
-
-    private void addPostsToList() {
-        Post post = new Post();
-        post.setContent("When a single Author is requested, only the " +
-                "title of his or her last five posts may be shown.");
-        for(int i = 0; i < 5; i++) {
-            post.setTitle("Single Author Only: " + i);
-            this.posts.add(post);
-        }
-    }
-
-    private void addCommentsToList() {
-        Comment comment = new Comment();
-        comment.setContent("I should only be seen when a single Author " +
-                "is requested.");
-        for(int i = 0; i < 5; i++) {
-            this.comments.add(comment);
-        }
-    }
-
-    private void setFirstAuthorProperties() {
-        this.firstAuthor.setId(1);
-        this.firstAuthor.setFirstName("Johnny");
-        this.firstAuthor.setLastName("Nexient");
-        this.firstAuthor.setScreenName("jnexient");
-        this.firstAuthor.setPassword("Shouldn't see this!");
-        this.firstAuthor.setCreatedAt(new Timestamp(1));
-        this.firstAuthor.setUpdatedAt(new Timestamp(2));
-        this.firstAuthor.setComments(this.comments);
-        this.firstAuthor.setPosts(this.posts);
-        addAuthorToList(this.firstAuthor);
-    }
-
     private void setSecondAuthorProperties() {
         this.secondAuthor.setId(2);
         this.secondAuthor.setFirstName("Jackson");
@@ -180,25 +136,9 @@ public class AuthorControllerAllEndpointJsonTest
         addAuthorToList(this.secondAuthor);
     }
 
-    private void addAuthorToList(Author author) {
-        this.authors.add(author);
-    }
-
-    private void mockAuthorManager() {
-        Mockito.when(this.authorManager.retrieveAll()).thenReturn(this.authors);
-        Mockito.when(this.authorManager.retrieve(Matchers.anyInt())).thenReturn(this.firstAuthor);
-    }
-
     private void sendRequestToRetrieveAll() throws Exception {
         this.responseAll = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/authors")
-                        .accept(MediaType.APPLICATION_JSON)
-        );
-    }
-
-    private void sendRequestToRetrieveSingleAuthor() throws Exception {
-        this.responseSingle = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/authors/1")
                         .accept(MediaType.APPLICATION_JSON)
         );
     }
