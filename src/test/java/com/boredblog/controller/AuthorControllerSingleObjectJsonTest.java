@@ -1,9 +1,9 @@
 package com.boredblog.controller;
 
-import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -37,6 +37,11 @@ public class AuthorControllerSingleObjectJsonTest
         setFirstAuthorProperties();
         mockAuthorManager();
         sendRequestToRetrieveSingleAuthor();
+    }
+
+    @Test
+    public void testSuccessfulRequest() throws Exception {
+        super.testSuccessfulRequest(this.responseSingle);
     }
 
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
