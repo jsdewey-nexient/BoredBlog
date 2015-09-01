@@ -57,4 +57,8 @@ public class Author extends User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 }

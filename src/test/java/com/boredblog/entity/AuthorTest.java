@@ -86,6 +86,15 @@ public class AuthorTest {
                 this.author.getComments());
     }
 
+    @Test
+    public void testFullNameMatches() {
+        assertEquals(
+                "testFullNameMatches did not return the expected full name.",
+                FIRST_NAME + " " + LAST_NAME,
+                this.author.getFullName()
+        );
+    }
+
     private void setUnmockedProperties() {
         this.author.setFirstName(FIRST_NAME);
         this.author.setLastName(LAST_NAME);
