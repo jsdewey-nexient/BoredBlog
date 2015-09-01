@@ -33,6 +33,11 @@ public class AuthorControllerBaseJsonTest {
     protected List<Comment> comments;
     protected List<Post> posts;
     protected List<Author> authors;
+    protected final int FIRST_AUTHOR_ID = 1;
+    protected final String FIRST_AUTHOR_FIRST_NAME = "Johnny";
+    protected final String FIRST_AUTHOR_LAST_NAME = "Nexient";
+    protected final String FIRST_AUTHOR_PASSWORD = "Shouldn't see this!";
+    protected final String FIRST_AUTHOR_SCREEN_NAME = "jnexient";
 
     @Autowired
     private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
@@ -82,11 +87,11 @@ public class AuthorControllerBaseJsonTest {
     }
 
     protected void setFirstAuthorProperties() {
-        this.firstAuthor.setId(1);
-        this.firstAuthor.setFirstName("Johnny");
-        this.firstAuthor.setLastName("Nexient");
-        this.firstAuthor.setScreenName("jnexient");
-        this.firstAuthor.setPassword("Shouldn't see this!");
+        this.firstAuthor.setId(FIRST_AUTHOR_ID);
+        this.firstAuthor.setFirstName(FIRST_AUTHOR_FIRST_NAME);
+        this.firstAuthor.setLastName(FIRST_AUTHOR_LAST_NAME);
+        this.firstAuthor.setScreenName(FIRST_AUTHOR_SCREEN_NAME);
+        this.firstAuthor.setPassword(FIRST_AUTHOR_PASSWORD);
         this.firstAuthor.setCreatedAt(new Timestamp(1));
         this.firstAuthor.setUpdatedAt(new Timestamp(2));
         this.firstAuthor.setComments(this.comments);
