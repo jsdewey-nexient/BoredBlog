@@ -56,8 +56,8 @@ public class AuthorControllerAllEndpointJsonTest
     }
 
     @Test
-    public void testSuccessful() throws Exception{
-        super.testResponseSuccessful(this.responseAll);
+    public void testSuccessfulRequest() throws Exception{
+        super.testSuccessfulRequest(this.responseAll);
     }
 
     @Test
