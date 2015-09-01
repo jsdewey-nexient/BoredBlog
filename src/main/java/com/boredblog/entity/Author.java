@@ -59,6 +59,7 @@ public class Author extends User {
         this.password = password;
     }
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public List<Post> getPosts() {
         return posts;
     }
