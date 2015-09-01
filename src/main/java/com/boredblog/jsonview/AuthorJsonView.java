@@ -7,6 +7,6 @@ package com.boredblog.jsonview;
  * An interface defining JSON views regarding Authors.
  */
 public interface AuthorJsonView {
-    interface LimitedAuthor extends BaseJsonView {}
+    interface LimitedAuthor extends BaseJsonView, CommentJsonView.FullComment {}
     interface FullAuthor extends BaseJsonView, LimitedAuthor, CommentJsonView.FullComment {}
 }
