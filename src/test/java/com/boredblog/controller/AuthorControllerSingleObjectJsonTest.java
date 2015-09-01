@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
-    public final int SIZE_OF_RESPONSE = 6;
+    public final int SIZE_OF_RESPONSE = 5;
     public final int SIZE_OF_COMMENTS = 5;
     public final int SIZE_OF_POSTS = 5;
 
