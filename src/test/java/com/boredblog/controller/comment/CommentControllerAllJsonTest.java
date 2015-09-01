@@ -70,7 +70,7 @@ public class CommentControllerAllJsonTest {
 
     @Test
     public void testIsArrayOfSizeOne() throws Exception {
-        System.out.println(this.response.andReturn().getResponse().getContentAsString());
+        System.out.println("JSON: " + this.response.andReturn().getResponse().getContentAsString());
         this.response.andExpect(jsonPath("$.*", hasSize(1)));
     }
 
@@ -108,7 +108,7 @@ public class CommentControllerAllJsonTest {
 
     private void sendRequestToRetrieveAll() throws Exception {
         this.response = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/" + POST_ID + "/comments")
+                MockMvcRequestBuilders.get("/posts/" + POST_ID + "/comments")
                         .accept(MediaType.APPLICATION_JSON)
         );
     }
