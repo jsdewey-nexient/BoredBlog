@@ -1,4 +1,4 @@
-package com.boredblog.controller;
+package com.boredblog.controller.author;
 
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;

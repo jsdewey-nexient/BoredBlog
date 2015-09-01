@@ -1,5 +1,6 @@
-package com.boredblog.controller;
+package com.boredblog.controller.author;
 
+import com.boredblog.controller.AuthorController;
 import com.boredblog.entity.Author;
 import com.boredblog.manager.AuthorManager;
 import org.junit.Before;

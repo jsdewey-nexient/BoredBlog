@@ -1,5 +1,6 @@
-package com.boredblog.controller;
+package com.boredblog.controller.author;
 
+import com.boredblog.controller.AuthorController;
 import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
