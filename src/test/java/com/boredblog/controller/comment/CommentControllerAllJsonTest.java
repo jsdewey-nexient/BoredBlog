@@ -72,6 +72,11 @@ public class CommentControllerAllJsonTest {
         this.response.andExpect(jsonPath("$.*", hasSize(1)));
     }
 
+    @Test
+    public void testId() throws Exception {
+        this.response.andExpect(jsonPath("$.[0].id", is(COMMENT_ID)));
+    }
+
     private void sendRequestToRetrieveAll() throws Exception {
         this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/" + POST_ID + "/comments")
