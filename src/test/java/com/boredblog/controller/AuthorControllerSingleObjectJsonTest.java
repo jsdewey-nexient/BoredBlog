@@ -1,5 +1,6 @@
 package com.boredblog.controller;
 
+import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
 import org.junit.Before;
@@ -24,7 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @ContextConfiguration(classes = {
         WebConfig.class,
-        RootConfig.class
+        RootConfig.class,
+        JpaConfig.class
 })
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
