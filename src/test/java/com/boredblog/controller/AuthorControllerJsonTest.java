@@ -65,7 +65,6 @@ public class AuthorControllerJsonTest {
 
     @Before
     public void setup() throws Exception {
-        this.authorManager = Mockito.mock(AuthorManager.class);
         instantiateDependentObjects();
         buildMockMvc();
         addPostsToList();
@@ -124,6 +123,7 @@ public class AuthorControllerJsonTest {
     }
 
     private void instantiateDependentObjects() {
+        this.authorManager = Mockito.mock(AuthorManager.class);
         this.firstAuthor = new Author();
         this.secondAuthor = new Author();
         this.comments = new ArrayList<Comment>();
