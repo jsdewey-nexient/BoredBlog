@@ -8,6 +8,7 @@ import com.boredblog.controller.CommentController;
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.lang.reflect.Array;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Collection;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -63,6 +65,11 @@ public class CommentControllerAllJsonTest {
         mockCommentManager();
         buildMockMvc();
         sendRequestToRetrieveAll();
+    }
+
+    @Test
+    public void testIsArrayOfSizeOne() throws Exception {
+        this.response.andExpect(jsonPath("$.*", hasSize(1)));
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
