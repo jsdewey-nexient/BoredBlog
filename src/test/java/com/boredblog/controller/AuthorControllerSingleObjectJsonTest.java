@@ -29,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
     public final int SIZE_OF_RESPONSE = 6;
+    public final int SIZE_OF_COMMENTS = 5;
+    public final int SIZE_OF_POSTS = 5;
 
     @Before
     public void setup() throws Exception {
@@ -69,6 +71,30 @@ public class AuthorControllerSingleObjectJsonTest
         this.response.andExpect(jsonPath(
                 "$.first_name",
                 is(FIRST_AUTHOR_FIRST_NAME)
+        ));
+    }
+
+    @Test
+    public void testLastName() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.last_name",
+                is(FIRST_AUTHOR_LAST_NAME)
+        ));
+    }
+
+    @Test
+    public void testCommentLength() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.comments.*",
+                hasSize(SIZE_OF_COMMENTS)
+        ));
+    }
+
+    @Test
+    public void testPostLength() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.posts.*",
+                hasSize(SIZE_OF_POSTS)
         ));
     }
 
