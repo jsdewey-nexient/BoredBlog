@@ -70,27 +70,40 @@ public class CommentControllerAllJsonTest {
 
     @Test
     public void testIsArrayOfSizeOne() throws Exception {
+        System.out.println(this.response.andReturn().getResponse().getContentAsString());
         this.response.andExpect(jsonPath("$.*", hasSize(1)));
     }
 
     @Test
     public void testId() throws Exception {
-        this.response.andExpect(jsonPath("$.[0].id", is(COMMENT_ID)));
+        this.response.andExpect(jsonPath(
+                "$.[0].id",
+                is(COMMENT_ID)
+        ));
     }
 
     @Test
     public void testScreenName() throws Exception {
-        this.response.andExpect(jsonPath("$.[0].screen_name", is(COMMENT_SCREEN_NAME)));
+        this.response.andExpect(jsonPath(
+                "$.[0].screen_name",
+                is(COMMENT_SCREEN_NAME)
+        ));
     }
 
     @Test
     public void testContent() throws Exception {
-        this.response.andExpect(jsonPath("$.[0].content", is(COMMENT_CONTENT)));
+        this.response.andExpect(jsonPath(
+                "$.[0].content",
+                is(COMMENT_CONTENT)
+        ));
     }
 
     @Test
     public void testCreatedAt() throws Exception {
-        this.response.andExpect(jsonPath("$.[0].created_at", is(COMMENT_CREATED_AT)));
+        this.response.andExpect(jsonPath(
+                "$.[0].created_at",
+                is(COMMENT_CREATED_AT)
+        ));
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
