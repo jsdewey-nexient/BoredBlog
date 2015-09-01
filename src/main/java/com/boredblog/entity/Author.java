@@ -1,6 +1,9 @@
 package com.boredblog.entity;
 
+import com.boredblog.jsonview.AuthorJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -25,6 +28,11 @@ public class Author extends User {
     @OneToMany
     @OrderBy("created_at DESC")
     private List<Post> posts;
+
+    @JsonView(AuthorJsonView.LimitedAuthor.class)
+    public Integer getId() {
+        return super.getId();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -58,6 +66,7 @@ public class Author extends User {
         this.posts = posts;
     }
 
+    @JsonView(AuthorJsonView.LimitedAuthor.class)
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
     }
