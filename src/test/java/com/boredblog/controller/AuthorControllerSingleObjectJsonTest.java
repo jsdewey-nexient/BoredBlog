@@ -1,5 +1,6 @@
 package com.boredblog.controller;
 
+import org.junit.Before;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -13,6 +14,17 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
     private ResultActions responseSingle;
+
+    @Before
+    public void setup() throws Exception {
+        instantiateDependentObjects();
+        buildMockMvc();
+        addPostsToList();
+        addCommentsToList();
+        setFirstAuthorProperties();
+        mockAuthorManager();
+        sendRequestToRetrieveSingleAuthor();
+    }
 
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
         this.responseSingle = this.mockMvc.perform(
