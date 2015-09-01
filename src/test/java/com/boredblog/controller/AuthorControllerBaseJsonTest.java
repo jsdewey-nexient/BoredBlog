@@ -37,6 +37,7 @@ public class AuthorControllerBaseJsonTest {
     @Autowired
     private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
     protected MockMvc mockMvc;
+    protected ResultActions response;
 
     protected void instantiateDependentObjects() {
         this.authorManager = Mockito.mock(AuthorManager.class);

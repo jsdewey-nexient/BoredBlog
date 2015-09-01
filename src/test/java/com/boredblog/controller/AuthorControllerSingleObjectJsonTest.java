@@ -26,7 +26,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 })
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
-    private ResultActions responseSingle;
 
     @Before
     public void setup() throws Exception {
@@ -41,11 +40,11 @@ public class AuthorControllerSingleObjectJsonTest
 
     @Test
     public void testSuccessfulRequest() throws Exception {
-        super.testSuccessfulRequest(this.responseSingle);
+        super.testSuccessfulRequest(this.response);
     }
 
     private void sendRequestToRetrieveSingleAuthor() throws Exception {
-        this.responseSingle = this.mockMvc.perform(
+        this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/authors/1")
                         .accept(MediaType.APPLICATION_JSON)
         );

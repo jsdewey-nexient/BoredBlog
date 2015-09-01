@@ -41,7 +41,6 @@ public class AuthorControllerAllEndpointJsonTest
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;
-    private ResultActions responseAll;
 
     @Before
     public void setup() throws Exception {
@@ -57,47 +56,47 @@ public class AuthorControllerAllEndpointJsonTest
 
     @Test
     public void testSuccessfulRequest() throws Exception{
-        super.testSuccessfulRequest(this.responseAll);
+        super.testSuccessfulRequest(this.response);
     }
 
     @Test
     public void testCorrectLength() throws Exception {
-        this.responseAll
+        this.response
                 .andExpect(jsonPath("$.*", hasSize(SIZE_OF_RESPONSEALL_ARRAY)));
     }
 
     @Test
     public void testIds() throws Exception {
-        this.responseAll
+        this.response
                 .andExpect(jsonPath("$.[0].id", is(1)))
                 .andExpect(jsonPath("$.[1].id", is(2)));
     }
 
     @Test
     public void testScreenNames() throws Exception {
-        this.responseAll
+        this.response
                 .andExpect(jsonPath("$.[0].screen_name", is("jnexient")))
                 .andExpect(jsonPath("$.[1].screen_name", is("Codehaus")));
     }
 
     @Test
     public void testFirstNames() throws Exception {
-        this.responseAll
+        this.response
                 .andExpect(jsonPath("$.[0].first_name", is("Johnny")))
                 .andExpect(jsonPath("$.[1].first_name", is("Jackson")));
     }
 
     @Test
     public void testLastNames() throws Exception {
-        this.responseAll
+        this.response
                 .andExpect(jsonPath("$.[0].last_name", is("Nexient")))
                 .andExpect(jsonPath("$.[1].last_name", is("FasterXML")));
     }
 
     @Test
     public void testObjectLength() throws Exception {
-        this.responseAll.andExpect(jsonPath("$.[0].*", hasSize(SIZE_OF_JSON_OBJECT)));
-        this.responseAll.andExpect(jsonPath("$.[1].*", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.response.andExpect(jsonPath("$.[0].*", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.response.andExpect(jsonPath("$.[1].*", hasSize(SIZE_OF_JSON_OBJECT)));
     }
 
     public void instantiateDependentObjects() {
@@ -119,7 +118,7 @@ public class AuthorControllerAllEndpointJsonTest
     }
 
     private void sendRequestToRetrieveAll() throws Exception {
-        this.responseAll = this.mockMvc.perform(
+        this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/authors")
                         .accept(MediaType.APPLICATION_JSON)
         );
