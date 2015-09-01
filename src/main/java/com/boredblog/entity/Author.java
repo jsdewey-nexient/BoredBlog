@@ -12,7 +12,6 @@ import java.util.List;
  * Describes a user of the blog. He/she may add posts and edit new ones.
  */
 @Entity
-@Table(name = "authors")
 @DiscriminatorValue("Author")
 public class Author extends User {
     @Column(name = "first_name", nullable = false)

@@ -13,7 +13,6 @@ import java.util.List;
  * An entity describing a Guest, who may only post comments.
  */
 @Entity
-@Table(name = "users")
 @DiscriminatorValue("Guest")
 public class Guest extends User {
 }
