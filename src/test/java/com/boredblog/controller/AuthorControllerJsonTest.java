@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
@@ -27,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * @author Joel Dewey
@@ -73,10 +73,8 @@ public class AuthorControllerJsonTest {
     @Test
     public void testSuccessfulResponseAll() throws Exception{
         final MvcResult result = this.responseAll
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers
-                        .content()
-                        .contentType("application/json;charset=UTF-8"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andReturn();
         System.out.println(
                 "JSON String: "
@@ -87,40 +85,35 @@ public class AuthorControllerJsonTest {
     @Test
     public void testResponseAllCorrectLength() throws Exception {
         this.responseAll
-                .andExpect(
-                        MockMvcResultMatchers.jsonPath(
-                                "$.*",
-                                hasSize(SIZE_OF_RESPONSEALL_ARRAY)
-                        )
-                );
+                .andExpect(jsonPath("$.*", hasSize(SIZE_OF_RESPONSEALL_ARRAY)));
     }
 
     @Test
     public void testResponseAllIds() throws Exception {
         this.responseAll
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].id", is(2)));
+                .andExpect(jsonPath("$.[0].id", is(1)))
+                .andExpect(jsonPath("$.[1].id", is(2)));
     }
 
     @Test
     public void testResponseAllScreenNames() throws Exception {
         this.responseAll
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].screen_name", is("jnexient")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].screen_name", is("Codehaus")));
+                .andExpect(jsonPath("$.[0].screen_name", is("jnexient")))
+                .andExpect(jsonPath("$.[1].screen_name", is("Codehaus")));
     }
 
     @Test
     public void testResponseAllFirstNames() throws Exception {
         this.responseAll
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].first_name", is("Johnny")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].first_name", is("Jackson")));
+                .andExpect(jsonPath("$.[0].first_name", is("Johnny")))
+                .andExpect(jsonPath("$.[1].first_name", is("Jackson")));
     }
 
     @Test
     public void testResponseAllLastNames() throws Exception {
         this.responseAll
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].last_name", is("Nexient")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[1].last_name", is("FasterXML")));
+                .andExpect(jsonPath("$.[0].last_name", is("Nexient")))
+                .andExpect(jsonPath("$.[1].last_name", is("FasterXML")));
     }
 
     private void instantiateDependentObjects() {
