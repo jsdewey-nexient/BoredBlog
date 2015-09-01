@@ -65,21 +65,21 @@ public class AuthorControllerBaseJsonTest {
 
     protected void addPostsToList() {
         Post post = new Post();
+        post.setId(1);
+        post.setCreatedAt(new Timestamp(130000000));
         post.setContent("When a single Author is requested, only the " +
                 "title of his or her last five posts may be shown.");
-        for(int i = 0; i < 5; i++) {
-            post.setTitle("Single Author Only: " + i);
-            this.posts.add(post);
-        }
+        post.setTitle("Single Author Only");
+        this.posts.add(post);
     }
 
     protected void addCommentsToList() {
         Comment comment = new Comment();
         comment.setContent("I should only be seen when a single Author " +
                 "is requested.");
-        for(int i = 0; i < 5; i++) {
-            this.comments.add(comment);
-        }
+        comment.setId(1);
+        comment.setCreatedAt(new Timestamp(123456789));
+        this.comments.add(comment);
     }
 
     protected void addAuthorToList(Author author) {
