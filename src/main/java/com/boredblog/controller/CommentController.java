@@ -1,7 +1,9 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Comment;
+import com.boredblog.jsonview.CommentJsonView;
 import com.boredblog.manager.CommentManager;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,7 @@ public class CommentController {
         this.commentManager = commentManager;
     }
 
+    @JsonView(CommentJsonView.FullComment.class)
     @RequestMapping(value = "posts/{postId}/comments", method = RequestMethod.POST)
     public Comment createComment(
             @PathVariable Integer postId,
