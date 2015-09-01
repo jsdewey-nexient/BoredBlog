@@ -1,5 +1,8 @@
 package com.boredblog.controller;
 
+import com.boredblog.config.JpaConfig;
+import com.boredblog.config.RootConfig;
+import com.boredblog.config.WebAppInitializer;
 import com.boredblog.config.WebConfig;
 import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
@@ -36,13 +39,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = { WebConfig.class })
+/**
+ * @todo Figure out why MockMvc has to hit the DB for the test to run correctly.
+ */
+@ContextConfiguration(classes = {
+        WebConfig.class,
+        RootConfig.class,
+        JpaConfig.class
+})
 public class AuthorControllerJsonTest {
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
-    @Mock
     private AuthorManager authorManager;
-    @InjectMocks
-    private AuthorController authorController;
     // Anything being serialized should not be mocked.
     private Author firstAuthor;
     private Author secondAuthor;
@@ -58,7 +65,7 @@ public class AuthorControllerJsonTest {
 
     @Before
     public void setup() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        this.authorManager = Mockito.mock(AuthorManager.class);
         instantiateDependentObjects();
         buildMockMvc();
         addPostsToList();
@@ -125,7 +132,7 @@ public class AuthorControllerJsonTest {
     }
 
     private void buildMockMvc() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.authorController)
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new AuthorController(this.authorManager))
                 .setMessageConverters(this.jackson2HttpMessageConverter)
                 .build();
     }
