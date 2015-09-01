@@ -47,16 +47,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         RootConfig.class,
         JpaConfig.class
 })
-public class AuthorControllerAllEndpointJsonTest {
+public class AuthorControllerAllEndpointJsonTest
+        extends AuthorControllerBaseJsonTest {
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
-    public static final int SIZE_OF_JSON_OBJECT = 4;
-    private AuthorManager authorManager;
     // Anything being serialized should not be mocked.
-    private Author firstAuthor;
     private Author secondAuthor;
-    private List<Comment> comments;
-    private List<Post> posts;
-    private List<Author> authors;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
@@ -129,14 +124,11 @@ public class AuthorControllerAllEndpointJsonTest {
         this.responseAll.andExpect(jsonPath("$.[1]", hasSize(SIZE_OF_JSON_OBJECT)));
     }
 
-    private void instantiateDependentObjects() {
-        this.authorManager = Mockito.mock(AuthorManager.class);
-        this.firstAuthor = new Author();
+    public void instantiateDependentObjects() {
+        super.instantiateDependentObjects();
         this.secondAuthor = new Author();
-        this.comments = new ArrayList<Comment>();
-        this.posts = new ArrayList<Post>();
-        this.authors = new ArrayList<Author>();
     }
+
 
     private void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new AuthorController(this.authorManager))
