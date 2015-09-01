@@ -120,15 +120,14 @@ public class AuthorControllerAllEndpointJsonTest
 
     @Test
     public void testResponseAllObjectLength() throws Exception {
-        this.responseAll.andExpect(jsonPath("$.[0]", hasSize(SIZE_OF_JSON_OBJECT)));
-        this.responseAll.andExpect(jsonPath("$.[1]", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.responseAll.andExpect(jsonPath("$.[0].*", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.responseAll.andExpect(jsonPath("$.[1].*", hasSize(SIZE_OF_JSON_OBJECT)));
     }
 
     public void instantiateDependentObjects() {
         super.instantiateDependentObjects();
         this.secondAuthor = new Author();
     }
-
 
     private void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new AuthorController(this.authorManager))
