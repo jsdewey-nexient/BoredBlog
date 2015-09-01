@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Joel Dewey
  * @date 8/27/2015
  * Group: Joel
- * Validates that the JSON responses are valid.
+ * Validates that the JSON response for /authors is correct.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
