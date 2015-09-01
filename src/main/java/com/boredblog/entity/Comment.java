@@ -3,6 +3,7 @@ package com.boredblog.entity;
 import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.jsonview.CommentJsonView;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Comment extends BaseEntity {
     }
 
     @JsonView(CommentJsonView.FullComment.class)
+    @JsonUnwrapped
     public Author getAuthor() {
         return author;
     }
