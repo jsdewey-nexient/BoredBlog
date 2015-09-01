@@ -1,5 +1,6 @@
-package com.boredblog.controller;
+package com.boredblog.controller.comment;
 
+import com.boredblog.controller.CommentController;
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
 import org.junit.Before;
