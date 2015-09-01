@@ -31,8 +31,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthorControllerSingleObjectJsonTest
         extends AuthorControllerBaseJsonTest {
     public final int SIZE_OF_RESPONSE = 5;
-    public final int SIZE_OF_COMMENTS = 1;
-    public final int SIZE_OF_POSTS = 1;
+    public final int SIZE_OF_COMMENT_LIST = 1;
+    public final int SIZE_OF_POST_LIST = 1;
+    public final int SIZE_OF_COMMENT = 3;
+    public final int SIZE_OF_POST = 4;
 
     @Before
     public void setup() throws Exception {
@@ -77,18 +79,34 @@ public class AuthorControllerSingleObjectJsonTest
     }
 
     @Test
-    public void testCommentLength() throws Exception {
+    public void testCommentListLength() throws Exception {
         this.response.andExpect(jsonPath(
                 "$.comments.*",
-                hasSize(SIZE_OF_COMMENTS)
+                hasSize(SIZE_OF_COMMENT_LIST)
         ));
     }
 
     @Test
-    public void testPostLength() throws Exception {
+    public void testPostListLength() throws Exception {
         this.response.andExpect(jsonPath(
                 "$.posts.*",
-                hasSize(SIZE_OF_POSTS)
+                hasSize(SIZE_OF_POST_LIST)
+        ));
+    }
+
+    @Test
+    public void testPostObjectLength() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.posts[0].*",
+                hasSize(SIZE_OF_POST)
+        ));
+    }
+
+    @Test
+    public void testCommentObjectLength() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.comments[0].*",
+                hasSize(SIZE_OF_COMMENT)
         ));
     }
 
