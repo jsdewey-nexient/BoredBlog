@@ -36,6 +36,7 @@ public class AuthorController {
         return this.authorManager.create(author);
     }
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Author getAuthor(@PathVariable Integer id) {
         return this.authorManager.retrieve(id);
