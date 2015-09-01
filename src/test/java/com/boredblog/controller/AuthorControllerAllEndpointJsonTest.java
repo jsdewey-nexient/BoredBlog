@@ -49,6 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class AuthorControllerAllEndpointJsonTest
         extends AuthorControllerBaseJsonTest {
+    public static final int SIZE_OF_JSON_OBJECT = 4;
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;

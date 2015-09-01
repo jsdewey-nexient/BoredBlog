@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * A base class for the Author JSON tests to extend and share code.
  */
 public class AuthorControllerBaseJsonTest {
-    public static final int SIZE_OF_JSON_OBJECT = 4;
     protected AuthorManager authorManager;
     // Anything being serialized should not be mocked.
     protected Author firstAuthor;
