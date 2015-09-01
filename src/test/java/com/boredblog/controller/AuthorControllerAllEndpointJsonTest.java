@@ -60,6 +60,7 @@ public class AuthorControllerAllEndpointJsonTest
 
     @Test
     public void testSuccessfulRequest() throws Exception{
+        printJsonString(this.response, "/authors");
         super.testSuccessfulRequest(this.response);
     }
 

@@ -101,12 +101,16 @@ public class AuthorControllerBaseJsonTest {
 
     protected void testSuccessfulRequest(ResultActions response)
             throws Exception {
-        final MvcResult result = response
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andReturn();
+        response.andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
+
+    protected void printJsonString(ResultActions response, String endpoint)
+            throws Exception{
+        final MvcResult result = response.andReturn();
         System.out.println(
-                "JSON String: "
+                endpoint
+                        + " JSON String: "
                         + result.getResponse().getContentAsString()
         );
     }

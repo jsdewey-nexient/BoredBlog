@@ -49,6 +49,7 @@ public class AuthorControllerSingleObjectJsonTest
 
     @Test
     public void testSuccessfulRequest() throws Exception {
+        printJsonString(this.response, "/authors/{id}");
         super.testSuccessfulRequest(this.response);
     }
 
