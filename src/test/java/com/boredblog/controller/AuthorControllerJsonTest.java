@@ -49,6 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class AuthorControllerJsonTest {
     public static final int SIZE_OF_RESPONSEALL_ARRAY = 2;
+    public static final int SIZE_OF_JSON_OBJECT = 4;
     private AuthorManager authorManager;
     // Anything being serialized should not be mocked.
     private Author firstAuthor;
@@ -120,6 +121,12 @@ public class AuthorControllerJsonTest {
         this.responseAll
                 .andExpect(jsonPath("$.[0].last_name", is("Nexient")))
                 .andExpect(jsonPath("$.[1].last_name", is("FasterXML")));
+    }
+
+    @Test
+    public void testResponseAllObjectLength() throws Exception {
+        this.responseAll.andExpect(jsonPath("$.[0]", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.responseAll.andExpect(jsonPath("$.[1]", hasSize(SIZE_OF_JSON_OBJECT)));
     }
 
     private void instantiateDependentObjects() {
