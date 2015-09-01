@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class AuthorControllerAllEndpointJsonTest
         extends AuthorControllerBaseJsonTest {
-    public static final int SIZE_OF_JSON_OBJECT = 4;
+    public static final int SIZE_OF_JSON_OBJECT = 3;
     public static final int SIZE_OF_RESPONSE = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;
@@ -90,28 +90,23 @@ public class AuthorControllerAllEndpointJsonTest
     }
 
     @Test
-    public void testFirstNames() throws Exception {
+    public void testNames() throws Exception {
         this.response
                 .andExpect(jsonPath(
-                        "$.[0].first_name",
-                        is(FIRST_AUTHOR_FIRST_NAME)
+                        "$.[0].user",
+                        is(
+                                FIRST_AUTHOR_FIRST_NAME
+                                        + " "
+                                        + FIRST_AUTHOR_LAST_NAME
+                        )
                 ))
                 .andExpect(jsonPath(
-                        "$.[1].first_name",
-                        is(SECOND_AUTHOR_FIRST_NAME)
-                ));
-    }
-
-    @Test
-    public void testLastNames() throws Exception {
-        this.response
-                .andExpect(jsonPath(
-                        "$.[0].last_name",
-                        is(FIRST_AUTHOR_LAST_NAME)
-                ))
-                .andExpect(jsonPath(
-                        "$.[1].last_name",
-                        is(SECOND_AUTHOR_LAST_NAME)
+                        "$.[1].user",
+                        is(
+                                SECOND_AUTHOR_FIRST_NAME
+                                        + " "
+                                        + SECOND_AUTHOR_LAST_NAME
+                        )
                 ));
     }
 

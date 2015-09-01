@@ -69,18 +69,10 @@ public class AuthorControllerSingleObjectJsonTest
     }
 
     @Test
-    public void testFirstName() throws Exception {
+    public void testUser() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.first_name",
-                is(FIRST_AUTHOR_FIRST_NAME)
-        ));
-    }
-
-    @Test
-    public void testLastName() throws Exception {
-        this.response.andExpect(jsonPath(
-                "$.last_name",
-                is(FIRST_AUTHOR_LAST_NAME)
+                "$.user",
+                is(FIRST_AUTHOR_FIRST_NAME + " " + FIRST_AUTHOR_LAST_NAME)
         ));
     }
 
