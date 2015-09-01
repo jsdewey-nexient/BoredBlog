@@ -29,11 +29,6 @@ public class Author extends User {
     @OrderBy("created_at DESC")
     private List<Post> posts;
 
-    @JsonView(AuthorJsonView.LimitedAuthor.class)
-    public Integer getId() {
-        return super.getId();
-    }
-
     public String getFirstName() {
         return firstName;
     }

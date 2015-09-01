@@ -1,6 +1,7 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
+import com.boredblog.jsonview.BaseJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -27,7 +28,7 @@ public class BaseEntity {
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
 
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(BaseJsonView.class)
     public Integer getId() {
         return id;
     }
