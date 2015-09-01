@@ -88,6 +88,11 @@ public class CommentControllerAllJsonTest {
         this.response.andExpect(jsonPath("$.[0].content", is(COMMENT_CONTENT)));
     }
 
+    @Test
+    public void testCreatedAt() throws Exception {
+        this.response.andExpect(jsonPath("$.[0].created_at", is(COMMENT_CREATED_AT)));
+    }
+
     private void sendRequestToRetrieveAll() throws Exception {
         this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/" + POST_ID + "/comments")
