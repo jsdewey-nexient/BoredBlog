@@ -1,7 +1,9 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Author;
+import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.manager.AuthorManager;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,7 @@ public class AuthorController {
         this.authorManager = authorManager;
     }
 
+    @JsonView(AuthorJsonView.LimitedAuthor.class)
     @RequestMapping(method = RequestMethod.GET)
     public List<Author> getAuthors() {
         return this.authorManager.retrieveAll();
