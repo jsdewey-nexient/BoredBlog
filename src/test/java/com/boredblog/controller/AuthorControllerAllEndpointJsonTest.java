@@ -40,6 +40,11 @@ public class AuthorControllerAllEndpointJsonTest
     public static final int SIZE_OF_RESPONSE = 2;
     // Anything being serialized should not be mocked.
     private Author secondAuthor;
+    private final int SECOND_AUTHOR_ID = 2;
+    private final String SECOND_AUTHOR_FIRST_NAME = "Jackson";
+    private final String SECOND_AUTHOR_LAST_NAME = "FasterXML";
+    private final String SECOND_AUTHOR_SCREEN_NAME = "Codehaus";
+    private final String SECOND_AUTHOR_PASSWORD = "Shouldn't see this!";
 
     @Before
     public void setup() throws Exception {
@@ -67,35 +72,59 @@ public class AuthorControllerAllEndpointJsonTest
     @Test
     public void testIds() throws Exception {
         this.response
-                .andExpect(jsonPath("$.[0].id", is(1)))
-                .andExpect(jsonPath("$.[1].id", is(2)));
+                .andExpect(jsonPath("$.[0].id", is(FIRST_AUTHOR_ID)))
+                .andExpect(jsonPath("$.[1].id", is(SECOND_AUTHOR_ID)));
     }
 
     @Test
     public void testScreenNames() throws Exception {
         this.response
-                .andExpect(jsonPath("$.[0].screen_name", is("jnexient")))
-                .andExpect(jsonPath("$.[1].screen_name", is("Codehaus")));
+                .andExpect(jsonPath(
+                        "$.[0].screen_name",
+                        is(FIRST_AUTHOR_SCREEN_NAME)
+                ))
+                .andExpect(jsonPath(
+                        "$.[1].screen_name",
+                        is(SECOND_AUTHOR_SCREEN_NAME)
+                ));
     }
 
     @Test
     public void testFirstNames() throws Exception {
         this.response
-                .andExpect(jsonPath("$.[0].first_name", is("Johnny")))
-                .andExpect(jsonPath("$.[1].first_name", is("Jackson")));
+                .andExpect(jsonPath(
+                        "$.[0].first_name",
+                        is(FIRST_AUTHOR_FIRST_NAME)
+                ))
+                .andExpect(jsonPath(
+                        "$.[1].first_name",
+                        is(SECOND_AUTHOR_FIRST_NAME)
+                ));
     }
 
     @Test
     public void testLastNames() throws Exception {
         this.response
-                .andExpect(jsonPath("$.[0].last_name", is("Nexient")))
-                .andExpect(jsonPath("$.[1].last_name", is("FasterXML")));
+                .andExpect(jsonPath(
+                        "$.[0].last_name",
+                        is(FIRST_AUTHOR_LAST_NAME)
+                ))
+                .andExpect(jsonPath(
+                        "$.[1].last_name",
+                        is(SECOND_AUTHOR_LAST_NAME)
+                ));
     }
 
     @Test
     public void testObjectLength() throws Exception {
-        this.response.andExpect(jsonPath("$.[0].*", hasSize(SIZE_OF_JSON_OBJECT)));
-        this.response.andExpect(jsonPath("$.[1].*", hasSize(SIZE_OF_JSON_OBJECT)));
+        this.response.andExpect(jsonPath(
+                "$.[0].*",
+                hasSize(SIZE_OF_JSON_OBJECT)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.[1].*",
+                hasSize(SIZE_OF_JSON_OBJECT)
+        ));
     }
 
     public void instantiateDependentObjects() {
@@ -104,11 +133,11 @@ public class AuthorControllerAllEndpointJsonTest
     }
 
     private void setSecondAuthorProperties() {
-        this.secondAuthor.setId(2);
-        this.secondAuthor.setFirstName("Jackson");
-        this.secondAuthor.setLastName("FasterXML");
-        this.secondAuthor.setScreenName("Codehaus");
-        this.secondAuthor.setPassword("Shouldn't see this!");
+        this.secondAuthor.setId(SECOND_AUTHOR_ID);
+        this.secondAuthor.setFirstName(SECOND_AUTHOR_FIRST_NAME);
+        this.secondAuthor.setLastName(SECOND_AUTHOR_LAST_NAME);
+        this.secondAuthor.setScreenName(SECOND_AUTHOR_SCREEN_NAME);
+        this.secondAuthor.setPassword(SECOND_AUTHOR_PASSWORD);
         this.secondAuthor.setCreatedAt(new Timestamp(3));
         this.secondAuthor.setUpdatedAt(new Timestamp(4));
         this.secondAuthor.setComments(this.comments);
