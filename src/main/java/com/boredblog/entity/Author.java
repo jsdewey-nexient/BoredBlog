@@ -25,7 +25,6 @@ public class Author extends User {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
-    @JsonIgnore
     @OneToMany
     @OrderBy("created_at DESC")
     private List<Post> posts;

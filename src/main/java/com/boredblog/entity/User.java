@@ -23,7 +23,6 @@ import java.util.List;
 public abstract class User extends BaseEntity {
     @Column(name = "screen_name", nullable = false)
     private String screenName;
-    @JsonIgnore
     @OneToMany
     @OrderBy("created_at ASC")
     private List<Comment> comments;
