@@ -1,7 +1,9 @@
 package com.boredblog.entity;
 
+import com.boredblog.jsonview.AuthorJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,10 +22,10 @@ public class Post extends BaseEntity {
     private String title;
     @Column(name = "content", nullable = false)
     private String content;
-    @JsonIgnore
     @OneToMany
     private List<Comment> comments;
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public String getTitle() {
         return title;
     }
@@ -32,6 +34,7 @@ public class Post extends BaseEntity {
         this.title = title;
     }
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public String getContent() {
         return content;
     }
@@ -50,12 +53,14 @@ public class Post extends BaseEntity {
 
     @Override
     @JsonProperty("created_at")
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public Timestamp getCreatedAt() {
         return super.getCreatedAt();
     }
 
     @Override
     @JsonProperty("updated_at")
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public Timestamp getUpdatedAt() {
         return super.getUpdatedAt();
     }

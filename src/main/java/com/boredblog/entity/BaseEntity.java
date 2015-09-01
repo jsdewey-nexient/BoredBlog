@@ -1,6 +1,8 @@
 package com.boredblog.entity;
 
+import com.boredblog.jsonview.AuthorJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -25,6 +27,7 @@ public class BaseEntity {
     @Column(name = "updated_at", nullable = true)
     private Timestamp updatedAt;
 
+    @JsonView(AuthorJsonView.FullAuthor.class)
     public Integer getId() {
         return id;
     }
