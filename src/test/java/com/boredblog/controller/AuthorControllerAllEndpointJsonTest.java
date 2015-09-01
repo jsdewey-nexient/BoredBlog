@@ -2,31 +2,19 @@ package com.boredblog.controller;
 
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
-import com.boredblog.config.WebAppInitializer;
 import com.boredblog.config.WebConfig;
 import com.boredblog.entity.Author;
-import com.boredblog.entity.Comment;
-import com.boredblog.entity.Post;
-import com.boredblog.manager.AuthorManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -68,46 +56,46 @@ public class AuthorControllerAllEndpointJsonTest
     }
 
     @Test
-    public void testSuccessfulResponseAll() throws Exception{
-        this.testSuccessfulResponse(this.responseAll);
+    public void testSuccessful() throws Exception{
+        super.testResponseSuccessful(this.responseAll);
     }
 
     @Test
-    public void testResponseAllCorrectLength() throws Exception {
+    public void testCorrectLength() throws Exception {
         this.responseAll
                 .andExpect(jsonPath("$.*", hasSize(SIZE_OF_RESPONSEALL_ARRAY)));
     }
 
     @Test
-    public void testResponseAllIds() throws Exception {
+    public void testIds() throws Exception {
         this.responseAll
                 .andExpect(jsonPath("$.[0].id", is(1)))
                 .andExpect(jsonPath("$.[1].id", is(2)));
     }
 
     @Test
-    public void testResponseAllScreenNames() throws Exception {
+    public void testScreenNames() throws Exception {
         this.responseAll
                 .andExpect(jsonPath("$.[0].screen_name", is("jnexient")))
                 .andExpect(jsonPath("$.[1].screen_name", is("Codehaus")));
     }
 
     @Test
-    public void testResponseAllFirstNames() throws Exception {
+    public void testFirstNames() throws Exception {
         this.responseAll
                 .andExpect(jsonPath("$.[0].first_name", is("Johnny")))
                 .andExpect(jsonPath("$.[1].first_name", is("Jackson")));
     }
 
     @Test
-    public void testResponseAllLastNames() throws Exception {
+    public void testLastNames() throws Exception {
         this.responseAll
                 .andExpect(jsonPath("$.[0].last_name", is("Nexient")))
                 .andExpect(jsonPath("$.[1].last_name", is("FasterXML")));
     }
 
     @Test
-    public void testResponseAllObjectLength() throws Exception {
+    public void testObjectLength() throws Exception {
         this.responseAll.andExpect(jsonPath("$.[0].*", hasSize(SIZE_OF_JSON_OBJECT)));
         this.responseAll.andExpect(jsonPath("$.[1].*", hasSize(SIZE_OF_JSON_OBJECT)));
     }

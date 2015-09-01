@@ -93,7 +93,7 @@ public class AuthorControllerBaseJsonTest {
         addAuthorToList(this.firstAuthor);
     }
 
-    protected void testSuccessfulResponse(ResultActions response)
+    protected void testResponseSuccessful(ResultActions response)
             throws Exception {
         final MvcResult result = response
                 .andExpect(status().isOk())
