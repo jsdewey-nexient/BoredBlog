@@ -28,7 +28,6 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
     public static final String COMMENT_CONTENT = "Do you see me?";
     public static final int COMMENT_CREATED_AT = 123456789;
     public static final String COMMENT_SCREEN_NAME = "jnexient";
-    protected CommentController commentController;
     protected CommentManager commentManager;
     protected Comment comment;
     protected Author author;
@@ -43,7 +42,6 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
     protected void instantiateDependentObjects() {
         this.commentManager = Mockito.mock(CommentManager.class);
         this.comment = new Comment();
-        this.commentController = new CommentController(this.commentManager);
         this.author = new Author();
         this.author.setScreenName(COMMENT_SCREEN_NAME);
     }
