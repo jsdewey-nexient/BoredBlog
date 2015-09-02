@@ -44,6 +44,8 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
         this.comment = new Comment();
         this.author = new Author();
         this.author.setScreenName(COMMENT_SCREEN_NAME);
+        this.author.setFirstName("Johnny");
+        this.author.setLastName("Nexient");
     }
 
     protected void buildMockMvc() {

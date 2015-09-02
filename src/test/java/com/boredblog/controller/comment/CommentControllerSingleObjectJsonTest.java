@@ -1,10 +1,17 @@
 package com.boredblog.controller.comment;
 
+import com.boredblog.config.JpaConfig;
+import com.boredblog.config.RootConfig;
+import com.boredblog.config.WebConfig;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.hamcrest.Matchers.*;
@@ -16,9 +23,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Group: Joel
  * Test the JSON response for a single Comment (/posts/{postId}/comments/{commentId})
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(classes = {
+        WebConfig.class,
+        RootConfig.class,
+        JpaConfig.class
+})
 public class CommentControllerSingleObjectJsonTest
     extends CommentControllerBaseJsonTest {
-    public static final int COMMENT_LENGTH = 4;
+    public static final int COMMENT_LENGTH = 5;
 
     @Before
     public void setup() throws Exception {
