@@ -33,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         JpaConfig.class
 })
 public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTest {
+    public static final int LENGTH_OF_OBJECT_WITH_CONTENT = 6;
 
     @Before
     public void setup() throws Exception {
@@ -46,9 +47,9 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
     @Test
     public void testLengthOfArray() throws Exception {
         printJsonString(this.response, "/posts");
-        this.response.andExpect(jsonPath(
+        this.response.andExpect(MockMvcResultMatchers.jsonPath(
                 "$.*",
-                hasSize(LENGTH_OF_OBJECT)
+                Matchers.hasSize(LENGTH_OF_OBJECT_WITH_CONTENT)
         ));
     }
 
