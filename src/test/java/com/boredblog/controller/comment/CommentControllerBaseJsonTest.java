@@ -12,6 +12,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
 
@@ -57,5 +58,11 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
                 MockMvcRequestBuilders.get("/posts/" + POST_ID + "/comments")
                         .accept(MediaType.APPLICATION_JSON)
         );
+    }
+
+    protected void buildMockMvc() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new CommentController(this.commentManager))
+                .setMessageConverters(this.jackson2HttpMessageConverter)
+                .build();
     }
 }

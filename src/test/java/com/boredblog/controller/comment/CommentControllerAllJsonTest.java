@@ -94,12 +94,6 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
         ));
     }
 
-    private void buildMockMvc() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new CommentController(this.commentManager))
-                .setMessageConverters(this.jackson2HttpMessageConverter)
-                .build();
-    }
-
     private void mockCommentManager() {
         Mockito.when(this.commentManager.retrieveAll(Mockito.anyInt()))
                 .thenReturn(Arrays.asList(this.comment));
