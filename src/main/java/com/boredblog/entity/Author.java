@@ -53,7 +53,7 @@ public class Author extends User {
         this.password = password;
     }
 
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(AuthorJsonView.ShowAuthorDetail.class)
     public List<Post> getPosts() {
         return posts;
     }
@@ -62,7 +62,7 @@ public class Author extends User {
         this.posts = posts;
     }
 
-    @JsonView(AuthorJsonView.LimitedAuthor.class)
+    @JsonView(AuthorJsonView.AuthorScreenName.class)
     @JsonProperty("user")
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
