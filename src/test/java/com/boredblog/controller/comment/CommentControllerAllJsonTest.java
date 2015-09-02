@@ -46,22 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         RootConfig.class,
         JpaConfig.class
 })
-public class CommentControllerAllJsonTest extends BaseJsonTest {
-    public static final int POST_ID = 1;
-    public static final int COMMENT_ID = 1;
-    public static final String COMMENT_CONTENT = "Do you see me?";
-    public static final int COMMENT_CREATED_AT = 123456789;
-    public static final String COMMENT_SCREEN_NAME = "jnexient";
-    private CommentController commentController;
-    private CommentManager commentManager;
-    private Comment comment;
-    private Author author;
-
-    @Autowired
-    private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
-    protected MockMvc mockMvc;
-    protected ResultActions response;
-
+public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest {
     @Before
     public void setup() throws Exception {
         instantiateDependentObjects();
