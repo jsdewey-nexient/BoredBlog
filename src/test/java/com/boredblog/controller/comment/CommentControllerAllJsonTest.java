@@ -4,6 +4,7 @@ import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
 import com.boredblog.controller.AuthorController;
+import com.boredblog.controller.BaseJsonTest;
 import com.boredblog.controller.CommentController;
 import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
@@ -45,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         RootConfig.class,
         JpaConfig.class
 })
-public class CommentControllerAllJsonTest {
+public class CommentControllerAllJsonTest extends BaseJsonTest {
     public static final int POST_ID = 1;
     public static final int COMMENT_ID = 1;
     public static final String COMMENT_CONTENT = "Do you see me?";
@@ -72,7 +73,7 @@ public class CommentControllerAllJsonTest {
 
     @Test
     public void testIsArrayOfSizeOne() throws Exception {
-        System.out.println("JSON: " + this.response.andReturn().getResponse().getContentAsString());
+        this.printJsonString(this.response, "/posts/{id}/comments");
         this.response.andExpect(jsonPath("$.*", hasSize(1)));
     }
 

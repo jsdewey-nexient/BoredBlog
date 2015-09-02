@@ -1,6 +1,7 @@
 package com.boredblog.controller.author;
 
 import com.boredblog.controller.AuthorController;
+import com.boredblog.controller.BaseJsonTest;
 import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
@@ -27,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Group: Joel
  * A base class for the Author JSON tests to extend and share code.
  */
-public class AuthorControllerBaseJsonTest {
+public class AuthorControllerBaseJsonTest extends BaseJsonTest {
     protected AuthorManager authorManager;
     // Anything being serialized should not be mocked.
     protected Author firstAuthor;
@@ -98,21 +99,5 @@ public class AuthorControllerBaseJsonTest {
         this.firstAuthor.setComments(this.comments);
         this.firstAuthor.setPosts(this.posts);
         addAuthorToList(this.firstAuthor);
-    }
-
-    protected void testSuccessfulRequest(ResultActions response)
-            throws Exception {
-        response.andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"));
-    }
-
-    protected void printJsonString(ResultActions response, String endpoint)
-            throws Exception{
-        final MvcResult result = response.andReturn();
-        System.out.println(
-                endpoint
-                        + " JSON String: "
-                        + result.getResponse().getContentAsString()
-        );
     }
 }
