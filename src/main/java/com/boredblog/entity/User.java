@@ -28,7 +28,7 @@ public abstract class User extends BaseEntity {
     @OrderBy("created_at ASC")
     private List<Comment> comments;
 
-    @JsonView(CommentJsonView.FullComment.class)
+    @JsonView(AuthorJsonView.AuthorScreenName.class)
     public String getScreenName() {
         return screenName;
     }
@@ -37,7 +37,7 @@ public abstract class User extends BaseEntity {
         this.screenName = screenName;
     }
 
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(AuthorJsonView.ShowAuthorDetail.class)
     public List<Comment> getComments() {
         return comments;
     }
