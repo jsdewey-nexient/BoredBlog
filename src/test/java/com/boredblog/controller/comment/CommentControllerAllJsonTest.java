@@ -94,13 +94,6 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
         ));
     }
 
-    private void sendRequestToRetrieveAll() throws Exception {
-        this.response = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/posts/" + POST_ID + "/comments")
-                        .accept(MediaType.APPLICATION_JSON)
-        );
-    }
-
     private void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new CommentController(this.commentManager))
                 .setMessageConverters(this.jackson2HttpMessageConverter)
@@ -110,20 +103,5 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
     private void mockCommentManager() {
         Mockito.when(this.commentManager.retrieveAll(Mockito.anyInt()))
                 .thenReturn(Arrays.asList(this.comment));
-    }
-
-    private void setCommentProperties() {
-        this.comment.setId(COMMENT_ID);
-        this.comment.setContent(COMMENT_CONTENT);
-        this.comment.setCreatedAt(new Timestamp(COMMENT_CREATED_AT));
-        this.comment.setAuthor(this.author);
-    }
-
-    private void instantiateDependentObjects() {
-        this.commentManager = Mockito.mock(CommentManager.class);
-        this.comment = new Comment();
-        this.commentController = new CommentController(this.commentManager);
-        this.author = new Author();
-        this.author.setScreenName(COMMENT_SCREEN_NAME);
     }
 }
