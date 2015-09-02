@@ -63,7 +63,7 @@ public class Author extends User {
         this.posts = posts;
     }
 
-    @JsonView(UserJsonView.UserScreenName.class)
+    @JsonView(AuthorJsonView.AuthorFullName.class)
     @JsonProperty("user")
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
