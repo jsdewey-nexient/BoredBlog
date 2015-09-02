@@ -33,11 +33,6 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
     protected Comment comment;
     protected Author author;
 
-    @Autowired
-    protected MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
-    protected MockMvc mockMvc;
-    protected ResultActions response;
-
     protected void setCommentProperties() {
         this.comment.setId(COMMENT_ID);
         this.comment.setContent(COMMENT_CONTENT);

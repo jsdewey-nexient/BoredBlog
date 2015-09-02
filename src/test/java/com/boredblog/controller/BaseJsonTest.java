@@ -1,5 +1,8 @@
 package com.boredblog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -13,6 +16,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * A basic test class for the others to extend.
  */
 public abstract class BaseJsonTest {
+    @Autowired
+    protected MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
+    protected MockMvc mockMvc;
+    protected ResultActions response;
+
     protected void printJsonString(ResultActions response, String endpoint)
             throws Exception{
         final MvcResult result = response.andReturn();
