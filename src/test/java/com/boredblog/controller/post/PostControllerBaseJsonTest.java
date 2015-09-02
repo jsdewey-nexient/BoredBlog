@@ -33,13 +33,13 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
     public static final int POST_UPDATED_AT = 14000000;
     public static final int LENGTH_OF_ARRAY = 5;
     public static final int SIZE_OF_AUTHOR_OBJECT = 2;
-    public PostController postController;
-    public PostManager postManager;
-    public Post post;
-    public Author author;
-    public Comment comment;
+    protected PostController postController;
+    protected PostManager postManager;
+    protected Post post;
+    protected Author author;
+    protected Comment comment;
 
-    public void instantiateDependentObjects() {
+    protected void instantiateDependentObjects() {
         this.postManager = Mockito.mock(PostManager.class);
         this.postController = new PostController(this.postManager);
         this.post = new Post();
@@ -47,27 +47,27 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
         this.comment = new Comment();
     }
 
-    public void setDependentObjectFields() {
+    protected void setDependentObjectFields() {
         setAuthorFields();
         setCommentFields();
         setPostFields();
     }
 
-    public void setAuthorFields() {
+    protected void setAuthorFields() {
         this.author.setId(AUTHOR_ID);
         this.author.setFirstName(AUTHOR_FIRST_NAME);
         this.author.setLastName(AUTHOR_LAST_NAME);
         this.author.setScreenName(AUTHOR_SCREEN_NAME);
     }
 
-    public void setCommentFields() {
+    protected void setCommentFields() {
         this.comment.setId(COMMENT_ID);
         this.comment.setAuthor(this.author);
         this.comment.setContent(COMMENT_CONTENT);
         this.comment.setCreatedAt(COMMENT_CREATED_AT);
     }
 
-    public void setPostFields() {
+    protected void setPostFields() {
         this.post.setId(POST_ID);
         this.post.setTitle(POST_TITLE);
         this.post.setContent(POST_CONTENT);
@@ -77,7 +77,7 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
         this.post.setAuthor(this.author);
     }
 
-    public void buildMockMvc() {
+    protected void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(this.postController)
                 .setMessageConverters(this.jackson2HttpMessageConverter)
                 .build();
