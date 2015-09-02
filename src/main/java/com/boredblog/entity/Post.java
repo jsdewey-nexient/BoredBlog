@@ -54,6 +54,7 @@ public class Post extends BaseEntity {
         this.comments = comments;
     }
 
+    @JsonView(PostJsonView.ListPosts.class)
     public Author getAuthor() {
         return author;
     }

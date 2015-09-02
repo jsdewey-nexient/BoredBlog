@@ -9,6 +9,7 @@ import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
@@ -54,6 +56,7 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     public static final int POST_CREATED_AT = 13000000;
     public static final int POST_UPDATED_AT = 14000000;
     public static final int LENGTH_OF_ARRAY = 5;
+    public static final int SIZE_OF_AUTHOR_OBJECT = 2;
     private PostController postController;
     private PostManager postManager;
     private Post post;
@@ -82,7 +85,7 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     public void testLengthOfPostObject() throws Exception {
         this.response.andExpect(jsonPath(
                 "$.[0].*",
-                is(LENGTH_OF_ARRAY)
+                hasSize(LENGTH_OF_ARRAY)
         ));
     }
 
@@ -103,9 +106,17 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     }
 
     @Test
-    public void testScreenName() throws Exception {
+    public void testAuthor() throws Exception {
+        this.response.andExpect(MockMvcResultMatchers.jsonPath(
+                "$.[0].author.*",
+                Matchers.hasSize(SIZE_OF_AUTHOR_OBJECT)
+        ));
         this.response.andExpect(jsonPath(
-                "$.[0].screen_name",
+                "$.[0].author.id",
+                is(AUTHOR_ID)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.[0].author.screen_name",
                 is(AUTHOR_SCREEN_NAME)
         ));
     }
