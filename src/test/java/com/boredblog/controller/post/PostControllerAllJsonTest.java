@@ -6,6 +6,7 @@ import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.mockito.Mockito;
@@ -105,5 +106,10 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
                 MockMvcRequestBuilders.get("/posts")
                         .accept(MediaType.APPLICATION_JSON)
         );
+    }
+
+    @AfterClass
+    public void printJsonString() throws Exception {
+        super.printJsonString(this.response, "/posts");
     }
 }
