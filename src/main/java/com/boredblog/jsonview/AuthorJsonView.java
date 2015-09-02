@@ -8,7 +8,7 @@ package com.boredblog.jsonview;
  */
 public interface AuthorJsonView {
     interface AuthorScreenName {}
-    interface ListAuthors extends AuthorScreenName {}
+    interface ListAuthors extends AuthorScreenName, BaseJsonView {}
     interface ShowAuthorDetail
             extends CommentJsonView.ShowCommentDetail, ListAuthors {}
 }
