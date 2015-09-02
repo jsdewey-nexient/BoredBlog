@@ -33,7 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Group: Joel
  * Verify that the JSON for fetching a post feed is correct.
  */
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {
@@ -72,6 +71,7 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
 
     @Test
     public void testLengthOfArray() throws Exception {
+        printJsonString(this.response, "/posts");
         this.response.andExpect(jsonPath(
                 "&.*",
                 hasSize(1)
