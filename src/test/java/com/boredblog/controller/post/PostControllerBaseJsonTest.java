@@ -6,8 +6,11 @@ import com.boredblog.entity.Author;
 import com.boredblog.entity.Comment;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
+import org.mockito.Mockito;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 /**
  * @author Joel Dewey
@@ -35,4 +38,48 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
     public Post post;
     public Author author;
     public Comment comment;
+
+    public void instantiateDependentObjects() {
+        this.postManager = Mockito.mock(PostManager.class);
+        this.postController = new PostController(this.postManager);
+        this.post = new Post();
+        this.author = new Author();
+        this.comment = new Comment();
+    }
+
+    public void setDependentObjectFields() {
+        setAuthorFields();
+        setCommentFields();
+        setPostFields();
+    }
+
+    public void setAuthorFields() {
+        this.author.setId(AUTHOR_ID);
+        this.author.setFirstName(AUTHOR_FIRST_NAME);
+        this.author.setLastName(AUTHOR_LAST_NAME);
+        this.author.setScreenName(AUTHOR_SCREEN_NAME);
+    }
+
+    public void setCommentFields() {
+        this.comment.setId(COMMENT_ID);
+        this.comment.setAuthor(this.author);
+        this.comment.setContent(COMMENT_CONTENT);
+        this.comment.setCreatedAt(COMMENT_CREATED_AT);
+    }
+
+    public void setPostFields() {
+        this.post.setId(POST_ID);
+        this.post.setTitle(POST_TITLE);
+        this.post.setContent(POST_CONTENT);
+        this.post.setCreatedAt(new Timestamp(POST_CREATED_AT));
+        this.post.setUpdatedAt(new Timestamp(POST_UPDATED_AT));
+        this.post.setComments(Arrays.asList(this.comment));
+        this.post.setAuthor(this.author);
+    }
+
+    public void buildMockMvc() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.postController)
+                .setMessageConverters(this.jackson2HttpMessageConverter)
+                .build();
+    }
 }

@@ -117,50 +117,6 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
         ));
     }
 
-    private void instantiateDependentObjects() {
-        this.postManager = Mockito.mock(PostManager.class);
-        this.postController = new PostController(this.postManager);
-        this.post = new Post();
-        this.author = new Author();
-        this.comment = new Comment();
-    }
-
-    private void setDependentObjectFields() {
-        setAuthorFields();
-        setCommentFields();
-        setPostFields();
-    }
-
-    private void setAuthorFields() {
-        this.author.setId(AUTHOR_ID);
-        this.author.setFirstName(AUTHOR_FIRST_NAME);
-        this.author.setLastName(AUTHOR_LAST_NAME);
-        this.author.setScreenName(AUTHOR_SCREEN_NAME);
-    }
-
-    private void setCommentFields() {
-        this.comment.setId(COMMENT_ID);
-        this.comment.setAuthor(this.author);
-        this.comment.setContent(COMMENT_CONTENT);
-        this.comment.setCreatedAt(COMMENT_CREATED_AT);
-    }
-
-    private void setPostFields() {
-        this.post.setId(POST_ID);
-        this.post.setTitle(POST_TITLE);
-        this.post.setContent(POST_CONTENT);
-        this.post.setCreatedAt(new Timestamp(POST_CREATED_AT));
-        this.post.setUpdatedAt(new Timestamp(POST_UPDATED_AT));
-        this.post.setComments(Arrays.asList(this.comment));
-        this.post.setAuthor(this.author);
-    }
-
-    private void buildMockMvc() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.postController)
-                .setMessageConverters(this.jackson2HttpMessageConverter)
-                .build();
-    }
-
     private void mockPostManager() {
         Mockito.when(this.postManager.retrieveAll())
                 .thenReturn(Arrays.asList(this.post));
