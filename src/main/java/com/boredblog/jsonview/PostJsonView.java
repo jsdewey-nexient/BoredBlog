@@ -7,4 +7,6 @@ package com.boredblog.jsonview;
  * A JsonView for Posts.
  */
 public interface PostJsonView {
+    interface ListPosts extends AuthorJsonView.AuthorScreenName {}
+    interface ShowPostDetail extends ListPosts {}
 }

@@ -7,5 +7,5 @@ package com.boredblog.jsonview;
  * Limits the information delivered regarding a comment.
  */
 public interface CommentJsonView {
-    interface FullComment extends BaseJsonView {}
+    interface ShowCommentDetail extends AuthorJsonView.AuthorScreenName {}
 }
