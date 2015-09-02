@@ -1,7 +1,11 @@
 package com.boredblog.controller;
 
 import com.boredblog.entity.Post;
+import com.boredblog.jsonview.CommentJsonView;
+import com.boredblog.jsonview.PostJsonView;
 import com.boredblog.manager.PostManager;
+import com.fasterxml.jackson.annotation.JsonView;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,11 +27,13 @@ public class PostController {
         this.postManager = postManager;
     }
 
+    @JsonView(PostJsonView.ListPosts.class)
     @RequestMapping(method = RequestMethod.GET)
     public List<Post> getPosts() {
         return this.postManager.retrieveAll();
     }
 
+    @JsonView(PostJsonView.ShowPostDetail.class)
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Post getPost(@PathVariable Integer id) {
         return this.postManager.retrieve(1);
