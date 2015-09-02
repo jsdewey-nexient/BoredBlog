@@ -26,7 +26,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
         setDependentObjectFields();
         buildMockMvc();
         mockPostManager();
-        sendRequestToRetrieveAll();
+        sendRequestToRetrieveSingle();
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
                 .thenReturn(this.post);
     }
 
-    private void sendRequestToRetrieveAll() throws Exception {
+    private void sendRequestToRetrieveSingle() throws Exception {
         this.response = this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/posts/" + POST_ID)
                         .accept(MediaType.APPLICATION_JSON)
