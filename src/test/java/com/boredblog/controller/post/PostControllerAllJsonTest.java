@@ -73,7 +73,7 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     public void testLengthOfArray() throws Exception {
         printJsonString(this.response, "/posts");
         this.response.andExpect(jsonPath(
-                "&.*",
+                "$.*",
                 hasSize(1)
         ));
     }
