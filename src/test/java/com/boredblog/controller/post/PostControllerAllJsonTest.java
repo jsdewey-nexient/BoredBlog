@@ -42,27 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         RootConfig.class,
         JpaConfig.class
 })
-public class PostControllerAllJsonTest extends BaseJsonTest {
-    public static final int AUTHOR_ID = 1;
-    public static final String AUTHOR_FIRST_NAME = "Johnny";
-    public static final String AUTHOR_LAST_NAME = "Nexient";
-    public static final String AUTHOR_SCREEN_NAME = "jnexient";
-    public static final int COMMENT_ID = 1;
-    public static final String COMMENT_CONTENT = "Hello!";
-    public static final Timestamp COMMENT_CREATED_AT = new Timestamp(13500000);
-    public static final int POST_ID = 1;
-    public static final String POST_TITLE = "The title that should be seen.";
-    public static final String POST_CONTENT = "The content that should be seen.";
-    public static final int POST_CREATED_AT = 13000000;
-    public static final int POST_UPDATED_AT = 14000000;
-    public static final int LENGTH_OF_ARRAY = 5;
-    public static final int SIZE_OF_AUTHOR_OBJECT = 2;
-    private PostController postController;
-    private PostManager postManager;
-    private Post post;
-    private Author author;
-    private Comment comment;
-
+public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Before
     public void setup() throws Exception {
         instantiateDependentObjects();
