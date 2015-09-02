@@ -46,7 +46,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
 
     @Test
     public void testLengthOfArray() throws Exception {
-        printJsonString(this.response, "/posts");
+        printJsonString(this.response, "/posts/{id}");
         this.response.andExpect(MockMvcResultMatchers.jsonPath(
                 "$.*",
                 Matchers.hasSize(LENGTH_OF_OBJECT_WITH_CONTENT)
