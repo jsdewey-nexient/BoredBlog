@@ -24,6 +24,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 /**
  * @author Joel Dewey
  * @date 9/2/2015
@@ -51,6 +54,7 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     public static final String POST_CONTENT = "The content that should be seen.";
     public static final Timestamp POST_CREATED_AT = new Timestamp(13000000);
     public static final Timestamp POST_UPDATED_AT = new Timestamp(14000000);
+    public static final int LENGTH_OF_ARRAY = 5;
     private PostController postController;
     private PostManager postManager;
     private Post post;
@@ -64,6 +68,62 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
         buildMockMvc();
         mockPostManager();
         sendRequestToRetrieveAll();
+    }
+
+    @Test
+    public void testLengthOfArray() throws Exception {
+        this.response.andExpect(jsonPath(
+                "&.*",
+                hasSize(1)
+        ));
+    }
+
+    @Test
+    public void testLengthOfPostObject() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].*",
+                is(LENGTH_OF_ARRAY)
+        ));
+    }
+
+    @Test
+    public void testId() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].id",
+                is(POST_ID)
+        ));
+    }
+
+    @Test
+    public void testTitle() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].title",
+                is(POST_TITLE)
+        ));
+    }
+
+    @Test
+    public void testScreenName() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].screen_name",
+                is(AUTHOR_SCREEN_NAME)
+        ));
+    }
+
+    @Test
+    public void testCreatedAt() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].created_at",
+                is(POST_CREATED_AT)
+        ));
+    }
+
+    @Test
+    public void testUpdatedAt() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].updated_at",
+                is(POST_UPDATED_AT)
+        ));
     }
 
     private void instantiateDependentObjects() {
