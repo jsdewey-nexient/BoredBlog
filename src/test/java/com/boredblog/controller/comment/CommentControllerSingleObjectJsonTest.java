@@ -35,6 +35,38 @@ public class CommentControllerSingleObjectJsonTest
         this.response.andExpect(jsonPath("$.*", hasSize(COMMENT_LENGTH)));
     }
 
+    @Test
+    public void testId() throws Exception{
+        this.response.andExpect(jsonPath(
+                "$.id",
+                is(COMMENT_ID)
+        ));
+    }
+
+    @Test
+    public void testScreenName() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.screen_name",
+                is(COMMENT_SCREEN_NAME)
+        ));
+    }
+
+    @Test
+    public void testContent() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.content",
+                is(COMMENT_CONTENT)
+        ));
+    }
+
+    @Test
+    public void testCreatedAt() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.created_at",
+                is(COMMENT_CREATED_AT)
+        ));
+    }
+
     private void mockCommentManager() {
         Mockito.when(this.commentManager.retrieve(Mockito.anyInt(), Mockito.anyInt()))
                 .thenReturn(this.comment);
