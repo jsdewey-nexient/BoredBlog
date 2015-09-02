@@ -48,13 +48,6 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
         this.author.setScreenName(COMMENT_SCREEN_NAME);
     }
 
-    protected void sendRequestToRetrieveAll() throws Exception {
-        this.response = this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/posts/" + POST_ID + "/comments")
-                        .accept(MediaType.APPLICATION_JSON)
-        );
-    }
-
     protected void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new CommentController(this.commentManager))
                 .setMessageConverters(this.jackson2HttpMessageConverter)

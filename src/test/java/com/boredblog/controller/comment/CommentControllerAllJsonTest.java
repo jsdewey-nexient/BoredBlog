@@ -98,4 +98,11 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
         Mockito.when(this.commentManager.retrieveAll(Mockito.anyInt()))
                 .thenReturn(Arrays.asList(this.comment));
     }
+
+    protected void sendRequestToRetrieveAll() throws Exception {
+        this.response = this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/posts/" + POST_ID + "/comments")
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+    }
 }
