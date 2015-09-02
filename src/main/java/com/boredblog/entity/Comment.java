@@ -23,16 +23,16 @@ public class Comment extends BaseEntity {
     @ManyToOne
     private Author author;
 
+    @JsonView(CommentJsonView.ShowCommentDetail.class)
     public String getContent() {
         return content;
     }
 
-    @JsonView(CommentJsonView.FullComment.class)
     public void setContent(String content) {
         this.content = content;
     }
 
-    @JsonView(CommentJsonView.FullComment.class)
+    @JsonView(CommentJsonView.ShowCommentDetail.class)
     @JsonUnwrapped
     public Author getAuthor() {
         return author;
@@ -44,14 +44,14 @@ public class Comment extends BaseEntity {
 
     @Override
     @JsonProperty("created_at")
-    @JsonView(CommentJsonView.FullComment.class)
+    @JsonView(CommentJsonView.ShowCommentDetail.class)
     public Timestamp getCreatedAt() {
         return super.getCreatedAt();
     }
 
     @Override
     @JsonProperty("updated_at")
-    @JsonView(CommentJsonView.FullComment.class)
+    @JsonView(CommentJsonView.ShowCommentDetail.class)
     public Timestamp getUpdatedAt() {
         return super.getUpdatedAt();
     }
