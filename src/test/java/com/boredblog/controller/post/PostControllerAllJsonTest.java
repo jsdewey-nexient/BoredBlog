@@ -1,5 +1,8 @@
 package com.boredblog.controller.post;
 
+import com.boredblog.config.JpaConfig;
+import com.boredblog.config.RootConfig;
+import com.boredblog.config.WebConfig;
 import com.boredblog.controller.BaseJsonTest;
 import com.boredblog.controller.PostController;
 import com.boredblog.entity.Author;
@@ -8,8 +11,13 @@ import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -23,6 +31,13 @@ import java.util.Arrays;
  * Verify that the JSON for fetching a post feed is correct.
  */
 @Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(classes = {
+        WebConfig.class,
+        RootConfig.class,
+        JpaConfig.class
+})
 public class PostControllerAllJsonTest extends BaseJsonTest {
     public static final int AUTHOR_ID = 1;
     public static final String AUTHOR_FIRST_NAME = "Johnny";
