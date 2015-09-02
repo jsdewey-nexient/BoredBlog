@@ -1,5 +1,6 @@
-package com.boredblog.controller;
+package com.boredblog.controller.post;
 
+import com.boredblog.controller.PostController;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
 import org.junit.Before;
