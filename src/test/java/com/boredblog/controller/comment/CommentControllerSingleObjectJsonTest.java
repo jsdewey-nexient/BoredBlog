@@ -6,7 +6,6 @@ import com.boredblog.config.WebConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -58,10 +57,14 @@ public class CommentControllerSingleObjectJsonTest
     }
 
     @Test
-    public void testScreenName() throws Exception {
+    public void testUser() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.screen_name",
-                is(COMMENT_SCREEN_NAME)
+                "$.user.id",
+                is(AUTHOR_ID)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.user.screen_name",
+                is(AUTHOR_SCREEN_NAME)
         ));
     }
 

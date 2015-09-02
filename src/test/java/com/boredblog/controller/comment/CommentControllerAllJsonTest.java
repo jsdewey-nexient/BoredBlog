@@ -3,32 +3,17 @@ package com.boredblog.controller.comment;
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
-import com.boredblog.controller.AuthorController;
-import com.boredblog.controller.BaseJsonTest;
-import com.boredblog.controller.CommentController;
-import com.boredblog.entity.Author;
-import com.boredblog.entity.Comment;
-import com.boredblog.manager.CommentManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.lang.reflect.Array;
-import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Collection;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -74,7 +59,7 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
     public void testScreenName() throws Exception {
         this.response.andExpect(jsonPath(
                 "$.[0].screen_name",
-                is(COMMENT_SCREEN_NAME)
+                is(AUTHOR_SCREEN_NAME)
         ));
     }
 
