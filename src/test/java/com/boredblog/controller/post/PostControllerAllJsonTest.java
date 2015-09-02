@@ -55,7 +55,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testLengthOfPostObject() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.*",
+                "$.[0].*",
                 hasSize(LENGTH_OF_OBJECT)
         ));
     }
@@ -63,7 +63,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testId() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.id",
+                "$.[0].id",
                 is(POST_ID)
         ));
     }
@@ -71,31 +71,23 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testTitle() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.title",
+                "$.[0].title",
                 is(POST_TITLE)
-        ));
-    }
-
-    @Test
-    public void testContent() throws Exception {
-        this.response.andExpect(jsonPath(
-                "$.content",
-                is(POST_CONTENT)
         ));
     }
 
     @Test
     public void testAuthor() throws Exception {
         this.response.andExpect(MockMvcResultMatchers.jsonPath(
-                "$.author.*",
+                "$.[0].author.*",
                 Matchers.hasSize(SIZE_OF_AUTHOR_OBJECT)
         ));
         this.response.andExpect(jsonPath(
-                "$.author.id",
+                "$.[0].author.id",
                 is(AUTHOR_ID)
         ));
         this.response.andExpect(jsonPath(
-                "$.author.screen_name",
+                "$.[0].author.screen_name",
                 is(AUTHOR_SCREEN_NAME)
         ));
     }
@@ -103,7 +95,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testCreatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.created_at",
+                "$.[0].created_at",
                 is(POST_CREATED_AT)
         ));
     }
@@ -111,7 +103,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testUpdatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.updated_at",
+                "$.[0].updated_at",
                 is(POST_UPDATED_AT)
         ));
     }
