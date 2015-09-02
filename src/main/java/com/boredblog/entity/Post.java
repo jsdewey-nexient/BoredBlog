@@ -24,6 +24,8 @@ public class Post extends BaseEntity {
     private String content;
     @OneToMany
     private List<Comment> comments;
+    @ManyToOne
+    private Author author;
 
     @JsonView(AuthorJsonView.FullAuthor.class)
     public String getTitle() {
@@ -49,6 +51,14 @@ public class Post extends BaseEntity {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
