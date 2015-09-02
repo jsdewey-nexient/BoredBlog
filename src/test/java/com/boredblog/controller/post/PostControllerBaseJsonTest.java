@@ -31,7 +31,7 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
     public static final String POST_CONTENT = "The content that should be seen.";
     public static final int POST_CREATED_AT = 13000000;
     public static final int POST_UPDATED_AT = 14000000;
-    public static final int LENGTH_OF_ARRAY = 5;
+    public static final int LENGTH_OF_OBJECT = 5;
     public static final int SIZE_OF_AUTHOR_OBJECT = 2;
     protected PostController postController;
     protected PostManager postManager;

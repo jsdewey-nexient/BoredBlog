@@ -3,15 +3,8 @@ package com.boredblog.controller.post;
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
-import com.boredblog.controller.BaseJsonTest;
-import com.boredblog.controller.PostController;
-import com.boredblog.entity.Author;
-import com.boredblog.entity.Comment;
-import com.boredblog.entity.Post;
-import com.boredblog.manager.PostManager;
 import org.hamcrest.Matchers;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -21,9 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
@@ -64,15 +55,15 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testLengthOfPostObject() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].*",
-                hasSize(LENGTH_OF_ARRAY)
+                "$.*",
+                hasSize(LENGTH_OF_OBJECT)
         ));
     }
 
     @Test
     public void testId() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].id",
+                "$.id",
                 is(POST_ID)
         ));
     }
@@ -80,23 +71,31 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testTitle() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].title",
+                "$.title",
                 is(POST_TITLE)
+        ));
+    }
+
+    @Test
+    public void testContent() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.content",
+                is(POST_CONTENT)
         ));
     }
 
     @Test
     public void testAuthor() throws Exception {
         this.response.andExpect(MockMvcResultMatchers.jsonPath(
-                "$.[0].author.*",
+                "$.author.*",
                 Matchers.hasSize(SIZE_OF_AUTHOR_OBJECT)
         ));
         this.response.andExpect(jsonPath(
-                "$.[0].author.id",
+                "$.author.id",
                 is(AUTHOR_ID)
         ));
         this.response.andExpect(jsonPath(
-                "$.[0].author.screen_name",
+                "$.author.screen_name",
                 is(AUTHOR_SCREEN_NAME)
         ));
     }
@@ -104,7 +103,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testCreatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].created_at",
+                "$.created_at",
                 is(POST_CREATED_AT)
         ));
     }
@@ -112,7 +111,7 @@ public class PostControllerAllJsonTest extends PostControllerBaseJsonTest {
     @Test
     public void testUpdatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].updated_at",
+                "$.updated_at",
                 is(POST_UPDATED_AT)
         ));
     }

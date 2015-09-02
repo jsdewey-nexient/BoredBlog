@@ -1,11 +1,16 @@
 package com.boredblog.controller.post;
 
-import org.mockito.Mock;
+import org.hamcrest.Matchers;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Arrays;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 /**
  * @author Joel Dewey
@@ -14,6 +19,72 @@ import java.util.Arrays;
  * Test retrieving a single Post's JSON.
  */
 public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTest {
+
+    @Before
+    public void setup() throws Exception {
+        instantiateDependentObjects();
+        setDependentObjectFields();
+        buildMockMvc();
+        mockPostManager();
+        sendRequestToRetrieveAll();
+    }
+
+    @Test
+    public void testLengthOfArray() throws Exception {
+        printJsonString(this.response, "/posts");
+        this.response.andExpect(jsonPath(
+                "$.*",
+                hasSize(LENGTH_OF_OBJECT)
+        ));
+    }
+
+    @Test
+    public void testId() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].id",
+                is(POST_ID)
+        ));
+    }
+
+    @Test
+    public void testTitle() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].title",
+                is(POST_TITLE)
+        ));
+    }
+
+    @Test
+    public void testAuthor() throws Exception {
+        this.response.andExpect(MockMvcResultMatchers.jsonPath(
+                "$.[0].author.*",
+                Matchers.hasSize(SIZE_OF_AUTHOR_OBJECT)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.[0].author.id",
+                is(AUTHOR_ID)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.[0].author.screen_name",
+                is(AUTHOR_SCREEN_NAME)
+        ));
+    }
+
+    @Test
+    public void testCreatedAt() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].created_at",
+                is(POST_CREATED_AT)
+        ));
+    }
+
+    @Test
+    public void testUpdatedAt() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.[0].updated_at",
+                is(POST_UPDATED_AT)
+        ));
+    }
 
     private void mockPostManager() {
         Mockito.when(this.postManager.retrieve(Mockito.anyInt()))
