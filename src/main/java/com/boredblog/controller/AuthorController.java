@@ -25,7 +25,7 @@ public class AuthorController {
         this.authorManager = authorManager;
     }
 
-    @JsonView(AuthorJsonView.LimitedAuthor.class)
+    @JsonView(AuthorJsonView.ListAuthors.class)
     @RequestMapping(method = RequestMethod.GET)
     public List<Author> getAuthors() {
         return this.authorManager.retrieveAll();
@@ -36,7 +36,7 @@ public class AuthorController {
         return this.authorManager.create(author);
     }
 
-    @JsonView(AuthorJsonView.FullAuthor.class)
+    @JsonView(AuthorJsonView.ShowAuthorDetail.class)
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Author getAuthor(@PathVariable Integer id) {
         return this.authorManager.retrieve(id);
