@@ -41,11 +41,6 @@ public class AuthorControllerBaseJsonTest extends BaseJsonTest {
     protected final String FIRST_AUTHOR_PASSWORD = "Shouldn't see this!";
     protected final String FIRST_AUTHOR_SCREEN_NAME = "jnexient";
 
-    @Autowired
-    private MappingJackson2HttpMessageConverter jackson2HttpMessageConverter;
-    protected MockMvc mockMvc;
-    protected ResultActions response;
-
     protected void instantiateDependentObjects() {
         this.authorManager = Mockito.mock(AuthorManager.class);
         this.firstAuthor = new Author();

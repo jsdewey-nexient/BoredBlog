@@ -32,7 +32,6 @@ public class CommentController {
         return this.commentManager.create(postId, comment);
     }
 
-    @JsonView(CommentJsonView.FullComment.class)
     @RequestMapping(value = "posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
     public Comment updateComment(
             @PathVariable Integer postId,
@@ -48,6 +47,7 @@ public class CommentController {
         return this.commentManager.retrieveAll(postId);
     }
 
+    @JsonView(CommentJsonView.FullComment.class)
     @RequestMapping(value = "posts/{postId}/comments/{commentId}", method = RequestMethod.GET)
     public Comment getComment(
             @PathVariable Integer postId,
