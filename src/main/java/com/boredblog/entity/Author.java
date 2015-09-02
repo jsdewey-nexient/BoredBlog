@@ -1,6 +1,7 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
+import com.boredblog.jsonview.UserJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -62,7 +63,7 @@ public class Author extends User {
         this.posts = posts;
     }
 
-    @JsonView(AuthorJsonView.AuthorScreenName.class)
+    @JsonView(UserJsonView.UserScreenName.class)
     @JsonProperty("user")
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();

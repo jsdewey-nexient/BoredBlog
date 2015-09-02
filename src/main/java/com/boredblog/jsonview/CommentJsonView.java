@@ -8,5 +8,5 @@ package com.boredblog.jsonview;
  */
 public interface CommentJsonView {
     interface ShowCommentDetail
-            extends AuthorJsonView.AuthorScreenName, BaseJsonView {}
+            extends UserJsonView.UserScreenName, BaseJsonView {}
 }

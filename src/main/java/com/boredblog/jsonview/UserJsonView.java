@@ -7,4 +7,5 @@ package com.boredblog.jsonview;
  * A JsonView for the User abstract class.
  */
 public interface UserJsonView {
+    interface UserScreenName {}
 }
