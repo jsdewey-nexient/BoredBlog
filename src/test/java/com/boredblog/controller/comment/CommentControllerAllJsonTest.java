@@ -3,6 +3,7 @@ package com.boredblog.controller.comment;
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.RootConfig;
 import com.boredblog.config.WebConfig;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
 
@@ -56,10 +58,18 @@ public class CommentControllerAllJsonTest extends CommentControllerBaseJsonTest 
     }
 
     @Test
-    public void testScreenName() throws Exception {
+    public void testUser() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].screen_name",
+                "$.[0].user.id",
+                is(AUTHOR_ID)
+        ));
+        this.response.andExpect(jsonPath(
+                "$.[0].user.screen_name",
                 is(AUTHOR_SCREEN_NAME)
+        ));
+        this.response.andExpect(MockMvcResultMatchers.jsonPath(
+                "$.[0].user.*",
+                Matchers.hasSize(LENGTH_OF_USER_OBJECT)
         ));
     }
 

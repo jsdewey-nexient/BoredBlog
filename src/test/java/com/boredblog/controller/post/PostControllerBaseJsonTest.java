@@ -62,7 +62,7 @@ public class PostControllerBaseJsonTest extends BaseJsonTest {
 
     protected void setCommentFields() {
         this.comment.setId(COMMENT_ID);
-        this.comment.setAuthor(this.author);
+        this.comment.setUser(this.author);
         this.comment.setContent(COMMENT_CONTENT);
         this.comment.setCreatedAt(COMMENT_CREATED_AT);
     }

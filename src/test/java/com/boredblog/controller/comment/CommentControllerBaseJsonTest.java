@@ -23,6 +23,7 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
     public static final int COMMENT_CREATED_AT = 123456789;
     public static final String AUTHOR_SCREEN_NAME = "jnexient";
     public static final int AUTHOR_ID = 1;
+    public static final int LENGTH_OF_USER_OBJECT = 2;
     protected CommentManager commentManager;
     protected Comment comment;
     protected Author author;
@@ -31,7 +32,7 @@ public class CommentControllerBaseJsonTest extends BaseJsonTest {
         this.comment.setId(COMMENT_ID);
         this.comment.setContent(COMMENT_CONTENT);
         this.comment.setCreatedAt(new Timestamp(COMMENT_CREATED_AT));
-        this.comment.setAuthor(this.author);
+        this.comment.setUser(this.author);
     }
 
     protected void instantiateDependentObjects() {

@@ -1,9 +1,7 @@
 package com.boredblog.entity;
 
-import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.jsonview.CommentJsonView;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -21,7 +19,7 @@ public class Comment extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
     @ManyToOne
-    private Author author;
+    private User user;
 
     @JsonView(CommentJsonView.ShowCommentDetail.class)
     public String getContent() {
@@ -33,13 +31,12 @@ public class Comment extends BaseEntity {
     }
 
     @JsonView(CommentJsonView.ShowCommentDetail.class)
-    @JsonUnwrapped
-    public Author getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
