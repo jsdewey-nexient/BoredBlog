@@ -51,8 +51,8 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
     public static final int POST_ID = 1;
     public static final String POST_TITLE = "The title that should be seen.";
     public static final String POST_CONTENT = "The content that should be seen.";
-    public static final Timestamp POST_CREATED_AT = new Timestamp(13000000);
-    public static final Timestamp POST_UPDATED_AT = new Timestamp(14000000);
+    public static final int POST_CREATED_AT = 13000000;
+    public static final int POST_UPDATED_AT = 14000000;
     public static final int LENGTH_OF_ARRAY = 5;
     private PostController postController;
     private PostManager postManager;
@@ -158,8 +158,8 @@ public class PostControllerAllJsonTest extends BaseJsonTest {
         this.post.setId(POST_ID);
         this.post.setTitle(POST_TITLE);
         this.post.setContent(POST_CONTENT);
-        this.post.setCreatedAt(POST_CREATED_AT);
-        this.post.setUpdatedAt(POST_UPDATED_AT);
+        this.post.setCreatedAt(new Timestamp(POST_CREATED_AT));
+        this.post.setUpdatedAt(new Timestamp(POST_UPDATED_AT));
         this.post.setComments(Arrays.asList(this.comment));
         this.post.setAuthor(this.author);
     }
