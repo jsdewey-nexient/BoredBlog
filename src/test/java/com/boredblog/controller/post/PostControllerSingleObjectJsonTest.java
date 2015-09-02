@@ -41,7 +41,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
     @Test
     public void testId() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].id",
+                "$.id",
                 is(POST_ID)
         ));
     }
@@ -49,23 +49,31 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
     @Test
     public void testTitle() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].title",
+                "$.title",
                 is(POST_TITLE)
+        ));
+    }
+
+    @Test
+    public void testContent() throws Exception {
+        this.response.andExpect(jsonPath(
+                "$.content",
+                is(POST_CONTENT)
         ));
     }
 
     @Test
     public void testAuthor() throws Exception {
         this.response.andExpect(MockMvcResultMatchers.jsonPath(
-                "$.[0].author.*",
+                "$.author.*",
                 Matchers.hasSize(SIZE_OF_AUTHOR_OBJECT)
         ));
         this.response.andExpect(jsonPath(
-                "$.[0].author.id",
+                "$.author.id",
                 is(AUTHOR_ID)
         ));
         this.response.andExpect(jsonPath(
-                "$.[0].author.screen_name",
+                "$.author.screen_name",
                 is(AUTHOR_SCREEN_NAME)
         ));
     }
@@ -73,7 +81,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
     @Test
     public void testCreatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].created_at",
+                "$.created_at",
                 is(POST_CREATED_AT)
         ));
     }
@@ -81,7 +89,7 @@ public class PostControllerSingleObjectJsonTest extends PostControllerBaseJsonTe
     @Test
     public void testUpdatedAt() throws Exception {
         this.response.andExpect(jsonPath(
-                "$.[0].updated_at",
+                "$.updated_at",
                 is(POST_UPDATED_AT)
         ));
     }
