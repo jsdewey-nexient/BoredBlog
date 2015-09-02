@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 public class CommentControllerSingleObjectJsonTest
     extends CommentControllerBaseJsonTest {
-    public static final int COMMENT_LENGTH = 4;
+    public static final int COMMENT_LENGTH = 5;
 
     @Before
     public void setup() throws Exception {
