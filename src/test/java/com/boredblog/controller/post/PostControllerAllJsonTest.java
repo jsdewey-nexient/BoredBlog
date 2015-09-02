@@ -1,6 +1,20 @@
 package com.boredblog.controller.post;
 
 import com.boredblog.controller.BaseJsonTest;
+import com.boredblog.controller.PostController;
+import com.boredblog.entity.Author;
+import com.boredblog.entity.Comment;
+import com.boredblog.entity.Post;
+import com.boredblog.manager.PostManager;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.mockito.Mockito;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.sql.Timestamp;
+import java.util.Arrays;
 
 /**
  * @author Joel Dewey
@@ -8,5 +22,88 @@ import com.boredblog.controller.BaseJsonTest;
  * Group: Joel
  * Verify that the JSON for fetching a post feed is correct.
  */
+@Ignore
 public class PostControllerAllJsonTest extends BaseJsonTest {
+    public static final int AUTHOR_ID = 1;
+    public static final String AUTHOR_FIRST_NAME = "Johnny";
+    public static final String AUTHOR_LAST_NAME = "Nexient";
+    public static final String AUTHOR_SCREEN_NAME = "jnexient";
+    public static final int COMMENT_ID = 1;
+    public static final String COMMENT_CONTENT = "Hello!";
+    public static final Timestamp COMMENT_CREATED_AT = new Timestamp(13500000);
+    public static final int POST_ID = 1;
+    public static final String POST_TITLE = "The title that should be seen.";
+    public static final String POST_CONTENT = "The content that should be seen.";
+    public static final Timestamp POST_CREATED_AT = new Timestamp(13000000);
+    public static final Timestamp POST_UPDATED_AT = new Timestamp(14000000);
+    private PostController postController;
+    private PostManager postManager;
+    private Post post;
+    private Author author;
+    private Comment comment;
+
+    @Before
+    public void setup() throws Exception {
+        instantiateDependentObjects();
+        setDependentObjectFields();
+        buildMockMvc();
+        mockPostManager();
+        sendRequestToRetrieveAll();
+    }
+
+    private void instantiateDependentObjects() {
+        this.postManager = Mockito.mock(PostManager.class);
+        this.postController = new PostController(this.postManager);
+        this.post = new Post();
+        this.author = new Author();
+        this.comment = new Comment();
+    }
+
+    private void setDependentObjectFields() {
+        setAuthorFields();
+        setCommentFields();
+        setPostFields();
+    }
+
+    private void setAuthorFields() {
+        this.author.setId(AUTHOR_ID);
+        this.author.setFirstName(AUTHOR_FIRST_NAME);
+        this.author.setLastName(AUTHOR_LAST_NAME);
+        this.author.setScreenName(AUTHOR_SCREEN_NAME);
+    }
+
+    private void setCommentFields() {
+        this.comment.setId(COMMENT_ID);
+        this.comment.setAuthor(this.author);
+        this.comment.setContent(COMMENT_CONTENT);
+        this.comment.setCreatedAt(COMMENT_CREATED_AT);
+    }
+
+    private void setPostFields() {
+        this.post.setId(POST_ID);
+        this.post.setTitle(POST_TITLE);
+        this.post.setContent(POST_CONTENT);
+        this.post.setCreatedAt(POST_CREATED_AT);
+        this.post.setUpdatedAt(POST_UPDATED_AT);
+        this.post.setComments(Arrays.asList(this.comment));
+        this.post.setAuthor(this.author);
+    }
+
+    private void buildMockMvc() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.postController)
+                .setMessageConverters(this.jackson2HttpMessageConverter)
+                .build();
+    }
+
+    private void mockPostManager() {
+        Mockito.when(this.postManager.retrieveAll())
+                .thenReturn(Arrays.asList(this.post));
+    }
+
+    private void sendRequestToRetrieveAll() throws Exception {
+        this.response = this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/posts")
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+    }
 }
