@@ -5,6 +5,7 @@ import com.boredblog.jsonview.PostJsonView;
 import com.boredblog.manager.PostManager;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,14 +40,16 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Post createPost(@Valid @RequestBody Post post) {
+    public Post createPost(@Valid @RequestBody Post post,
+                           BindingResult bindingResult) {
         return this.postManager.create(post);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Post updatePost(
             @PathVariable Integer id,
-            @Valid @RequestBody Post post
+            @Valid @RequestBody Post post,
+            BindingResult bindingResult
     ) {
         return this.postManager.update(id, post);
     }

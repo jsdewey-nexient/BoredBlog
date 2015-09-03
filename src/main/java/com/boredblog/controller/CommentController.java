@@ -5,6 +5,7 @@ import com.boredblog.jsonview.CommentJsonView;
 import com.boredblog.manager.CommentManager;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,7 +29,8 @@ public class CommentController {
     @RequestMapping(value = "posts/{postId}/comments", method = RequestMethod.POST)
     public Comment createComment(
             @PathVariable Integer postId,
-            @Valid @RequestBody Comment comment
+            @Valid @RequestBody Comment comment,
+            BindingResult bindingResult
     ) {
         return this.commentManager.create(postId, comment);
     }
@@ -37,7 +39,8 @@ public class CommentController {
     public Comment updateComment(
             @PathVariable Integer postId,
             @PathVariable Integer commentId,
-            @Valid @RequestBody Comment comment
+            @Valid @RequestBody Comment comment,
+            BindingResult bindingResult
     ) {
         return this.commentManager.update(postId, commentId, comment);
     }

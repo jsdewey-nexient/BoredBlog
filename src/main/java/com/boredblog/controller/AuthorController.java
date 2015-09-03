@@ -5,6 +5,7 @@ import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.manager.AuthorManager;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +34,8 @@ public class AuthorController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Author createAuthor(@Valid @RequestBody Author author) {
+    public Author createAuthor(@Valid @RequestBody Author author,
+                               BindingResult bindingResult) {
         return this.authorManager.create(author);
     }
 
@@ -46,7 +48,8 @@ public class AuthorController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Author updateAuthor(
             @PathVariable Integer id,
-            @Valid @RequestBody Author author
+            @Valid @RequestBody Author author,
+            BindingResult bindingResult
     ) {
         return this.authorManager.update(id, author);
     }
