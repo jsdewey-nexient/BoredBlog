@@ -1,4 +1,4 @@
-package com.boredblog.controller.author;
+package com.boredblog.controller;
 
 import com.boredblog.controller.AuthorController;
 import com.boredblog.entity.Author;
