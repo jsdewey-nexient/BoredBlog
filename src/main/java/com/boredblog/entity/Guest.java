@@ -1,10 +1,7 @@
 package com.boredblog.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * @author Joel Dewey

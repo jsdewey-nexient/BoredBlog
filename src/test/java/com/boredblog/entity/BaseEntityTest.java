@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.sql.Timestamp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Joel Dewey

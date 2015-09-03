@@ -1,8 +1,6 @@
 package com.boredblog.entity;
 
-import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.jsonview.PostJsonView;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 

@@ -1,13 +1,11 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
-import com.boredblog.jsonview.UserJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**

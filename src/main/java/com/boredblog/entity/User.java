@@ -1,9 +1,7 @@
 package com.boredblog.entity;
 
 import com.boredblog.jsonview.AuthorJsonView;
-import com.boredblog.jsonview.CommentJsonView;
 import com.boredblog.jsonview.UserJsonView;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;

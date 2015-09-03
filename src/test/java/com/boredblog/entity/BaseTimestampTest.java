@@ -1,10 +1,6 @@
 package com.boredblog.entity;
 
-import org.junit.Test;
-
 import java.sql.Timestamp;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Joel Dewey

@@ -1,7 +1,6 @@
 package com.boredblog.repository;
 
 import com.boredblog.entity.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
