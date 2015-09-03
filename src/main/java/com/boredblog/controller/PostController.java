@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -38,14 +39,14 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Post createPost(@RequestBody Post post) {
+    public Post createPost(@Valid @RequestBody Post post) {
         return this.postManager.create(post);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Post updatePost(
             @PathVariable Integer id,
-            @RequestBody Post post
+            @Valid @RequestBody Post post
     ) {
         return this.postManager.update(id, post);
     }
