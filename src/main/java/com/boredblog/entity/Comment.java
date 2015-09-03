@@ -3,6 +3,7 @@ package com.boredblog.entity;
 import com.boredblog.jsonview.CommentJsonView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import java.sql.Timestamp;
 @Table(name = "comments")
 public class Comment extends BaseEntity {
     @Column(name = "content", nullable = false)
+    @NotBlank
     private String content;
     @ManyToOne
     private User user;
