@@ -4,6 +4,7 @@ import com.boredblog.jsonview.AuthorJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,8 +18,10 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("Author")
 public class Author extends User {
+    @NotBlank
     @Column(name = "first_name", nullable = false)
     private String firstName;
+    @NotBlank
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @JsonIgnore
