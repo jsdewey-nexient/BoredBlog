@@ -3,6 +3,7 @@ package com.boredblog.entity;
 import com.boredblog.jsonview.AuthorJsonView;
 import com.boredblog.jsonview.UserJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
         discriminatorType = DiscriminatorType.STRING
 )
 public abstract class User extends BaseEntity {
+    @NotBlank
     @Column(name = "screen_name", nullable = false)
     private String screenName;
     @OneToMany
