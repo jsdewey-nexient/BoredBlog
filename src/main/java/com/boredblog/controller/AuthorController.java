@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class AuthorController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Author createAuthor(@RequestBody Author author) {
+    public Author createAuthor(@Valid @RequestBody Author author) {
         return this.authorManager.create(author);
     }
 
@@ -45,7 +46,7 @@ public class AuthorController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Author updateAuthor(
             @PathVariable Integer id,
-            @RequestBody Author author
+            @Valid @RequestBody Author author
     ) {
         return this.authorManager.update(id, author);
     }
