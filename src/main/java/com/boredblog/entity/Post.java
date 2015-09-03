@@ -3,6 +3,7 @@ package com.boredblog.entity;
 import com.boredblog.jsonview.PostJsonView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -17,8 +18,10 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 public class Post extends BaseEntity {
+    @NotBlank
     @Column(name = "title", nullable = false)
     private String title;
+    @NotBlank
     @Column(name = "content", nullable = false)
     private String content;
     @OneToMany
