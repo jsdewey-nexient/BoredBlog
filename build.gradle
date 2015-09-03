@@ -50,7 +50,8 @@ dependencies {
             "org.hibernate:hibernate-entitymanager:4.3.1.Final",
             "c3p0:c3p0:0.9.0.4",
             'org.springframework.security.oauth:spring-security-oauth2:2.0.7.RELEASE',
-            'org.springframework.data:spring-data-jpa:1.8.2.RELEASE'
+            'org.springframework.data:spring-data-jpa:1.8.2.RELEASE',
+            'org.hibernate:hibernate-validator:5.2.1.Final'
             //'org.slf4j:slf4j-api:1.7.12', // Commented while in development.
             //'org.slf4j:slf4j-simple:1.7.12'
 
