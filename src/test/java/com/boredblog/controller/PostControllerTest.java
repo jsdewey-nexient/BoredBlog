@@ -1,4 +1,4 @@
-package com.boredblog.controller.post;
+package com.boredblog.controller;
 
 import com.boredblog.controller.BaseControllerTest;
 import com.boredblog.controller.PostController;
