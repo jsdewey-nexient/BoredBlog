@@ -1,5 +1,6 @@
 package com.boredblog.controller.comment;
 
+import com.boredblog.controller.BaseControllerTest;
 import com.boredblog.controller.CommentController;
 import com.boredblog.entity.Comment;
 import com.boredblog.manager.CommentManager;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  * Group: Joel
  * Verify that comments are returned correctly.
  */
-public class CommentControllerTest {
+public class CommentControllerTest extends BaseControllerTest {
     private final Integer POST_ID = 1;
     private final Integer COMMENT_ID = 1;
     @Mock
@@ -44,7 +45,8 @@ public class CommentControllerTest {
     public void testCreatingComment() {
         Comment result = this.commentController.createComment(
                 POST_ID,
-                this.comment
+                this.comment,
+                this.bindingResult
         );
 
         assertEquals("testCreatingComment did not receive the proper " +
@@ -57,7 +59,8 @@ public class CommentControllerTest {
         Comment result = this.commentController.updateComment(
                 POST_ID,
                 COMMENT_ID,
-                this.comment
+                this.comment,
+                this.bindingResult
         );
 
         assertEquals("testUpdatingComment did not receive the updated " +

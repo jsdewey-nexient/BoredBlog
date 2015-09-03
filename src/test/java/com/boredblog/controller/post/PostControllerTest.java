@@ -1,5 +1,6 @@
 package com.boredblog.controller.post;
 
+import com.boredblog.controller.BaseControllerTest;
 import com.boredblog.controller.PostController;
 import com.boredblog.entity.Post;
 import com.boredblog.manager.PostManager;
@@ -9,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * Group: Joel
  * Tests the functions of the PostController
  */
-public class PostControllerTest {
+public class PostControllerTest extends BaseControllerTest {
     private final Integer POST_ID = 1;
     @Mock
     private Post post;
@@ -59,7 +61,10 @@ public class PostControllerTest {
 
     @Test
     public void testCreatingNewPost() {
-        Post result = this.postController.createPost(this.post);
+        Post result = this.postController.createPost(
+                this.post,
+                this.bindingResult
+        );
 
         assertEquals("testCreatingNewPost did not receive its Post " +
                 "object back.", this.post, result);
@@ -68,7 +73,11 @@ public class PostControllerTest {
 
     @Test
     public void testUpdatingPost() {
-        Post result = this.postController.updatePost(POST_ID, this.post);
+        Post result = this.postController.updatePost(
+                POST_ID,
+                this.post,
+                this.bindingResult
+        );
 
         assertEquals("testUpdatingPost did not receive updated Post " +
                 "object back.", this.updatePost, result);

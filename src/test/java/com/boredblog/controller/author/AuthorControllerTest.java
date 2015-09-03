@@ -1,6 +1,7 @@
 package com.boredblog.controller.author;
 
 import com.boredblog.controller.AuthorController;
+import com.boredblog.controller.BaseControllerTest;
 import com.boredblog.entity.Author;
 import com.boredblog.manager.AuthorManager;
 import org.junit.Before;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  * Group: Joel
  * Test the functionality of the AuthorController.
  */
-public class AuthorControllerTest {
+public class AuthorControllerTest extends BaseControllerTest {
     private final Integer AUTHOR_ID = 1;
     @Mock
     private List<Author> authors;
@@ -59,7 +60,10 @@ public class AuthorControllerTest {
 
     @Test
     public void testCreatingAuthor() {
-        Author result = this.authorController.createAuthor(this.author);
+        Author result = this.authorController.createAuthor(
+                this.author,
+                this.bindingResult
+        );
 
         assertEquals("testCreatingAuthor did not receive the mocked " +
                 "Author object back.", this.author, result);
@@ -68,7 +72,11 @@ public class AuthorControllerTest {
 
     @Test
     public void testUpdatingAuthor() {
-        Author result = this.authorController.updateAuthor(AUTHOR_ID, this.author);
+        Author result = this.authorController.updateAuthor(
+                AUTHOR_ID,
+                this.author,
+                this.bindingResult
+        );
 
         assertEquals("testUpdatingAuthor did not receive the other mocked " +
                 "Author object back.", this.updateAuthor, result);
