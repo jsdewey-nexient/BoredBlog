@@ -4,6 +4,7 @@ import com.boredblog.entity.Comment;
 import com.boredblog.repository.CommentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class CommentManager {
     @Autowired
     private CommentRepository commentRepository;
+    @Value("${comment_fields}")
+    private String ignoredFields[];
 
     public Comment create(Integer postId, Comment comment) {
         return this.commentRepository.save(comment);
@@ -36,7 +39,7 @@ public class CommentManager {
 
     public Comment update(Integer postId, Integer commentId, Comment comment) {
         Comment existingComment = this.retrieve(postId, commentId);
-        BeanUtils.copyProperties(comment, existingComment);
+        BeanUtils.copyProperties(comment, existingComment, this.ignoredFields);
         return this.commentRepository.save(comment);
     }
 }
