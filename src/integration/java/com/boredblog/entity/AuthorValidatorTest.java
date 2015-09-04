@@ -2,6 +2,7 @@ package com.boredblog.entity;
 
 import com.boredblog.config.JpaConfig;
 import com.boredblog.config.PropertyPlaceholderConfig;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,8 @@ public class AuthorValidatorTest {
 
     @Value("${author.first_name.NotBlank}")
     private String authorFirstNameNotBlankMessage;
+    @Value("${author.last_name.NotBlank}")
+    private String authorLastNameNotBlankMessage;
 
     @BeforeClass
     public static void beforeSetup() {
@@ -70,6 +73,40 @@ public class AuthorValidatorTest {
         assertEquals(1, violations.size());
         assertEquals(
                 this.authorFirstNameNotBlankMessage,
+                violations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void lastNameIsEmpty() {
+        Author author = new Author();
+        author.setFirstName("Johnny");
+        author.setLastName("");
+        author.setScreenName("jnexient");
+
+        Set<ConstraintViolation<Author>> violations
+                = validator.validate(author);
+
+        assertEquals(1, violations.size());
+        assertEquals(
+                this.authorLastNameNotBlankMessage,
+                violations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void lastNameIsNull() {
+        Author author = new Author();
+        author.setFirstName("Johnny");
+        author.setLastName(null);
+        author.setScreenName("jnexient");
+
+        Set<ConstraintViolation<Author>> violations
+                = validator.validate(author);
+
+        assertEquals(1, violations.size());
+        assertEquals(
+                this.authorLastNameNotBlankMessage,
                 violations.iterator().next().getMessage()
         );
     }
