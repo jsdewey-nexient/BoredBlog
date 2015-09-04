@@ -4,6 +4,7 @@ import com.boredblog.entity.Post;
 import com.boredblog.repository.PostRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class PostManager {
     @Autowired
     private PostRepository postRepository;
+    @Value("${post_fields}")
+    private String ignoredFields[];
 
     public Post create(Post post) {
         return this.postRepository.save(post);
@@ -33,7 +36,7 @@ public class PostManager {
 
     public Post update(Integer id, Post post) {
         Post existingPost = this.retrieve(id);
-        BeanUtils.copyProperties(post, existingPost);
+        BeanUtils.copyProperties(post, existingPost, this.ignoredFields);
         return this.postRepository.save(existingPost);
     }
 }
