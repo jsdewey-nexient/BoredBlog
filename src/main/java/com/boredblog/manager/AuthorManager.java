@@ -4,6 +4,7 @@ import com.boredblog.entity.Author;
 import com.boredblog.repository.AuthorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class AuthorManager {
     @Autowired
     private AuthorRepository authorRepository;
+    @Value("${author_fields}")
+    private String ignoredFields[];
 
     public Author create(Author author) {
         return this.authorRepository.save(author);
@@ -33,7 +36,7 @@ public class AuthorManager {
 
     public Author update(Integer id, Author author) {
         Author existingAuthor = this.retrieve(id);
-        BeanUtils.copyProperties(author, existingAuthor);
+        BeanUtils.copyProperties(author, existingAuthor, this.ignoredFields);
         return this.authorRepository.save(existingAuthor);
     }
 }
