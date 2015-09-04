@@ -1,10 +1,15 @@
 package com.boredblog.entity;
 
 import org.junit.BeforeClass;
+import org.junit.Test;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Joel Dewey
@@ -19,5 +24,20 @@ public class AuthorValidatorTest {
     public static void beforeSetup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+    }
+
+    @Test
+    public void firstNameIsEmpty() {
+        Author author = new Author();
+        author.setFirstName("");
+
+        Set<ConstraintViolation<Author>> violations
+                = validator.validate(author);
+
+        assertEquals(1, violations.size());
+        assertEquals(
+                "Your first name may not be blank.",
+                violations.iterator().next().getMessage()
+        );
     }
 }
