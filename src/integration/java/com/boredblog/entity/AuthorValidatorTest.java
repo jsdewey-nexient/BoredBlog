@@ -30,6 +30,8 @@ public class AuthorValidatorTest {
     public void firstNameIsEmpty() {
         Author author = new Author();
         author.setFirstName("");
+        author.setLastName("Nexient");
+        author.setScreenName("jnexient");
 
         Set<ConstraintViolation<Author>> violations
                 = validator.validate(author);
