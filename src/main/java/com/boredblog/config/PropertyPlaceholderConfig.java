@@ -14,7 +14,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource({
         "classpath:db/database.properties",
-        "classpath:ValidationMessage.properties"
+        "classpath:ValidationMessages.properties"
 })
 public class PropertyPlaceholderConfig {
     @Bean
