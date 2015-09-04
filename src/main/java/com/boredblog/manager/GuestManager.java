@@ -4,6 +4,7 @@ import com.boredblog.entity.Guest;
 import com.boredblog.repository.GuestRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class GuestManager {
     @Autowired
     private GuestRepository guestRepository;
+    @Value("guest_fields")
+    private String ignoredFields[];
 
     public Guest create(Guest guest) {
         return this.guestRepository.save(guest);
@@ -30,7 +33,7 @@ public class GuestManager {
      */
     public Guest update(Integer id, Guest guest) {
         Guest existingGuest = this.retrieve(id);
-        BeanUtils.copyProperties(guest, existingGuest);
+        BeanUtils.copyProperties(guest, existingGuest, this.ignoredFields);
         return this.guestRepository.save(existingGuest);
     }
 }
