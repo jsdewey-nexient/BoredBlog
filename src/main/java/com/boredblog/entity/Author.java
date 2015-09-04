@@ -18,10 +18,10 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("Author")
 public class Author extends User {
-    @NotBlank
+    @NotBlank(message = "{author.first_name.NotBlank}")
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "{author.last_name.NotBlank")
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @JsonIgnore

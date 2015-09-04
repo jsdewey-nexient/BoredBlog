@@ -22,7 +22,7 @@ import java.util.List;
         discriminatorType = DiscriminatorType.STRING
 )
 public abstract class User extends BaseEntity {
-    @NotBlank
+    @NotBlank(message = "{user.screen_name.NotBlank}")
     @Column(name = "screen_name", nullable = false)
     private String screenName;
     @OneToMany

@@ -18,10 +18,10 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 public class Post extends BaseEntity {
-    @NotBlank
+    @NotBlank(message = "{post.title.NotBlank}")
     @Column(name = "title", nullable = false)
     private String title;
-    @NotBlank
+    @NotBlank(message = "{post.content.NotBlank}")
     @Column(name = "content", nullable = false)
     private String content;
     @OneToMany

@@ -21,7 +21,7 @@ import java.sql.Timestamp;
 @Table(name = "comments")
 public class Comment extends BaseEntity {
     @Column(name = "content", nullable = false)
-    @NotBlank
+    @NotBlank(message = "{comment.content.NotBlank}")
     private String content;
     @ManyToOne
     private User user;
