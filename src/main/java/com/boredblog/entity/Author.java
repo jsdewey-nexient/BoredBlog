@@ -21,7 +21,7 @@ public class Author extends User {
     @NotBlank(message = "{author.first_name.NotBlank}")
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    @NotBlank(message = "{author.last_name.NotBlank")
+    @NotBlank(message = "{author.last_name.NotBlank}")
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @JsonIgnore
