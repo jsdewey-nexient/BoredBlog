@@ -1,7 +1,13 @@
 package com.boredblog.entity;
 
+import com.boredblog.config.JpaConfig;
+import com.boredblog.config.PropertyPlaceholderConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -17,8 +23,16 @@ import static org.junit.Assert.assertEquals;
  * Group: Joel
  * Validate that the Hibernate Validator is acting accordingly.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {
+        PropertyPlaceholderConfig.class,
+        JpaConfig.class
+})
 public class AuthorValidatorTest {
     private static Validator validator;
+
+    @Value("${author.first_name.NotBlank}")
+    private String authorFirstNameNotBlankMessage;
 
     @BeforeClass
     public static void beforeSetup() {
@@ -38,7 +52,24 @@ public class AuthorValidatorTest {
 
         assertEquals(1, violations.size());
         assertEquals(
-                "Your first name may not be blank.",
+                this.authorFirstNameNotBlankMessage,
+                violations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void firstNameIsNull() {
+        Author author = new Author();
+        author.setFirstName(null);
+        author.setLastName("Nexient");
+        author.setScreenName("jnexient");
+
+        Set<ConstraintViolation<Author>> violations
+                = validator.validate(author);
+
+        assertEquals(1, violations.size());
+        assertEquals(
+                this.authorFirstNameNotBlankMessage,
                 violations.iterator().next().getMessage()
         );
     }
