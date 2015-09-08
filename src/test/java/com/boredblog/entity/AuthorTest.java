@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
  * Verify that the Author entity works as expected.
  */
 public class AuthorTest {
+    public static final int ID = 1;
     private final String FIRST_NAME = "Johnny";
     private final String LAST_NAME = "Nexient";
     private final String SCREEN_NAME = "jNexient2";
@@ -126,6 +127,7 @@ public class AuthorTest {
         author.setLastName(LAST_NAME);
         author.setScreenName(SCREEN_NAME);
         author.setPassword(PASS);
+        author.setId(ID);
 
         return author;
     }

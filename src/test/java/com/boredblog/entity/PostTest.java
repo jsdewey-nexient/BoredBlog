@@ -19,6 +19,7 @@ import static org.junit.Assert.assertTrue;
  * Verify that the Post entity works as intended.
  */
 public class PostTest extends BaseTimestampTest {
+    public static final int ID = 1;
     private final String TITLE = "Fake Title";
     private final String CONTENT = "Bacon ipsum dolor amet meatloaf ground " +
             "round fatback, salami jowl tenderloin short ribs shoulder " +
@@ -113,6 +114,7 @@ public class PostTest extends BaseTimestampTest {
     }
 
     private Post setUnmockedProperties(Post post) {
+        post.setId(ID);
         post.setTitle(TITLE);
         post.setContent(CONTENT);
         post.setCreatedAt(CREATED_AT);

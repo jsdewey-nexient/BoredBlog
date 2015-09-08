@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
  * Verify that the Guest entity works as it should.
  */
 public class GuestTest {
+    public static final int ID = 1;
     private final String SCREEN_NAME = "knexient4";
     @Mock
     private List<Comment> comments;
@@ -27,6 +28,7 @@ public class GuestTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
+        this.guest.setId(ID);
         this.guest.setScreenName(SCREEN_NAME);
     }
 

@@ -17,6 +17,7 @@ import static org.junit.Assert.assertTrue;
  * Verify that a Comment entity works as it should.
  */
 public class CommentTest extends BaseTimestampTest {
+    public static final int ID = 1;
     private final String CONTENT = "Lorem ipsum dolor sit amet, consectetur " +
             "adipiscing elit. Donec in.";
     @Mock
@@ -97,6 +98,7 @@ public class CommentTest extends BaseTimestampTest {
         comment.setContent(CONTENT);
         comment.setCreatedAt(CREATED_AT);
         comment.setUpdatedAt(UPDATED_AT);
+        comment.setId(ID);
 
         return comment;
     }
