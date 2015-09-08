@@ -70,27 +70,35 @@ public class CommentTest extends BaseTimestampTest {
 
     @Test
     public void testEquals() {
-        Comment otherComment = new Comment();
-        otherComment = this.setUnmockedProperties(otherComment);
-        otherComment.setUser(this.author);
+        Author author = new Author();
+        Comment firstComment = new Comment();
+        Comment secondComment = new Comment();
+        firstComment = this.setUnmockedProperties(firstComment);
+        firstComment.setUser(author);
+        secondComment = this.setUnmockedProperties(secondComment);
+        secondComment.setUser(author);
 
         assertTrue(
                 "testEquals did not receive equal Comment objects.",
-                this.comment.equals(otherComment)
-                        && otherComment.equals(this.comment)
+                firstComment.equals(secondComment)
+                        && secondComment.equals(firstComment)
         );
     }
 
     @Test
     public void testHashCode() {
-        Comment otherComment = new Comment();
-        otherComment = this.setUnmockedProperties(otherComment);
-        otherComment.setUser(this.author);
+        Author author = this.createAuthor();
+        Comment firstComment = new Comment();
+        Comment secondComment = new Comment();
+        firstComment = this.setUnmockedProperties(firstComment);
+        firstComment.setUser(author);
+        secondComment = this.setUnmockedProperties(secondComment);
+        secondComment.setUser(author);
 
         assertTrue(
                 "testHashCode did not receive equal hash codes from the " +
                         "Comment objects.",
-                this.comment.hashCode() == otherComment.hashCode()
+                firstComment.hashCode() == secondComment.hashCode()
         );
     }
 
@@ -101,5 +109,18 @@ public class CommentTest extends BaseTimestampTest {
         comment.setId(ID);
 
         return comment;
+    }
+
+    private Author createAuthor() {
+        Author author = new Author();
+        author.setFirstName("Johnny");
+        author.setLastName("Nexient");
+        author.setScreenName("jnexient");
+        author.setPassword("APoorPassword");
+        author.setId(ID);
+        author.setCreatedAt(CREATED_AT);
+        author.setUpdatedAt(UPDATED_AT);
+
+        return author;
     }
 }
