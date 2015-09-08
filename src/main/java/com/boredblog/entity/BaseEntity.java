@@ -51,4 +51,32 @@ public class BaseEntity {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt + ", ";
+    }
+
+    /**
+     * Should only be called by an overridden equals().
+     */
+    @Override
+    public boolean equals(Object o) {
+        BaseEntity that = (BaseEntity) o;
+
+        if (!getId().equals(that.getId())) return false;
+        if (!getCreatedAt().equals(that.getCreatedAt())) return false;
+        return !(getUpdatedAt() != null ? !getUpdatedAt().equals(that.getUpdatedAt()) : that.getUpdatedAt() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getCreatedAt().hashCode();
+        result = 31 * result + (getUpdatedAt() != null ? getUpdatedAt().hashCode() : 0);
+        return result;
+    }
 }
