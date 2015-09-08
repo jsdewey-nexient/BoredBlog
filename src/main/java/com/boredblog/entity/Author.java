@@ -69,4 +69,37 @@ public class Author extends User {
     public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", posts=" + posts +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (!getFirstName().equals(author.getFirstName())) return false;
+        if (!getLastName().equals(author.getLastName())) return false;
+        if (!getPassword().equals(author.getPassword())) return false;
+        return !(getPosts() != null ? !getPosts().equals(author.getPosts()) : author.getPosts() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + (getPosts() != null ? getPosts().hashCode() : 0);
+        return result;
+    }
 }
