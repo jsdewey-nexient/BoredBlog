@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Joel Dewey
@@ -51,4 +52,33 @@ public class GuestTest {
                 result
         );
     }
+
+    @Test
+    public void testEquals() {
+        Guest otherGuest = this.createSimilarGuest();
+
+        assertTrue(
+                "testEquals did not receive equal Guest objects.",
+                this.guest.equals(otherGuest)
+                        && otherGuest.equals(this.guest)
+        );
+    }
+
+    @Test
+    public void testHashCode() {
+        Guest otherGuest = this.createSimilarGuest();
+
+        assertTrue(
+                "testHashCode did not receive equal hash codes from the " +
+                        "Guest objects.",
+                this.guest.hashCode() == otherGuest.hashCode()
+        );
+    }
+
+     private Guest createSimilarGuest() {
+         Guest similiarGuest = new Guest();
+
+         similiarGuest.setComments(this.comments);
+         return similiarGuest;
+     }
 }

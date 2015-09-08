@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Joel Dewey
@@ -30,7 +31,7 @@ public class PostTest extends BaseTimestampTest {
     @Before
     public void setup() throws Exception{
         MockitoAnnotations.initMocks(this);
-        setUnmockedProperties();
+        this.post = setUnmockedProperties(this.post);
     }
 
     @Test
@@ -89,10 +90,34 @@ public class PostTest extends BaseTimestampTest {
         );
     }
 
-    private void setUnmockedProperties() {
-        this.post.setTitle(TITLE);
-        this.post.setContent(CONTENT);
-        this.post.setCreatedAt(CREATED_AT);
-        this.post.setUpdatedAt(UPDATED_AT);
+    @Test
+    public void testEquals() {
+        Post otherPost = new Post();
+        this.setUnmockedProperties(otherPost);
+        assertTrue(
+                "The two Post objects in testEquals are not equal.",
+                this.post.equals(otherPost) && otherPost.equals(this.post)
+        );
+    }
+
+    @Test
+    public void testHashCode() {
+        Post otherPost = new Post();
+        otherPost = this.setUnmockedProperties(otherPost);
+        otherPost.setComments(this.comments);
+        assertTrue(
+                "The hash codes of the two Post objects in testHashCode " +
+                        "are not the same.",
+                this.post.hashCode() == otherPost.hashCode()
+        );
+    }
+
+    private Post setUnmockedProperties(Post post) {
+        post.setTitle(TITLE);
+        post.setContent(CONTENT);
+        post.setCreatedAt(CREATED_AT);
+        post.setUpdatedAt(UPDATED_AT);
+
+        return post;
     }
 }

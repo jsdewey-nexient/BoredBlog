@@ -8,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Joel Dewey
@@ -27,7 +28,7 @@ public class CommentTest extends BaseTimestampTest {
         this.comment = new Comment();
 
         MockitoAnnotations.initMocks(this);
-        this.setUnmockedProperties();
+        this.comment = this.setUnmockedProperties(this.comment);
     }
 
     @Test
@@ -66,9 +67,37 @@ public class CommentTest extends BaseTimestampTest {
         );
     }
 
-    private void setUnmockedProperties() {
-        this.comment.setContent(CONTENT);
-        this.comment.setCreatedAt(CREATED_AT);
-        this.comment.setUpdatedAt(UPDATED_AT);
+    @Test
+    public void testEquals() {
+        Comment otherComment = new Comment();
+        otherComment = this.setUnmockedProperties(otherComment);
+        otherComment.setUser(this.author);
+
+        assertTrue(
+                "testEquals did not receive equal Comment objects.",
+                this.comment.equals(otherComment)
+                        && otherComment.equals(this.comment)
+        );
+    }
+
+    @Test
+    public void testHashCode() {
+        Comment otherComment = new Comment();
+        otherComment = this.setUnmockedProperties(otherComment);
+        otherComment.setUser(this.author);
+
+        assertTrue(
+                "testHashCode did not receive equal hash codes from the " +
+                        "Comment objects.",
+                this.comment.hashCode() == otherComment.hashCode()
+        );
+    }
+
+    private Comment setUnmockedProperties(Comment comment) {
+        comment.setContent(CONTENT);
+        comment.setCreatedAt(CREATED_AT);
+        comment.setUpdatedAt(UPDATED_AT);
+
+        return comment;
     }
 }

@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Joel Dewey
@@ -33,7 +34,7 @@ public class AuthorTest {
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        this.setUnmockedProperties();
+        this.author = this.setUnmockedProperties(this.author);
     }
 
     @Test
@@ -95,10 +96,37 @@ public class AuthorTest {
         );
     }
 
-    private void setUnmockedProperties() {
-        this.author.setFirstName(FIRST_NAME);
-        this.author.setLastName(LAST_NAME);
-        this.author.setScreenName(SCREEN_NAME);
-        this.author.setPassword(PASS);
+    @Test
+    public void testEquals() {
+        Author otherAuthor = new Author();
+        otherAuthor = this.setUnmockedProperties(otherAuthor);
+        otherAuthor.setPosts(this.posts);
+        otherAuthor.setComments(this.comments);
+        assertTrue(
+                "The two Author objects in testEquals are not equal.",
+                this.author.equals(otherAuthor) && otherAuthor.equals(this.author)
+        );
+    }
+
+    @Test
+    public void testHashCode() {
+        Author otherAuthor = new Author();
+        otherAuthor = this.setUnmockedProperties(otherAuthor);
+        otherAuthor.setPosts(this.posts);
+        otherAuthor.setComments(this.comments);
+        assertTrue(
+                "The hash codes of the two Author objects in testHashCode " +
+                        "are not the same.",
+                this.author.hashCode() == otherAuthor.hashCode()
+        );
+    }
+
+    private Author setUnmockedProperties(Author author) {
+        author.setFirstName(FIRST_NAME);
+        author.setLastName(LAST_NAME);
+        author.setScreenName(SCREEN_NAME);
+        author.setPassword(PASS);
+
+        return author;
     }
 }
