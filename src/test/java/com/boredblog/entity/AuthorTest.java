@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * Group: Joel
  * Verify that the Author entity works as expected.
  */
-public class AuthorTest {
+public class AuthorTest extends BaseTimestampTest {
     public static final int ID = 1;
     private final String FIRST_NAME = "Johnny";
     private final String LAST_NAME = "Nexient";
@@ -99,26 +100,26 @@ public class AuthorTest {
 
     @Test
     public void testEquals() {
-        Author otherAuthor = new Author();
-        otherAuthor = this.setUnmockedProperties(otherAuthor);
-        otherAuthor.setPosts(this.posts);
-        otherAuthor.setComments(this.comments);
+        Author firstAuthor = new Author();
+        Author secondAuthor = new Author();
+        firstAuthor = this.setUnmockedProperties(firstAuthor);
+        secondAuthor = this.setUnmockedProperties(secondAuthor);
         assertTrue(
                 "The two Author objects in testEquals are not equal.",
-                this.author.equals(otherAuthor) && otherAuthor.equals(this.author)
+                firstAuthor.equals(secondAuthor) && secondAuthor.equals(firstAuthor)
         );
     }
 
     @Test
     public void testHashCode() {
-        Author otherAuthor = new Author();
-        otherAuthor = this.setUnmockedProperties(otherAuthor);
-        otherAuthor.setPosts(this.posts);
-        otherAuthor.setComments(this.comments);
+        Author firstAuthor = new Author();
+        Author secondAuthor = new Author();
+        firstAuthor = this.setUnmockedProperties(firstAuthor);
+        secondAuthor = this.setUnmockedProperties(secondAuthor);
         assertTrue(
                 "The hash codes of the two Author objects in testHashCode " +
                         "are not the same.",
-                this.author.hashCode() == otherAuthor.hashCode()
+                firstAuthor.hashCode() == secondAuthor.hashCode()
         );
     }
 
@@ -128,6 +129,8 @@ public class AuthorTest {
         author.setScreenName(SCREEN_NAME);
         author.setPassword(PASS);
         author.setId(ID);
+        author.setCreatedAt(CREATED_AT);
+        author.setUpdatedAt(UPDATED_AT);
 
         return author;
     }
