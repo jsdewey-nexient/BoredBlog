@@ -74,8 +74,8 @@ public class BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getCreatedAt().hashCode();
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getCreatedAt() != null ? getCreatedAt().hashCode() : 0);
         result = 31 * result + (getUpdatedAt() != null ? getUpdatedAt().hashCode() : 0);
         return result;
     }

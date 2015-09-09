@@ -100,9 +100,9 @@ public class Author extends User {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
-        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
         result = 31 * result + (getPosts() != null ? getPosts().hashCode() : 0);
         return result;
     }

@@ -70,7 +70,7 @@ public abstract class User extends BaseEntity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getScreenName().hashCode();
+        result = 31 * result + (getScreenName() != null ? getScreenName().hashCode() : 0);
         result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
         return result;
     }

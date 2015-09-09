@@ -107,10 +107,10 @@ public class Post extends BaseEntity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getTitle().hashCode();
-        result = 31 * result + getContent().hashCode();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getContent() != null ? getContent().hashCode() : 0);
         result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
-        result = 31 * result + getAuthor().hashCode();
+        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
         return result;
     }
 }

@@ -83,8 +83,8 @@ public class Comment extends BaseEntity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getContent().hashCode();
-        result = 31 * result + getUser().hashCode();
+        result = 31 * result + (getContent() != null ? getContent().hashCode() : 0);
+        result = 31 * result + (getUser() != null ? getUser().hashCode() : 0);
         return result;
     }
 }
