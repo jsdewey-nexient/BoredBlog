@@ -46,4 +46,32 @@ public abstract class User extends BaseEntity {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "screenName='" + screenName + '\'' +
+                ", comments=" + comments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        User user = (User) o;
+
+        if (!getScreenName().equals(user.getScreenName())) return false;
+        return !(getComments() != null ? !getComments().equals(user.getComments()) : user.getComments() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + getScreenName().hashCode();
+        result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
+        return result;
+    }
 }

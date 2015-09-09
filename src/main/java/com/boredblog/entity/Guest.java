@@ -12,4 +12,8 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("Guest")
 public class Guest extends User {
+    @Override
+    public String toString() {
+        return "Guest{" + super.toString() + "}";
+    }
 }

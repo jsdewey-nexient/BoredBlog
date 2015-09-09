@@ -59,11 +59,11 @@ public class BaseEntity {
                 ", updatedAt=" + updatedAt + ", ";
     }
 
-    /**
-     * Should only be called by an overridden equals().
-     */
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         BaseEntity that = (BaseEntity) o;
 
         if (!getId().equals(that.getId())) return false;

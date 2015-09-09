@@ -77,4 +77,40 @@ public class Post extends BaseEntity {
     public Timestamp getUpdatedAt() {
         return super.getUpdatedAt();
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", comments=" + comments +
+                ", author=" + author +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Post post = (Post) o;
+
+        if (!getTitle().equals(post.getTitle())) return false;
+        if (!getContent().equals(post.getContent())) return false;
+        if (getComments() != null ? !getComments().equals(post.getComments()) : post.getComments() != null)
+            return false;
+        return getAuthor().equals(post.getAuthor());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + getTitle().hashCode();
+        result = 31 * result + getContent().hashCode();
+        result = 31 * result + (getComments() != null ? getComments().hashCode() : 0);
+        result = 31 * result + getAuthor().hashCode();
+        return result;
+    }
 }

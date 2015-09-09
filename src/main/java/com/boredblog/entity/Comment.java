@@ -57,4 +57,34 @@ public class Comment extends BaseEntity {
     public Timestamp getUpdatedAt() {
         return super.getUpdatedAt();
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                super.toString() +
+                "content='" + content + '\'' +
+                ", user=" + user +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Comment comment = (Comment) o;
+
+        if (!getContent().equals(comment.getContent())) return false;
+        return getUser().equals(comment.getUser());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + getContent().hashCode();
+        result = 31 * result + getUser().hashCode();
+        return result;
+    }
 }
