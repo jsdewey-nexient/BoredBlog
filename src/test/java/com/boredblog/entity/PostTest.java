@@ -93,32 +93,44 @@ public class PostTest extends BaseTimestampTest {
 
     @Test
     public void testEquals() {
-        Post otherPost = new Post();
-        this.setUnmockedProperties(otherPost);
+        Post firstPost = this.setUnmockedProperties(new Post());
+        Post secondPost = this.setUnmockedProperties(new Post());
+
         assertTrue(
                 "The two Post objects in testEquals are not equal.",
-                this.post.equals(otherPost) && otherPost.equals(this.post)
+                firstPost.equals(secondPost) && secondPost.equals(firstPost)
         );
     }
 
     @Test
     public void testHashCode() {
-        Post otherPost = new Post();
-        otherPost = this.setUnmockedProperties(otherPost);
-        otherPost.setComments(this.comments);
+        Post firstPost = this.setUnmockedProperties(new Post());
+        Post secondPost = this.setUnmockedProperties(new Post());
+
         assertTrue(
                 "The hash codes of the two Post objects in testHashCode " +
                         "are not the same.",
-                this.post.hashCode() == otherPost.hashCode()
+                firstPost.hashCode() == secondPost.hashCode()
         );
     }
 
     private Post setUnmockedProperties(Post post) {
+        Author author = new Author();
+
         post.setId(ID);
         post.setTitle(TITLE);
         post.setContent(CONTENT);
         post.setCreatedAt(CREATED_AT);
         post.setUpdatedAt(UPDATED_AT);
+
+        author.setId(ID);
+        author.setFirstName("Johnny");
+        author.setLastName("Nexient");
+        author.setPassword("A long password hash.");
+        author.setScreenName("jnexient");
+        author.setCreatedAt(CREATED_AT);
+
+        post.setAuthor(author);
 
         return post;
     }
