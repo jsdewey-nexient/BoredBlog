@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * Group: Joel
  * Verify that the Guest entity works as it should.
  */
-public class GuestTest {
+public class GuestTest extends BaseTimestampTest {
     public static final int ID = 1;
     private final String SCREEN_NAME = "knexient4";
     @Mock
@@ -57,30 +58,34 @@ public class GuestTest {
 
     @Test
     public void testEquals() {
-        Guest otherGuest = this.createSimilarGuest();
+        Guest firstGuest = this.setUnmockedProperties(new Guest());
+        Guest secondGuest = this.setUnmockedProperties(new Guest());
 
         assertTrue(
                 "testEquals did not receive equal Guest objects.",
-                this.guest.equals(otherGuest)
-                        && otherGuest.equals(this.guest)
+                firstGuest.equals(secondGuest)
+                        && secondGuest.equals(firstGuest)
         );
     }
 
     @Test
     public void testHashCode() {
-        Guest otherGuest = this.createSimilarGuest();
+        Guest firstGuest = this.setUnmockedProperties(new Guest());
+        Guest secondGuest = this.setUnmockedProperties(new Guest());
 
         assertTrue(
                 "testHashCode did not receive equal hash codes from the " +
                         "Guest objects.",
-                this.guest.hashCode() == otherGuest.hashCode()
+                firstGuest.hashCode() == secondGuest.hashCode()
         );
     }
 
-     private Guest createSimilarGuest() {
-         Guest similiarGuest = new Guest();
+    private Guest setUnmockedProperties(Guest guest) {
+        guest.setId(ID);
+        guest.setScreenName(SCREEN_NAME);
+        guest.setCreatedAt(CREATED_AT);
+        guest.setUpdatedAt(UPDATED_AT);
 
-         similiarGuest.setComments(this.comments);
-         return similiarGuest;
-     }
+        return guest;
+    }
 }
