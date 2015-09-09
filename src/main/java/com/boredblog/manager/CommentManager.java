@@ -40,6 +40,6 @@ public class CommentManager {
     public Comment update(Integer postId, Integer commentId, Comment comment) {
         Comment existingComment = this.retrieve(postId, commentId);
         BeanUtils.copyProperties(comment, existingComment, this.ignoredFields);
-        return this.commentRepository.save(comment);
+        return this.commentRepository.save(existingComment);
     }
 }
